@@ -1,0 +1,1 @@
+Base template readme for frontend from template made by "npm create vite@latest frontend -- --template vue"
