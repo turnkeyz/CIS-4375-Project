@@ -1,1 +1,2 @@
-This is the default readme for the CIS 4375 Team 2 repository and will need to be filled with information.
+//clone from github
+git clone https://github.com/turnkeyz/CIS-4375-Project.git
