@@ -4,7 +4,7 @@
 
 ```
 //clone from github
-git clone https://github.com/turnkeyz/CIS-4375-Project.git
+git clone https://github.com/turnkeyz/CIS-4375-Project/tree/main/frontend.git
 cd into folder to install packages
 npm install
 // create the proper .env file in the root folder of the project to setup connection with DB (see .env.example)
