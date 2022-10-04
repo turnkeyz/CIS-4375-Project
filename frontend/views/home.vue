@@ -26,7 +26,7 @@
     </div>
     <div class="carousel-item" data-bs-interval="10000">
       <img src="/uploads/jumbo2.jpg" class="d-block w-100" alt="...">
-      <div class="carousel-caption d-none d-md-block">
+      <div class="carousel-caption d-none d-md-block">s
         <h5>Custom Orders Available</h5>
         <p>Send us a picture or design, dairy-free and gluten-free options available.</p>
       </div>
@@ -52,7 +52,7 @@
     <p>
       Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti quidem, culpa sapiente numquam itaque voluptatibus voluptate! 
       Consequuntur similique commodi cumque vel eius quae, quaerat delectus magnam eaque blanditiis tempore illo.
-    </p>
+    </p>s
 
   </div>
   <div class="container">
@@ -68,9 +68,9 @@
               </div> -->
             <div class="input-group mb-3">
               <!-- <input type="number" style="width:.5em" id="typeNumber" class="form-control" placeholder="" aria-label="" aria-describedby="" > -->
-              <div class="input-group-append">
+              <!-- <div class="input-group-append">
                 <button class="btn btn-info" type="button">Add to cart</button>
-              </div>
+              </div> -->
             </div>
           </div>
 
@@ -79,9 +79,9 @@
               <p>Cakes</p>
               <div class="input-group mb-3">
               <!-- <input type="number" id="typeNumber" class="form-control" placeholder="" aria-label="" aria-describedby=""> -->
-              <div class="input-group-append">
+              <!-- <div class="input-group-append">
                 <button class="btn btn-info" type="button">Add to cart</button>
-              </div>
+              </div> -->
             </div>
           </div>
           <div class="col mt-3">
@@ -89,9 +89,9 @@
               <p>Breads</p>
               <div class="input-group mb-3">
               <!-- <input type="number" id="typeNumber" class="form-control" placeholder="" aria-label="" aria-describedby=""> -->
-              <div class="input-group-append">
+              <!-- <div class="input-group-append">
                 <button class="btn btn-info" type="button">Add to cart</button>
-              </div>
+              </div> -->
             </div>
           </div>
           <div class="col mt-3">
@@ -99,9 +99,9 @@
               <p>Pastries</p>
               <div class="input-group mb-3">
               <!-- <input type="number" id="typeNumber" class="form-control" placeholder="" aria-label="" aria-describedby=""> -->
-              <div class="input-group-append">
+              <!-- <div class="input-group-append">
                 <button class="btn btn-info" type="button">Add to cart</button>
-              </div>
+              </div> -->
             </div>
           </div>
           <div class="col mt-3">
