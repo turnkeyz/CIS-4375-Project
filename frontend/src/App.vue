@@ -10,48 +10,61 @@
   </script>
 
 <template>
-  <nav class="navbar navbar-expand-lg navbar-light bg-light" aria-label="Dark offcanvas navbar">
-      <div class="container-fluid">
-        <a class="navbar-brand" href="#">Owl B Baking</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbarDark" aria-controls="offcanvasNavbarDark">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="offcanvas offcanvas-end text-bg-dark" tabindex="-1" id="offcanvasNavbarDark" aria-labelledby="offcanvasNavbarDarkLabel">
-          <div class="offcanvas-header">
-            <h5 class="offcanvas-title" id="offcanvasNavbarDarkLabel">Offcanvas</h5>
-            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-          </div>
-          <div class="offcanvas-body">
-            <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
-              <li class="nav-item">
-                <router-link class="nav-link active" aria-current="page" to="/">Home</router-link>
-              </li>
-              <li class="nav-item">
-                <router-link class=nav-link to="/about">About</router-link>
-              </li>
-              <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                  Products
-                </a>
-                <ul class="dropdown-menu">
-                  <li><router-link class="dropdown-item" to="/products">Products</router-link></li>
-                  <li>
-                    <hr class="dropdown-divider">
-                  </li>
-                  <li><router-link class="dropdown-item" to="/brownies">Brownies</router-link></li>
-                  <li><router-link class="dropdown-item" to="/cakes">Cakes</router-link></li>
-                  <li><router-link class="dropdown-item" to="/cupcakes">Cupcakes</router-link></li>
-                </ul>
-              </li>
-            </ul>
-            <form class="d-flex mt-3" role="search">
-              <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-              <button class="btn btn-outline-success" type="submit">Search</button>
-            </form>
-          </div>
+  	<nav class="navbar navbar-expand-md navbar-dark bg-dark">
+  <div class="container">
+    <a class="navbar-brand d-md-none d-xs-block py-3" href="#">
+      <img src="/static_files/images/logos/beer_white.png" height="40" alt="Company Logo">
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+ 
+    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+      <ul class="navbar-nav mx-auto">
+        <li class="nav-item">
+          <a class="nav-link mx-2 active" aria-current="page" href="/">Home</a>
+        </li>
+        
+        
+        <!-- <li class="nav-item">
+          <a class="nav-link mx-2" href="#">Catering</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link mx-2" href="#">Reserve</a>
+        </li> -->
+        
+        <div class="dropdown">
+          <a class="nav-link dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+            Products
+          </a>
+
+          <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+            <li><a class="dropdown-item" href="#">Cookies</a></li>
+            <li><a class="dropdown-item" href="/cakes">Cakes</a></li>
+            <li><a class="dropdown-item" href="#">Breads</a></li>
+            <li><a class="dropdown-item" href="#">Pastries</a></li>
+            <li><a class="dropdown-item" href="#">Custom Orders</a></li>
+          </ul>
         </div>
-      </div>
-    </nav>
+        <li class="nav-item">
+          <a class="nav-link mx-2" href="#">About</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link mx-2" href="#">Cart</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link mx-2 btn rounded-0 btn-danger" href="/login">Login</a>
+        </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+<div class="text-center p-3 d-none d-md-block">
+  <a href="/">
+  <img src="../public/uploads/owl logo.png" height="50" alt="Company Logo">
+</a>
+</div>
   <!-- <HelloWorld msg="Vite + Vue" /> -->
       <RouterView></RouterView>
     <Footer/>
@@ -59,13 +72,11 @@
 
 
 <style>
-  .container-fluid{
-    /* background-color: #F3E5F5 */
-    background-color: #DDA0DD;
-  }
+  
   .img-fluid{
     width: 350px;
     height: 200px;
   }
 
+  
 </style>

@@ -10,7 +10,7 @@ npm install
 // create the proper .env file in the root folder of the project to setup connection with DB (see .env.example)
 
 //run in Development mode
-npm run develop
+npm run dev
 ```
     
 ## Production/Deployment
