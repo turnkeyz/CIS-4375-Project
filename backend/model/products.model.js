@@ -9,7 +9,6 @@ products.findAllFromProducts = () => {
       var request = new sql.Request();
       request.query(`SELECT * FROM Products;`, (err, res) => {
         if (err) reject('line 12',err);
-          console.log(res.recordset);
           console.table(res.recordset)
           return resolve(res.recordset); // FETCHING ALL DATA
       });
@@ -27,7 +26,6 @@ products.findProduct = (param_id) => {
       ;
       request.query(`SELECT * FROM Products WHERE ProductID=@pid;`, (err, res) => {
         if (err) reject(err);
-          console.log(res.recordset);
           console.table(res.recordset)
           return resolve(res.recordset); // FETCHING ALL DATA
       });
@@ -37,16 +35,16 @@ products.findProduct = (param_id) => {
 
 
 // ADD NEW Products
-products.insertProducts = (custObject) => {
+products.insertProducts = (obj) => {
   return new Promise((resolve, reject) => {
     sql.connect(sqlConfig, function (err, result) {
       // PARAMETERIZING QUERIES
       var request = new sql.Request()
-        .input("cid", custObject.cid)
-        .input("product_name", custObject.name)
-        .input("description", custObject.description)
-        .input("image", custObject.image)
-        .input("price", custObject.price);
+        .input("cid", obj.cid)
+        .input("product_name", obj.name)
+        .input("description", obj.description)
+        .input("image", obj.image)
+        .input("price", obj.price);
 
       request.query(
         `INSERT INTO Products (CategoryID, ProductName, ProductDescription, Price) VALUES (@cid, @product_name, @description, @image, @price);`,
@@ -62,17 +60,17 @@ products.insertProducts = (custObject) => {
 
 
 // UPDATE Products
-products.updateProducts = (param_id, custObject) => {
+products.updateProducts = (param_id, obj) => {
   return new Promise((resolve, reject) => {
     sql.connect(sqlConfig, function (err, result) {
       // PARAMETERIZING QUERIES
       var request = new sql.Request()
         .input("param_id", param_id)
-        .input("cid", custObject.cid)
-        .input("product_name", custObject.name)
-        .input("description", custObject.description)
-        .input("image", custObject.image)
-        .input("price", custObject.price);
+        .input("cid", obj.cid)
+        .input("product_name", obj.name)
+        .input("description", obj.description)
+        .input("image", obj.image)
+        .input("price", obj.price);
 
       request.query(
         `UPDATE Products SET CategoryID=@cid, ProductName=@product_name, ProductDescription=@description, Price=@price WHERE ProductID = @param_id;`,
@@ -88,12 +86,12 @@ products.updateProducts = (param_id, custObject) => {
 
 
 // DELETING BY ID FROM Products TABLE
-products.deleteProductsById = (custObject) => {
+products.deleteProductsById = (obj) => {
   return new Promise((resolve, reject) => {
     sql.connect(sqlConfig, function (err, result) {
       var request = new sql.Request()
-      .input("pid", custObject.pid);
-
+      .input("pid", obj.pid);
+      
       request.query(`DELETE FROM Products WHERE ProductID = @pid`, (err, res) => {
         if (err) reject(err);
         console.log(res);
