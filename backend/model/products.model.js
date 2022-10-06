@@ -73,7 +73,9 @@ products.updateProducts = (param_id, obj) => {
         .input("price", obj.price);
 
       request.query(
-        `UPDATE Products SET CategoryID=@cid, ProductName=@product_name, ProductDescription=@description, Price=@price WHERE ProductID = @param_id;`,
+        `UPDATE Products 
+        SET CategoryID=@cid, ProductName=@product_name, ProductDescription=@description, Price=@price 
+        WHERE ProductID = @param_id;`,
         (err, res) => {
           if (err) reject(err);
           console.log(res);
