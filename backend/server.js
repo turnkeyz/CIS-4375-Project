@@ -13,6 +13,8 @@ app.use(cors())
 
 require('./routes/products.routes')(app)
 require('./routes/orders.routes')(app)
+require('./routes/categories.routes')(app)
+
 
 // setting port to 3000, & listening for requests http request.
 app.listen(3000, () => {
