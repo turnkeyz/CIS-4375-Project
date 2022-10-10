@@ -31,12 +31,12 @@
 <template>  
   <section style="background-color: #eee;">
      <div class="container py-5">
-      <h4 class="text-center mb-5"><strong>Cookies</strong></h4>
+      <h4 class="text-center mb-5"><strong>Pastries</strong></h4>
       <div v-for="row in cakes" :key="cakes.ProductID" class="row">
           <div v-for="item in row" class="col-lg-4 col-md-6 mb-4">
               <div class="bg-image hover-zoom ripple shadow-1-strong rounded">
                 <img
-                  src="../public/uploads/cookies.jpg"
+                  src="../public/uploads/pastries.jpg"
                   class="w-100"
                   />
                 <a href="#!">
