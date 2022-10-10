@@ -39,10 +39,10 @@
           </a>
 
           <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-            <li><a class="dropdown-item" href="#">Cookies</a></li>
+            <li><a class="dropdown-item" href="/cookies">Cookies</a></li>
             <li><a class="dropdown-item" href="/cakes">Cakes</a></li>
-            <li><a class="dropdown-item" href="#">Breads</a></li>
-            <li><a class="dropdown-item" href="#">Pastries</a></li>
+            <li><a class="dropdown-item" href="/breads">Breads</a></li>
+            <li><a class="dropdown-item" href="/pastries">Pastries</a></li>
             <li><a class="dropdown-item" href="#">Custom Orders</a></li>
           </ul>
         </div>
