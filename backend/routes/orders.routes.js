@@ -1,18 +1,18 @@
 module.exports = app => {
     const Orders = require("../controllers/orders.controller.js");
   
-    // fetching ALL Orders route
+    // get al orders
     app.get("/Orders/fetchAll", Orders.getAllOrders);
 
-     // fetching Product by ID
+     // get one order
      app.get("/Orders/:oid", Orders.getProduct);
   
-    // adding new Orders route
-    app.post("/Orders/insert", Orders.insertNewOrders);
+    // add order
+    app.post("/Orders/add", Orders.insertNewOrders);
   
-    // node js rest api put example
+    // update order
     app.put("/Orders/update/:oid", Orders.updateOrders);
   
-    // node js rest api delete example
+    // delete order
     app.delete("/Orders/delete", Orders.deleteOrders);
   };
