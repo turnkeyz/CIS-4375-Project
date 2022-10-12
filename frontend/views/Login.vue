@@ -40,7 +40,7 @@
 
                     <div class="text-center pt-1 mb-5 pb-1">
                         <ul>
-                            <router-link to="/dashboard" class="btn btn-primary btn-block fa-lg gradient-custom-2 mb-3">Sign in</router-link>
+                            <router-link to="/customers" class="btn btn-primary btn-block fa-lg gradient-custom-2 mb-3">Sign in</router-link>
                         </ul>
                         <ul>
                             <a class="text-muted" href="#!">Forgot password?</a>
