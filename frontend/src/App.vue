@@ -188,10 +188,19 @@
 
 
 <style>
-  
+  @font-face {
+  font-family: "Caviet";
+  src: local("Caviet"), url(../public/assets/Caveat/static/Caveat-Regular.ttf) format("truetype");
+}
+
+h4, p, h5, h3, h2, ul, li {
+    font-family: "Caviet", Helvetica, Arial;
+    font-size:25px
+  }
   .img-fluid{
-    width: 350px;
-    height: 200px;
+    width: 100% !important;
+  height: 25vh;
+  object-fit: cover;
   }
 
   /* body {
