@@ -5,7 +5,7 @@ module.exports = app => {
     app.get("/Orders/fetchAll", Orders.getAllOrders);
 
      // get one order
-     app.get("/Orders/:oid", Orders.getProduct);
+     app.get("/Orders/:oid", Orders.getOrder);
   
     // add order
     app.post("/Orders/add", Orders.insertNewOrders);
