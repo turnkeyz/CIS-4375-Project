@@ -8,8 +8,8 @@ products.findAllFromProducts = () => {
     sql.connect(sqlConfig, function (err, result) {
       var request = new sql.Request();
       request.query(`SELECT * FROM Products;`, (err, res) => {
-        if (err) reject('line 12',err);
-          console.table(res.recordset)
+        if (err) reject(err);
+          console.log(res.recordset)
           return resolve(res.recordset); // FETCHING ALL DATA
       });
     });
@@ -98,6 +98,63 @@ products.deleteProductsById = (obj) => {
         if (err) reject(err);
         console.log(res);
         return resolve(res); // DELETING Products DATA
+      });
+    });
+  });
+};
+
+// FETCHING ALL FROM Products TABLE
+products.findAllCookies = () => {
+  return new Promise((resolve, reject) => {
+    sql.connect(sqlConfig, function (err, result) {
+      var request = new sql.Request();
+      request.query(`SELECT * FROM Products where CategoryID=1;`, (err, res) => {
+        if (err) reject(err);
+          console.log(res.recordset)
+          return resolve(res.recordset); // FETCHING ALL DATA
+      });
+    });
+  });
+};
+
+// FETCHING ALL FROM Products TABLE
+products.findAllPastries = () => {
+  return new Promise((resolve, reject) => {
+    sql.connect(sqlConfig, function (err, result) {
+      var request = new sql.Request();
+      request.query(`SELECT * FROM Products where CategoryID=2;`, (err, res) => {
+        if (err) reject(err);
+          console.log(res.recordset)
+          return resolve(res.recordset); // FETCHING ALL DATA
+      });
+    });
+  });
+};
+
+// FETCHING ALL FROM Products TABLE
+products.findAllCakes = () => {
+  return new Promise((resolve, reject) => {
+    sql.connect(sqlConfig, function (err, result) {
+      var request = new sql.Request();
+      request.query(`SELECT * FROM Products where CategoryID=3;`, (err, res) => {
+        if (err) reject(err);
+          console.log(res.recordset)
+          return resolve(res.recordset); // FETCHING ALL DATA
+      });
+    });
+  });
+};
+
+
+// FETCHING ALL FROM Products TABLE
+products.findAllBreads = () => {
+  return new Promise((resolve, reject) => {
+    sql.connect(sqlConfig, function (err, result) {
+      var request = new sql.Request();
+      request.query(`SELECT * FROM Products where CategoryID=4;`, (err, res) => {
+        if (err) reject(err);
+          console.log(res.recordset)
+          return resolve(res.recordset); // FETCHING ALL DATA
       });
     });
   });

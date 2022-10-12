@@ -12,7 +12,7 @@
       };
     },
     created(){
-      // let apiURL = `http://localhost:3000/Products/fetchAll`;
+      let apiURL = `http://localhost:3000/Products/allCakes`;
       // let apiURL = `${VARIABLES}/Products/fetchAll`;
       console.log(apiURL)
       axios.get(apiURL).then((res)=>{
