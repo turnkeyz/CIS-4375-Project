@@ -35,19 +35,19 @@
           <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mt-3">
             <h6 class="text-uppercase mb-4 font-weight-bold">Products</h6>
             <p>
-              <a class="text-white">Cookies</a>
+              <a href='/cookies' class="text-white">Cookies</a>
             </p>
             <p>
-              <a class="text-white">Cakes</a>
+              <a href="/cakes" class="text-white">Cakes</a>
             </p>
             <p>
-              <a class="text-white">Breads</a>
+              <a href="/breads" class="text-white">Breads</a>
             </p>
             <p>
-              <a class="text-white">Pastries</a>
+              <a href="/pastries" class="text-white">Pastries</a>
             </p>
             <p>
-              <a class="text-white">Custom Orders</a>
+              <a href="#" class="text-white">Custom Orders</a>
             </p>
           </div>
           <!-- Grid column -->
