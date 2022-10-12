@@ -26,35 +26,26 @@ const routes = [
     name: "Cakes",
     component:() => import('../views/Cakes.vue'),
   },
-
-
-  /*
-  
-  {
-    path: "/products",
-    name: "Products",
-    component: Products,
-  },
+  // {
+  //   path: "/products",
+  //   name: "Products",
+  //   component: Products,
+  // },
   {
     path: "/cookies",
     name: "Cookies",
-    component: Cookies,
+    component:()=>import('../views/Cookies.vue'),
   },
   {
-    path: "/cakes",
-    name: "Cakes",
-    component: Cakes,
+    path: "/breads",
+    name: "Breads",
+    component:()=>import('../views/Breads.vue'),
   },
   {
-    path: "/brownies",
-    name: "Brownies",
-    component: Brownies,
-  },
-  {
-    path: "/cupcakes",
-    name: "Cupcakes",
-    component: Cupcakes,
-  },*/
+    path: "/pastries",
+    name: "Pastries",
+    component:()=>import('../views/Pastries.vue'),
+  }
 ];
 
 const router = createRouter({
