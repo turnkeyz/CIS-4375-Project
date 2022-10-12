@@ -2,7 +2,7 @@
     export default {
       data() {
         return {
-          msg: "Welcome to our CIS 4339 project!",
+          
         };
       },
     };
@@ -48,15 +48,15 @@
             <span class="visually-hidden">Next</span>
           </button>
       </div>
-      <div class="container">
-        <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti quidem, culpa sapiente numquam itaque voluptatibus voluptate! 
-          Consequuntur similique commodi cumque vel eius quae, quaerat delectus magnam eaque blanditiis tempore illo.
-        </p>s
 
-      </div>
+
+
       <div class="container">
-        <h3>Products</h3>
+        <h4 class="text-center mb-5"><strong>Our Products</strong></h4>
+        <p text-center>Our items our made at home</p>
+      </div>
+
+      <div class="container">
       <div class="row row-cols-1 row-cols-md-2 row-cols-md-3">
           <div class="col mt-3">
             <a href="/cookies">
@@ -120,3 +120,19 @@
     </div>
   </main>
 </template>
+
+<style>
+ 
+.w-100 {
+  width: 100% !important;
+  height: 75vh;
+  object-fit: cover;
+}
+/* .col mt-3{
+  width: 100% !important;
+  height: 75vh;
+  object-fit: cover;
+} */
+
+
+</style>
