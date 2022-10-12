@@ -1,31 +1,31 @@
 module.exports = app => {
     const Products = require("../controllers/products.controller.js");
   
-  // fetching ALL Products route
+  // get all products
   app.get("/Products/fetchAll", Products.getAllProducts);
 
-  // fetch cookies
+  // get all cookies
   app.get("/Products/allCookies", Products.getAllCookies);
 
-  // fetch pastries
+  // get all pastries
   app.get("/Products/allPastries", Products.getAllPastries);
 
-  // fetch cakes
+  // get all cakes
   app.get("/Products/allCakes", Products.getAllCakes);
 
-  // fetch breads
+  // get all breads
   app.get("/Products/allBreads", Products.getAllBreads);
 
-  // fetching Product by ID
+  // get one product
   app.get("/Products/:pid", Products.getProduct);
 
-// adding new Products route
+// add product
 app.post("/Products/insert", Products.insertNewProducts);
 
-// node js rest api put example
+// update product
 app.put("/Products/update/:pid", Products.updateProducts);
 
-// node js rest api delete example
+// delete product
 app.delete("/Products/delete", Products.deleteProducts);
 };
 

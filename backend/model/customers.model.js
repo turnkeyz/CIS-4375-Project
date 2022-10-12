@@ -1,13 +1,13 @@
 const sql = require("mssql");
 const sqlConfig = require("../config/config.js");
-const Users = {};
+const Customers = {};
 
-// FETCHING ALL FROM Users TABLE
-Users.findAllUsers = () => {
+// FETCHING ALL FROM Customers TABLE
+Customers.findAllCustomers = () => {
   return new Promise((resolve, reject) => {
     sql.connect(sqlConfig, function (err, result) {
       var request = new sql.Request();
-      request.query(`SELECT * FROM Users;`, (err, res) => {
+      request.query(`SELECT * FROM Customers;`, (err, res) => {
         if (err) reject(err);
           console.table(res.recordset)
           return resolve(res.recordset); // FETCHING ALL DATA
@@ -17,14 +17,14 @@ Users.findAllUsers = () => {
 };
 
 
-// FETCHING ALL FROM Users TABLE
-Users.findUser = (param_id) => {
+// FETCHING ALL FROM Customers TABLE
+Customers.findCustomer = (param_id) => {
   return new Promise((resolve, reject) => {
     sql.connect(sqlConfig, function (err, result) {
       var request = new sql.Request()
       .input("uid", param_id)
       ;
-      request.query(`SELECT * FROM Users WHERE UserID=@uid;`, (err, res) => {
+      request.query(`SELECT * FROM Customers WHERE CustomerID=@uid;`, (err, res) => {
         if (err) reject(err);
           console.table(res.recordset)
           return resolve(res.recordset); // FETCHING ALL DATA
@@ -34,22 +34,21 @@ Users.findUser = (param_id) => {
 };
 
 
-// ADD NEW Users
-Users.insertUsers = (obj) => {
+// ADD NEW Customers
+Customers.insertCustomers = (obj) => {
   return new Promise((resolve, reject) => {
     sql.connect(sqlConfig, function (err, result) {
       // PARAMETERIZING QUERIES
       var request = new sql.Request()
         .input("firstname", obj.firstname)
         .input("lastname", obj.lastname)
-        .input("role", obj.role)
         .input("email", obj.email)
         .input("phone", obj.phone)
         .input("pay_type", obj.pay_type);
 
       request.query(
-        `INSERT INTO Users (FirstName, LastName, [Role], Email, Phone, PaymentType) 
-        VALUES (@firstname, @lastname, @role, @email, @phone, @pay_type);`,
+        `INSERT INTO Customers (FirstName, LastName, Email, Phone, PaymentType) 
+        VALUES (@firstname, @lastname, @email, @phone, @pay_type);`,
         (err, res) => {
           if (err) reject(err);
             console.log(res);
@@ -61,28 +60,26 @@ Users.insertUsers = (obj) => {
 };
 
 
-// UPDATE Users
-Users.updateUsers = (param_id, obj) => {
+// UPDATE Customers
+Customers.updateCustomers = (param_id, obj) => {
   return new Promise((resolve, reject) => {
     sql.connect(sqlConfig, function (err, result) {
       // PARAMETERIZING QUERIES
       var request = new sql.Request()
-        .input("param_id", param_id)
-        .input("firstname", obj.firstname)
-        .input("lastname", obj.lastname)
-        .input("role", obj.role)
-        .input("email", obj.email)
-        .input("phone", obj.phone)
-        .input("pay_type", obj.pay_type);
+      .input("firstname", obj.firstname)
+      .input("lastname", obj.lastname)
+      .input("email", obj.email)
+      .input("phone", obj.phone)
+      .input("pay_type", obj.pay_type);
         
       request.query(
-        `UPDATE Users 
-        SET FirstName=@firstname, LastName=@lastname, [Role]=@role, Email=@email, Phone=@phone, PaymentType=@pay_type 
-        WHERE UserID = @param_id;`,
+        `UPDATE Customers 
+        SET FirstName=@firstname, LastName=@lastname, Email=@email, Phone=@phone, PaymentType=@pay_type 
+        WHERE CustomerID = @param_id;`,
         (err, res) => {
           if (err) reject(err);
           console.log(res);
-          return resolve(res); // UPDATING Users DATA
+          return resolve(res); // UPDATING Customers DATA
         }
       );
     });
@@ -90,20 +87,20 @@ Users.updateUsers = (param_id, obj) => {
 };
 
 
-// DELETING BY ID FROM Users TABLE
-Users.deleteUsersById = (obj) => {
+// DELETING BY ID FROM Customers TABLE
+Customers.deleteCustomersById = (obj) => {
   return new Promise((resolve, reject) => {
     sql.connect(sqlConfig, function (err, result) {
       var request = new sql.Request()
       .input("uid", obj.uid);
       
-      request.query(`DELETE FROM Users WHERE UserID = @uid`, (err, res) => {
+      request.query(`DELETE FROM Customers WHERE CustomerID = @uid`, (err, res) => {
         if (err) reject(err);
         console.log(res);
-        return resolve(res); // DELETING Users DATA
+        return resolve(res); // DELETING Customers DATA
       });
     });
   });
 };
 
-module.exports = Users;
+module.exports = Customers;

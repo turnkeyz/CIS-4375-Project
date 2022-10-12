@@ -1,54 +1,54 @@
 const Products = require("../model/products.model");
 
 
-// NODEJS CALL REST API TO INSSERT NEW Products
+// add product
 exports.insertNewProducts = async (req, res) => {
   const obj = await Products.insertProducts(req.body);
   res.send(obj);
 };
 
-// NODEJS CALL REST API TO FETCH ALL DATA
+// get all products
 exports.getAllProducts = async (req, res) => {
   const obj = await Products.findAllFromProducts();
   res.send(obj);
 };
 
-// NODEJS CALL REST API TO FETCH ALL DATA
+// get one product
 exports.getProduct = async (req, res) => {
   const obj = await Products.findProduct(req.params.pid);
   res.send(obj);
 };
 
-// NODEJS CALL REST API FOR UPDATE
+// update product
 exports.updateProducts = async (req, res) => {
   const obj = await Products.updateProducts(req.params.pid, req.body);
   res.send(obj);
 };
 
-// NODEJS CALL REST API FOR DELETE
+// delete product
 exports.deleteProducts = async (req, res) => {
   const obj = await Products.deleteProductsById(req.body);
   res.send(obj);
 };
- // NODEJS CALL REST API TO FETCH ALL DATA
+ // get all cookies
 exports.getAllCookies = async (req, res) => {
   const obj = await Products.findAllCookies();
   res.send(obj);
 };
 
- // NODEJS CALL REST API TO FETCH ALL DATA
+ // get all pastries
  exports.getAllPastries = async (req, res) => {
   const obj = await Products.findAllPastries();
   res.send(obj);
 };
 
- // NODEJS CALL REST API TO FETCH ALL DATA
+ // get all cakes
  exports.getAllCakes = async (req, res) => {
   const obj = await Products.findAllCakes();
   res.send(obj);
 };
 
- // NODEJS CALL REST API TO FETCH ALL DATA
+ // get all breads
  exports.getAllBreads = async (req, res) => {
   const obj = await Products.findAllBreads();
   res.send(obj);
