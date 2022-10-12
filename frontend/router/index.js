@@ -26,11 +26,6 @@ const routes = [
     name: "Cakes",
     component:() => import('../views/Cakes.vue'),
   },
-  // {
-  //   path: "/products",
-  //   name: "Products",
-  //   component: Products,
-  // },
   {
     path: "/cookies",
     name: "Cookies",
@@ -45,7 +40,22 @@ const routes = [
     path: "/pastries",
     name: "Pastries",
     component:()=>import('../views/Pastries.vue'),
-  }
+  },
+  // {
+  //   path: "/dashboard",
+  //   name: "Dashboard",
+  //   component:()=>import('../views/Dashboard.vue')
+  // },
+  {
+    path: "/customers",
+    name: "Customers",
+    component:() => import('../views/Customers/Customers.vue'),
+  },
+  {
+    path: "/customer-form",
+    name: "Customer-form",
+    component:() => import('../views/Customers/CustomerForm.vue'),
+  },
 ];
 
 const router = createRouter({
