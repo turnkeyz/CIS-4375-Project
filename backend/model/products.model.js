@@ -103,7 +103,7 @@ products.deleteProductsById = (obj) => {
   });
 };
 
-// FETCHING ALL FROM Products TABLE
+// FETCHING ALL Cookies FROM Products TABLE 
 products.findAllCookies = () => {
   return new Promise((resolve, reject) => {
     sql.connect(sqlConfig, function (err, result) {
@@ -117,7 +117,7 @@ products.findAllCookies = () => {
   });
 };
 
-// FETCHING ALL FROM Products TABLE
+// FETCHING ALL Pastries FROM Products TABLE
 products.findAllPastries = () => {
   return new Promise((resolve, reject) => {
     sql.connect(sqlConfig, function (err, result) {
@@ -131,7 +131,7 @@ products.findAllPastries = () => {
   });
 };
 
-// FETCHING ALL FROM Products TABLE
+// FETCHING ALL Cakes FROM Products TABLE
 products.findAllCakes = () => {
   return new Promise((resolve, reject) => {
     sql.connect(sqlConfig, function (err, result) {
@@ -146,7 +146,7 @@ products.findAllCakes = () => {
 };
 
 
-// FETCHING ALL FROM Products TABLE
+// FETCHING ALL Breads FROM Products TABLE
 products.findAllBreads = () => {
   return new Promise((resolve, reject) => {
     sql.connect(sqlConfig, function (err, result) {

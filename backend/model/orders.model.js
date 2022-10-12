@@ -18,7 +18,7 @@ Orders.findAllFromOrders = () => {
 
 
 // FETCHING ALL FROM Orders TABLE
-Orders.findProduct = (param_id) => {
+Orders.findOrder = (param_id) => {
   return new Promise((resolve, reject) => {
     sql.connect(sqlConfig, function (err, result) {
       var request = new sql.Request()
