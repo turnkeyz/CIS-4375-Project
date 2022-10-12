@@ -10,7 +10,7 @@
   <!-- Footer -->
   <footer
           class="text-center text-lg-start text-white"
-          style="background-color: #DDA0DD"
+          style="background-color: #00cdff"
           >
     <!-- Grid container -->
     <div class="container p-4 pb-0">
@@ -24,7 +24,7 @@
               Owl B Baking
             </h6>
             <p>
-              OwlBBaking was created in collaboration with Team2 
+              OwlBBaking was created in collaboration with Goat Solutions
             </p>
           </div>
           <!-- Grid column -->

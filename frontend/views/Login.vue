@@ -39,13 +39,11 @@
                     </div>
 
                     <div class="text-center pt-1 mb-5 pb-1">
-                        
-                            <ul>
-                                <button class="btn btn-primary btn-block fa-lg gradient-custom-2 mb-3" type="button">Sign in</button>
-                            </ul>
-                            <ul>
+                        <ul>
+                            <router-link to="/dashboard" class="btn btn-primary btn-block fa-lg gradient-custom-2 mb-3">Sign in</router-link>
+                        </ul>
+                        <ul>
                             <a class="text-muted" href="#!">Forgot password?</a>
-                        
                         </ul>
                     </div>
 
