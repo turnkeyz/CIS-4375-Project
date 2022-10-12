@@ -12,7 +12,7 @@
       };
     },
     created(){
-      let apiURL = `http://localhost:3000/Products/fetchAll`;
+      let apiURL = `http://localhost:3000/Products/allCookies`;
       axios.get(apiURL).then((res)=>{
         this.allproducts = res.data;
         this.rows = Math.ceil(res.data.length/3)
