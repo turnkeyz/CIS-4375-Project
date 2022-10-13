@@ -14,5 +14,5 @@ module.exports = app => {
     app.put("/Customers/update/:uid", Customers.updateCustomers);
   
     //delete customer
-    app.delete("/Customers/delete", Customers.deleteCustomers);
+    app.delete("/Customers/delete/:uid", Customers.deleteCustomers);
   };

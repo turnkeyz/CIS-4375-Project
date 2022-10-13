@@ -88,11 +88,11 @@ products.updateProducts = (param_id, obj) => {
 
 
 // DELETING BY ID FROM Products TABLE
-products.deleteProductsById = (obj) => {
+products.deleteProductsById = (param_id) => {
   return new Promise((resolve, reject) => {
     sql.connect(sqlConfig, function (err, result) {
       var request = new sql.Request()
-      .input("pid", obj.pid);
+      .input("pid", param_id);
       
       request.query(`DELETE FROM Products WHERE ProductID = @pid`, (err, res) => {
         if (err) reject(err);

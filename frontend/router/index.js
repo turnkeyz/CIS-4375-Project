@@ -56,6 +56,12 @@ const routes = [
     name: "Customer-form",
     component:() => import('../views/Customers/CustomerForm.vue'),
   },
+  {
+    path: "/customer",
+    name: "Customer",
+    props:true,
+    component:() => import('../views/Customers/CustomerView.vue'),
+  },
 ];
 
 const router = createRouter({

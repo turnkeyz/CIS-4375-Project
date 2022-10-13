@@ -27,7 +27,7 @@ exports.updateProducts = async (req, res) => {
 
 // delete product
 exports.deleteProducts = async (req, res) => {
-  const obj = await Products.deleteProductsById(req.body);
+  const obj = await Products.deleteProductsById(req.params.pid);
   res.send(obj);
 };
  // get all cookies
