@@ -26,6 +26,6 @@ app.post("/Products/insert", Products.insertNewProducts);
 app.put("/Products/update/:pid", Products.updateProducts);
 
 // delete product
-app.delete("/Products/delete", Products.deleteProducts);
+app.delete("/Products/delete/:pid", Products.deleteProducts);
 };
 

@@ -88,13 +88,13 @@ Customers.updateCustomers = (param_id, obj) => {
 
 
 // DELETING BY ID FROM Customers TABLE
-Customers.deleteCustomersById = (obj) => {
+Customers.deleteCustomersById = (param_id) => {
   return new Promise((resolve, reject) => {
     sql.connect(sqlConfig, function (err, result) {
       var request = new sql.Request()
-      .input("uid", obj.uid);
+      .input("cid", param_id);
       
-      request.query(`DELETE FROM Customers WHERE CustomerID = @uid`, (err, res) => {
+      request.query(`DELETE FROM Customers WHERE CustomerID = @cid`, (err, res) => {
         if (err) reject(err);
         console.log(res);
         return resolve(res); // DELETING Customers DATA
