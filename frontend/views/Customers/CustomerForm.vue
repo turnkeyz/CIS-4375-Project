@@ -55,7 +55,7 @@
 
             //only run if no errors
             if(this.errors.length === 0){
-                let apiURL = 'http://localhost:3000/Customers/add';
+                let apiURL = `${import.meta.env.VITE_VUE_APP_ROOT_URL}/Customers/add`;
                 axios.post(apiURL, this.customers).then(() => {
                 this.$router.push('/customers') //goes to customers view
                 this.customers = {

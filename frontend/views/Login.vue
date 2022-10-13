@@ -2,7 +2,7 @@
     export default {
       data() {
         return {
-          msg: "Welcome to our CIS 4339 project!",
+        //   msg: "Welcome to our CIS 4339 project!",
         };
       },
     };
@@ -76,7 +76,7 @@
     
     .gradient-custom-2 {
     /* fallback for old browsers */
-    background: #DDA0DD;
+    background: #d243ff;
     /* background-image: url(../public/uploads/login\ page.jpg);
     background-size: contain; */
     /* Chrome 10-25, Safari 5.1-6 */

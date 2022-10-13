@@ -15,7 +15,7 @@
       }
     },
     created(){
-      let apiUrl="http://localhost:3000/Customers/fetchall"
+      let apiUrl=`${import.meta.env.VITE_VUE_APP_ROOT_URL}/Customers/fetchall`
       axios.get(apiUrl).then((res)=>{
         this.customers=res.data
       })
@@ -23,10 +23,32 @@
     methods:{
         newCustomer(){
             this.$router.push('/Customer-form')
+        },
+        seeMore(id){
+            this.$router.push({
+                name:'Customer',
+                params:{data:5}
+            })
+            // this.$router.push('/Customer')
+        },
+        
+        delCustomer(id){
+            let apiUrl = `${import.meta.env.VITE_VUE_APP_ROOT_URL}/Customers/delete/${id}`
+            let resetArray = this.customers.findIndex((i)=>i.CustomerID ===id)
+        
+            if(window.confirm("Are you sure you want to delete Customer?")){
+                axios.delete(apiUrl).then(()=>{
+                    this.customers.splice(resetArray, 1)
+                })
+                .catch((err)=>{
+                    console.log(err)
+                })
+            }
         }
     }
   }
 </script>
+
 <template>
     <div class="container">
         <div class="table-responsive-sm">
@@ -38,35 +60,22 @@
                         <th scope="col">Last Name</th>
                         <th scope="col">Email</th>
                         <th scope="col">Phone</th>
-                        <!-- <th scope="col">Payment</th> -->
-                        <!-- <th scope="col">Notes</th> -->
-                        <!-- <th scope="col">Add</th>  -->
                         <th><button class="btn btn-success btn-sm" @click="newCustomer()">Add New Customer</button></th>
-                        
-                        <!-- <th scope="col">Delete</th> -->
                     </tr>
                 </thead>
                 <tbody class="table-group-divider table-divider-color">
-                    <tr  v-for="customer in customers" :key="customer.CustomerID">
+                    <tr v-for="customer in customers" :key="customer.CustomerID">
                         <td>{{customer.CustomerID}}</td>
                         <td>{{customer.FirstName}}</td>
                         <td>{{customer.LastName}}</td>
                         <td>{{customer.Email}}</td>
                         <td>{{customer.Phone}}</td>
-                        <!-- <td>{{customer.PaymentType}}</td> -->
-                        <!-- <td>{{customer.Notes}}</td> -->
-                        <!-- <td></td> -->
                         <td>
                             <tr>
-                                <!-- <td><button class="action"><img src="../public/assets/edit-button.png" /></button></td> -->
-                                <td><button class="btn btn-light btn-sm">...</button></td>
+                                <td><router-link :to="{name:'Customer', query:{id:customer.CustomerID}}" class="btn btn-light">...</router-link></td>
                                 <td><button class="btn btn-secondary btn-sm">Edit</button></td>
-                                <td><button class="btn btn-danger btn-sm">Delete</button></td>
+                                <td><button class="btn btn-danger btn-sm" @click.prevent="delCustomer(customer.CustomerID)">Delete</button></td>
                             </tr>
-                            <!-- <ul class="action-list">
-                                <li><a href="#" data-tip="edit"><i class="fa fa-edit"></i></a></li>
-                                <li><a href="#" data-tip="delete"><i class="fa fa-trash"></i></a></li>
-                            </ul> -->
                         </td>
                     </tr>
                 </tbody>
@@ -86,61 +95,6 @@
         
     }
     .pull-right{
-        float: right;
-        
+        float: right
     }
-
-/* .action-list{
-    padding: 0;
-    margin: 0;
-    list-style: none;
-}
-
-.action-list li{
-    display: inline-block;
-    margin: 0 5px;
-}
-
-.action-list li a{
-    color: #fff;
-    font-size: 15px;
-    position: relative;
-    z-index: 1;
-    transition: all 0.3s ease 0s;
-}
-
-.action-list li a:hover{
-    text-shadow: 3px 3px 0 rgba(255,255,255,0.3); 
-}
-
-.action-list li a::before, .action-list li a:after{
-    content: attr(data-tip);
-    color: #fff;
-    background-color: #111;
-    font-size: 12px;
-    padding: 5px 7px;
-    border-radius: 4px;
-    text-transform: capitalize;
-    display: none;
-    transform: translateX(-50%);
-    position: absolute;
-    left: 50%;
-    top: -32px;
-    transition: all 0.3s ease 0s;
-}
-
-.action-list li a:after{
-    content: '';
-    height: 15px;
-    width: 15px;
-    padding: 0;
-    border-radius: 0;
-    transform: translateX(-50%) rotate(45deg);
-    top: -18px;
-    z-index: -1;
-}
-
-.action-list li a:hover:before, .action-list li a:hover:after{
-    display: block;
-} */
 </style>

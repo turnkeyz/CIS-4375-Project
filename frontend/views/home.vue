@@ -52,7 +52,7 @@
 
 
       <div class="container">
-        <h4 class="text-center mb-5"><strong>Our Products</strong></h4>
+        <h1 class="text-center mb-5"><strong>Our Products</strong></h1>
         <p text-center>Our items our made at home</p>
       </div>
 
