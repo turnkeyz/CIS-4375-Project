@@ -19,27 +19,27 @@ const routes = [
   {
     path: "/login",
     name: "Login",
-    component:() => import('../views/Login.vue'),
+    component:() => import('../views/Admin/Login.vue'),
   },
   {
     path: "/cakes",
     name: "Cakes",
-    component:() => import('../views/Cakes.vue'),
+    component:() => import('../views/Products/Cakes.vue'),
   },
   {
     path: "/cookies",
     name: "Cookies",
-    component:()=>import('../views/Cookies.vue'),
+    component:()=>import('../views/Products/Cookies.vue'),
   },
   {
     path: "/breads",
     name: "Breads",
-    component:()=>import('../views/Breads.vue'),
+    component:()=>import('../views/Products/Breads.vue'),
   },
   {
     path: "/pastries",
     name: "Pastries",
-    component:()=>import('../views/Pastries.vue'),
+    component:()=>import('../views/Products/Pastries.vue'),
   },
   // {
   //   path: "/dashboard",
@@ -49,12 +49,18 @@ const routes = [
   {
     path: "/customers",
     name: "Customers",
-    component:() => import('../views/Customers/Customers.vue'),
+    component:() => import('../views/Admin/Customers/Customers.vue'),
   },
   {
     path: "/customer-form",
     name: "Customer-form",
-    component:() => import('../views/Customers/CustomerForm.vue'),
+    component:() => import('../views/Admin/Customers/CustomerForm.vue'),
+  },
+  {
+    path: "/customer",
+    name: "Customer",
+    props:true,
+    component:() => import('../views/Admin/Customers/CustomerView.vue'),
   },
 ];
 

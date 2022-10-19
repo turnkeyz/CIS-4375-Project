@@ -1,7 +1,7 @@
 <script>
   import axios from 'axios'
-  import {cakeList} from '../src/components/split'
-  // import {VARIABLES.fetchBaseUrl}  from '../src/config/.env.js'
+  import {cakeList} from '../../src/components/split'
+  // import {VARIABLES}  from '../src/config/.env.js'
   export default {
     mounted(){
     //  this.cakeList(this.allproducts, this.rows)
@@ -12,7 +12,9 @@
       };
     },
     created(){
-      let apiURL = `http://localhost:3000/Products/allPastries`;
+      let apiURL = `${import.meta.env.VITE_VUE_APP_ROOT_URL}/Products/allCakes`;
+      // let apiURL = `${VARIABLES}/Products/fetchAll`;
+      console.log(apiURL)
       axios.get(apiURL).then((res)=>{
         this.allproducts = res.data;
         this.rows = Math.ceil(res.data.length/3)
@@ -32,11 +34,11 @@
 <template>  
   <section style="background-color: #eee;">
      <div class="container py-5">
-      <h4 class="text-center mb-5"><strong>Pastries</strong></h4>
+      <h1 class="text-center mb-5"><strong>Cakes</strong></h1>
       <div v-for="row in cakes" :key="cakes.ProductID" class="row">
           <div v-for="item in row" class="col-lg-4 col-md-6 mb-4">
               <div class="bg-image hover-zoom ripple shadow-1-strong rounded">
-                <img :src="'../public/uploads/pastries/'+item.Img_url" class="w-100"/>
+                <img :src="'../public/uploads/cakes/'+item.Img_url" class="w-100"/>
                 
                   <div class="mask" style="background-color: rgba(0, 0, 0, 0.3);">
                   <div class="d-flex justify-content-start align-items-start h-100">
@@ -50,7 +52,7 @@
                 ></div>
                 </div>
               
-              <p> {{item.ProductDescription}} {{item.Price}}</p>
+              <p> {{item.ProductDescription}}</p>
             </div>
           </div>     
         </div>

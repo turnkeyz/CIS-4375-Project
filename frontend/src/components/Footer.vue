@@ -10,7 +10,7 @@
   <!-- Footer -->
   <footer
           class="text-center text-lg-start text-white"
-          style="background-color: #00cdff"
+          style="background-color: #212529"
           >
     <!-- Grid container -->
     <div class="container p-4 pb-0">

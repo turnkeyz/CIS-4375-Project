@@ -2,9 +2,15 @@
     export default {
       data() {
         return {
-          msg: "Welcome to our CIS 4339 project!",
+            user:"",
+            pswd:""
         };
       },
+      methods:{
+        login(){
+
+        }
+      }
     };
 </script>
     
@@ -28,13 +34,12 @@
                     <p></p>
 
                     <div class="form-outline mb-4">
-                        <input type="email" id="form2Example11" class="form-control"
-                        placeholder="email address" />
+                        <input type="email" id="form2Example11" name="user" class="form-control" placeholder="email address" v-model="input.user"/>
                         <label class="form-label" for="form2Example11">Username</label>
                     </div>
 
                     <div class="form-outline mb-4">
-                        <input type="password" id="form2Example22" class="form-control" />
+                        <input type="password" name="pswd" id="form2Example22" class="form-control" v-model="input.pswd" />
                         <label class="form-label" for="form2Example22">Password</label>
                     </div>
 
@@ -76,7 +81,7 @@
     
     .gradient-custom-2 {
     /* fallback for old browsers */
-    background: #DDA0DD;
+    background: #d243ff;
     /* background-image: url(../public/uploads/login\ page.jpg);
     background-size: contain; */
     /* Chrome 10-25, Safari 5.1-6 */
