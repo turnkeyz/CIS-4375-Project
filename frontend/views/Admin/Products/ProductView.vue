@@ -1,118 +1,118 @@
 <script>
-import axios from "axios";
+  import axios from "axios";
 
-export default {
-  components: {
-    
-  },
-    //Storing the data being exported in a function
-  data() {
-    return {
-      Products: {},
-      errors:[],
-      edit:"",
-      category_name:"",
-      file:'',
-      file_type:'',
-      Categories:[],
-    };
-  },
-  mounted(){
-        
+  export default {
+    components: {
+      
     },
-      //created function
-  created() {
-   // Variable that stores the "find specific employee" route
-    let apiURL = `${import.meta.env.VITE_VUE_APP_ROOT_URL}/Products/${this.$route.query.id}`;
-    axios.get(apiURL).then((res) => {
-        this.Products = res.data[0];
-        if(this.$route.query.e === true || this.$route.query.e === 'true'){
-          this.edit=true
-        }else{
-          this.edit=false
+      //Storing the data being exported in a function
+    data() {
+      return {
+        Products: {},
+        errors:[],
+        edit:"",
+        category_name:"",
+        file:'',
+        file_type:'',
+        Categories:[],
+      };
+    },
+    mounted(){
+          
+      },
+        //created function
+    created() {
+    // Variable that stores the "find specific employee" route
+      let apiURL = `${import.meta.env.VITE_VUE_APP_ROOT_URL}/Products/${this.$route.query.id}`;
+      axios.get(apiURL).then((res) => {
+          this.Products = res.data[0];
+          if(this.$route.query.e === true || this.$route.query.e === 'true'){
+            this.edit=true
+          }else{
+            this.edit=false
+          }
+        })
+        .catch((error) => {
+          console.log(error);
+        })
+        let apiURL2=`${import.meta.env.VITE_VUE_APP_ROOT_URL}/Categories/fetchAll`
+        axios.get(apiURL2).then((res)=>{
+          this.Categories = res.data
+        })
+    },
+    methods: {
+      delProduct(id) {
+        let apiURL = `${import.meta.env.VITE_VUE_APP_ROOT_URL}/Products/delete/${id}`;
+        if (window.confirm("Are you sure you want to delete?")) {
+          axios.delete(apiURL).then(() => {
+              this.$router.push("/Products");  //changes view to all Products view
+            })
+            .catch((error) => {
+              console.log(error);
+            });
         }
-      })
-      .catch((error) => {
-        console.log(error);
-      })
-      let apiURL2=`${import.meta.env.VITE_VUE_APP_ROOT_URL}/Categories/fetchAll`
-      axios.get(apiURL2).then((res)=>{
-        this.Categories = res.data
-      })
-  },
-  methods: {
-    delProduct(id) {
-      let apiURL = `${import.meta.env.VITE_VUE_APP_ROOT_URL}/Products/delete/${id}`;
-      if (window.confirm("Are you sure you want to delete?")) {
-        axios.delete(apiURL).then(() => {
-            this.$router.push("/Products");  //changes view to all Products view
-          })
-          .catch((error) => {
-            console.log(error);
-          });
-      }
-    },
-    addProduct(){
-      this.$router.push('/Product-form')
-    },
-    showEdit(){
-      this.edit=true
-    },
-    cancelEdit(){
-      this.edit=false
-    },
-    handleSubmitForm(pid){
-      this.errors=[]
-      //validations for required or formatted fields
-      if(!this.Products.CategoryID){
-          this.errors.push("Category is Required");
-          }
-      if(!this.Products.ProductName)
-          this.errors.push("Name is Required.");
+      },
+      addProduct(){
+        this.$router.push('/Product-form')
+      },
+      showEdit(){
+        this.edit=true
+      },
+      cancelEdit(){
+        this.edit=false
+      },
+      handleSubmitForm(pid){
+        this.errors=[]
+        //validations for required or formatted fields
+        if(!this.Products.CategoryID){
+            this.errors.push("Category is Required");
+            }
+        if(!this.Products.ProductName)
+            this.errors.push("Name is Required.");
 
-      if(!this.Products.Price)
-      this.errors.push("Price is Required")
+        if(!this.Products.Price)
+        this.errors.push("Price is Required")
 
-      if(!this.Products.ProductDescription){
-          this.errors.push("Product Description is Required");
-          }
-      if(!this.Products.Img_url){
-      this.errors.push("Image url required");
-      }
+        if(!this.Products.ProductDescription){
+            this.errors.push("Product Description is Required");
+            }
+        if(!this.Products.Img_url){
+        this.errors.push("Image url required");
+        }
 
-      //only run if no errors
-      if(this.errors.length === 0){
-          let apiURL = `${import.meta.env.VITE_VUE_APP_ROOT_URL}/Products/update/${pid}`;
-          console.log('line 86', apiURL)
-          axios.put(apiURL, this.Products).then(() => {
-          this.edit=false
-          }).catch(error => {
-              console.log(error)
-          });
+        //only run if no errors
+        if(this.errors.length === 0){
+            let apiURL = `${import.meta.env.VITE_VUE_APP_ROOT_URL}/Products/update/${pid}`;
+            console.log('line 86', apiURL)
+            axios.put(apiURL, this.Products).then(() => {
+            this.edit=false
+            }).catch(error => {
+                console.log(error)
+            });
+        }
+      },
+      getCategory(id, url){
+        if(id == 1){
+          return '/cookies/'+url
+        }
+        if(id==2){
+          return '/pastries/'+url
+        }
+        if(id==3){
+          return '/cakes/'+url
+        }
+        if(id==4){
+          return '/breads/'+url
+        }
+      },
+      handleFileUpload(evt){
+        // this.file = event.target.files[0]
+        // this.file = evt.target.files[0].name
+        this.file_type = evt.target.files[0].type
+        this.Products.Img_url=evt.target.files[0].name
       }
     },
-    getCategory(id, url){
-      if(id == 1){
-        return '/cookies/'+url
-      }
-      if(id==2){
-        return '/pastries/'+url
-      }
-      if(id==3){
-        return '/cakes/'+url
-      }
-      if(id==4){
-        return '/breads/'+url
-      }
-    },
-    handleFileUpload(evt){
-      // this.file = event.target.files[0]
-      // this.file = evt.target.files[0].name
-      this.file_type = evt.target.files[0].type
-      this.Products.Img_url=evt.target.files[0].name
-    }
-  },
-};
+  };
 </script>
 
 <template>

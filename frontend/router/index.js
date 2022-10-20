@@ -16,31 +16,42 @@ const routes = [
     name: "About",
     component: About,
   },
+
+  //PRODUCT PAGES===========================
+  {
+    path: "/cakes",
+    name: "Cakes",
+    component:() => import('../views/ProductPages/Cakes.vue'),
+  },
+  {
+    path: "/cookies",
+    name: "Cookies",
+    component:()=>import('../views/ProductPages/Cookies.vue'),
+  },
+  {
+    path: "/breads",
+    name: "Breads",
+    component:()=>import('../views/ProductPages/Breads.vue'),
+  },
+  {
+    path: "/pastries",
+    name: "Pastries",
+    component:()=>import('../views/ProductPages/Pastries.vue'),
+  },
+  
+
+  //ADMIN ===================================================
   {
     path: "/login",
     name: "Login",
     component:() => import('../views/Admin/Login.vue'),
   },
   {
-    path: "/cakes",
-    name: "Cakes",
-    component:() => import('../views/Products/Cakes.vue'),
+    path:"/dashboard",
+    name:"Dashboard",
+    component:()=> import("../views/Admin/Dashboard.vue")
   },
-  {
-    path: "/cookies",
-    name: "Cookies",
-    component:()=>import('../views/Products/Cookies.vue'),
-  },
-  {
-    path: "/breads",
-    name: "Breads",
-    component:()=>import('../views/Products/Breads.vue'),
-  },
-  {
-    path: "/pastries",
-    name: "Pastries",
-    component:()=>import('../views/Products/Pastries.vue'),
-  },
+  //CUSTOMERS =========
   {
     path: "/customers",
     name: "Customers",
@@ -57,6 +68,8 @@ const routes = [
     props:true,
     component:() => import('../views/Admin/Customers/CustomerView.vue'),
   },
+  
+  //PRODUCTS=========
   {
     path: "/product",
     name: "Product",
@@ -72,6 +85,25 @@ const routes = [
     name:"/Product-form",
     component:()=> import('../views/Admin/Products/ProductForm.vue')
   },
+
+  {
+    path: "/cart",
+    name: "Cart",
+    component:() => import('../views/Admin/Cart/CartView.vue')
+  },
+  {
+    path:"/carts",
+    name:"Carts",
+    component:()=> import('../views/Admin/Cart/Carts.vue')
+  },
+  {
+    path:"/cart-form",
+    name:"/Cart-form",
+    component:()=> import('../views/Admin/Cart/CartForm.vue')
+  },
+
+
+  //=========================================================ADMIN
 ];
 
 const router = createRouter({
