@@ -47,7 +47,7 @@
               <a href="/pastries" class="text-white">Pastries</a>
             </p>
             <p>
-              <a href="#" class="text-white">Custom Orders</a>
+              <a href="/custom" class="text-white">Custom Orders</a>
             </p>
           </div>
           <!-- Grid column -->

@@ -38,9 +38,13 @@ const routes = [
     name: "Pastries",
     component:()=>import('../src/views/ProductPages/Pastries.vue'),
   },
-  
+  {
+    path: "/custom",
+    name: "Custom",
+    component:() => import('../src/views/ProductPages/Custom.vue'),
+  },
 
-  //ADMIN ===================================================
+    //ADMIN ===================================================
   {
     path: "/login",
     name: "Login",
@@ -101,7 +105,6 @@ const routes = [
     name:"/Cart-form",
     component:()=> import('../src/views/Admin/Cart/CartForm.vue')
   },
-
 
   //=========================================================ADMIN
 ];
