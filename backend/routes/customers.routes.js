@@ -15,4 +15,7 @@ module.exports = app => {
   
     //delete customer
     app.delete("/Customers/delete/:uid", Customers.deleteCustomers);
+
+    app.get("/Customers/fetchNames", Customers.getNames);
   };
+  

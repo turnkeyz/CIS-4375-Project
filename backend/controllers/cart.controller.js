@@ -30,3 +30,4 @@ exports.deleteCart = async (req, res) => {
   const obj = await Cart.deleteCartById(req.params.pid);
   res.send(obj);
 };
+

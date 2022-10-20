@@ -9,13 +9,27 @@ Customers.findAllCustomers = () => {
       var request = new sql.Request();
       request.query(`SELECT * FROM Customers;`, (err, res) => {
         if (err) reject(err);
-          console.table(res.recordset)
+          console.log(res.recordset)
           return resolve(res.recordset); // FETCHING ALL DATA
       });
     });
   });
 };
 
+Customers.fetchAllNames= () =>{
+  return new Promise((resolve, reject)=>{
+    sql.connect(sqlConfig, function(err, result){
+      var request = new sql.Request();
+      request.query(
+        `SELECT CustomerID, FirstName, LastName FROM Customers;`,
+        (err, res) => {
+          if(err) reject(err);
+            console.log(res.recordset)
+            return resolve(res.recordset);
+        });
+    });
+  });
+}
 
 // FETCHING ALL FROM Customers TABLE
 Customers.findCustomer = (param_id) => {

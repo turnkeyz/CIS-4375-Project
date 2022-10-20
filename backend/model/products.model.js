@@ -7,7 +7,11 @@ products.findAllFromProducts = () => {
   return new Promise((resolve, reject) => {
     sql.connect(sqlConfig, function (err, result) {
       var request = new sql.Request();
-      request.query(`SELECT * FROM Products;`, (err, res) => {
+      request.query(
+        `SELECT * FROM Products as p
+        LEFT JOIN Categories as c
+        ON p.CategoryID = c.CategoryID;`, 
+        (err, res) => {
         if (err) reject(err);
           console.log(res.recordset)
           return resolve(res.recordset); // FETCHING ALL DATA
@@ -15,7 +19,6 @@ products.findAllFromProducts = () => {
     });
   });
 };
-
 
 // FETCHING ALL FROM Products TABLE
 products.findProduct = (param_id) => {
