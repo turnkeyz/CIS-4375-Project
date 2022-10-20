@@ -1,6 +1,8 @@
 <script>
 import axios from "axios";
+
 import {regex, emailregex} from '../../../src/methods/regex'
+
 
 export default {
   components: {
@@ -17,6 +19,7 @@ export default {
   mounted(){
         
     },
+
       //created function
   created() {
    // Variable that stores the "find specific employee" route
@@ -32,6 +35,7 @@ export default {
       .catch((error) => {
         console.log(error);
       })
+
   },
   methods: {
     delCustomer(id) {
@@ -45,6 +49,7 @@ export default {
           });
       }
     },
+
     addCustomer(){
       this.$router.push('/customer-form')
     },
@@ -91,6 +96,7 @@ export default {
                 });
                 }
     }
+
   },
 };
 </script>
@@ -215,6 +221,4 @@ export default {
       </div>
     </div>
   </div>
-  
-  
 </template>

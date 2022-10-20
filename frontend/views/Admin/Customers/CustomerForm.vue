@@ -1,6 +1,8 @@
 <script>
     import axios from 'axios';
+
     import {regex, emailregex} from '../../../src/methods/regex'
+
 
     export default {
     // register child component
@@ -17,6 +19,7 @@
                     Phone: '',
                     PaymentType:'',
                     Notes:''
+
                 },
                 errors:[]
       }
@@ -29,6 +32,7 @@
             this.$router.replace({name:"Login"})
         }
     },
+
     methods: {
             //create new volunteer and reset values
             handleSubmitForm() {
@@ -55,6 +59,7 @@
                     this.errors.push("Payment type  is Required");
                     }
                 if(!this.customers.Notes){
+
                     this.errors.push("notes is Required");
                     }
 
@@ -70,6 +75,7 @@
                     Phone: '',
                     PaymentType:'',
                     Notes:'',
+
                 }
                 }).catch(error => {
                     console.log(error)
@@ -92,7 +98,9 @@
                 <div class='row mb-4'>
                     <div class='col-sm-4'>
                         <label for='fName'>*First Name</label>
+
                         <input type="text" id='fName' class="form-control" v-model="customers.FirstName" required>
+
                     </div>
                     <div class='col-sm-4'>
                         <label>Middle Name</label>
@@ -100,14 +108,18 @@
                     </div>    
                     <div class='col-sm-4'>
                         <label>*Last Name</label>
+
                         <input type="text" class="form-control" v-model="customers.LastName" required>
+
                         <div class='valid-feedback'></div>
                     </div>
                 </div>
                 <div class='row mb-4'>
                 <div class="col-sm-6">
                     <label>*Phone</label>
+
                         <input type="text" class="form-control" placeholder="XXX-XXX-XXXX" v-model="customers.Phone" required>
+
                         <small id="phoneHelpBlock" class="form-text text-muted">
                         9 digit phone number should be entered with dashes
                         </small>
@@ -115,7 +127,9 @@
 
                     <div class="col-sm-3">
                         <label>*Email</label>
+
                         <input type="email" class="form-control" v-model="customers.Email" required>
+
                         <small id="phoneHelpBlock" class="form-text text-muted">
                         example@email.com
                         </small>
@@ -127,14 +141,18 @@
                 <div class='row mb-4'>
                     <div class="col-sm-12">
                         <label class="form-label">Notes</label>
+
                         <textarea class="form-control" rows="5" v-model="customers.Notes"></textarea>
+
                     </div>
                     
                 </div>
                 <div class='row mb-4'>
                     <div class="col-sm-3">
                         <label>Payment type</label>
+
                         <select class='form-select' v-model="customers.PaymentType">
+
                             <option disabled value="">Select option</option>
                             <option>Cash</option>
                             <option>Credit</option>
@@ -153,7 +171,9 @@
                     <li v-for="error in errors" :key="error">{{ error }} </li>
                 </ul>
             </p>
+
             <button class="btn btn-success create" >Create</button>
+
         </form>
         
     </div>
