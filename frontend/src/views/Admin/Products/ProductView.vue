@@ -161,7 +161,7 @@
           </tr>
           <tr>
             <td>
-              <img :src="'../public/uploads/'+getCategory(Products.CategoryID, Products.Img_url)" class="w-100"/>
+              <img :src="'/uploads/'+getCategory(Products.CategoryID, Products.Img_url)" class="w-100"/>
             </td>
           </tr>
         </tbody>
@@ -231,7 +231,7 @@
           </tr>
           <tr>
             <td>
-              <img :src="'../public/uploads/'+getCategory(Products.CategoryID, Products.Img_url)" class="w-100"/>
+              <img :src="'/uploads/'+getCategory(Products.CategoryID, Products.Img_url)" class="w-100"/>
             </td>
           </tr>
           <tr>

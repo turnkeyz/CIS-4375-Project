@@ -70,7 +70,7 @@
 </nav>
 <div class="text-center p-3 d-none d-md-block">
   <a href="/">
-  <img src="../public/uploads/owl logo.png" height="50" alt="Company Logo">
+  <img src="/uploads/owl logo.png" height="50" alt="Company Logo">
 </a>
 </div>
   <!-- <HelloWorld msg="Vite + Vue" /> -->
@@ -84,7 +84,7 @@
 <style>
   @font-face {
   font-family: "Caviet";
-  src: local("Caviet"), url(../public/assets/Caveat/static/Caveat-Regular.ttf) format("truetype");
+  src: local("Caviet"), url(/assets/Caveat/static/Caveat-Regular.ttf) format("truetype");
 }
 
 h4, p, h5, h3, h2, ul, li, h1{

@@ -36,7 +36,7 @@
       <div v-for="row in cakes" :key="cakes.ProductID" class="row">
           <div v-for="item in row" class="col-lg-4 col-md-6 mb-4">
               <div class="bg-image hover-zoom ripple shadow-1-strong rounded">
-                <img :src="'../public/uploads/breads/'+item.Img_url" class="w-100"/>
+                <img :src="'/uploads/breads/'+item.Img_url" class="w-100"/>
                 
                   <div class="mask" style="background-color: rgba(0, 0, 0, 0.3);">
                   <div class="d-flex justify-content-start align-items-start h-100">
