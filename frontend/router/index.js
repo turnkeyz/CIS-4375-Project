@@ -41,11 +41,6 @@ const routes = [
     name: "Pastries",
     component:()=>import('../views/Products/Pastries.vue'),
   },
-  // {
-  //   path: "/dashboard",
-  //   name: "Dashboard",
-  //   component:()=>import('../views/Dashboard.vue')
-  // },
   {
     path: "/customers",
     name: "Customers",
@@ -61,6 +56,21 @@ const routes = [
     name: "Customer",
     props:true,
     component:() => import('../views/Admin/Customers/CustomerView.vue'),
+  },
+  {
+    path: "/product",
+    name: "Product",
+    component:() => import('../views/Admin/Products/ProductView.vue')
+  },
+  {
+    path:"/products",
+    name:"Products",
+    component:()=> import('../views/Admin/Products/Products.vue')
+  },
+  {
+    path:"/product-form",
+    name:"/Product-form",
+    component:()=> import('../views/Admin/Products/ProductForm.vue')
   },
 ];
 

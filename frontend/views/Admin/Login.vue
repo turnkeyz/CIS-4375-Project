@@ -15,7 +15,7 @@
                 if(this.input.user == 'user' && this.input.pswd =="pass"){
                     this.$emit("authenticated", true)
                     this.$parent.authenticated = true
-                    this.$router.replace({name:"Customers"})
+                    this.$router.replace({name:"Products"})
                 }else{
                     console.log("Username or Password is incorrect")
                     this.errors="Username or Password is incorrect"
