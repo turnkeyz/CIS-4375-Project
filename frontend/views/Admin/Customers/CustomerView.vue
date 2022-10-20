@@ -59,7 +59,7 @@ export default {
     cancelEdit(){
       this.edit=false
     },
-    handleSubmitForm(){
+    handleSubmitForm(id){
       this.errors=[]
                 //validations for required or formatted fields
                 if(!this.customers.FirstName){
@@ -88,8 +88,8 @@ export default {
 
             //only run if no errors
             if(this.errors.length === 0){
-                let apiURL = `${import.meta.env.VITE_VUE_APP_ROOT_URL}/Customers/add`;
-                axios.post(apiURL, this.customers).then(() => {
+                let apiURL = `${import.meta.env.VITE_VUE_APP_ROOT_URL}/Customers/update/${id}`;
+                axios.put(apiURL, this.customers).then(() => {
                 this.edit=false
                 }).catch(error => {
                     console.log(error)
@@ -157,7 +157,7 @@ export default {
       <h1 class="mb-5">{{customers.FirstName}} {{customers.LastName}} ID#{{customers.CustomerID}}</h1>
     <div class="wrapper m-5"></div>
       <div class="table1">
-        <form @submit.prevent="handleSubmitForm" novalidate>
+        <form @submit.prevent="handleSubmitForm(customers.CustomerID)" novalidate>
         <table class="table table-light caption-top">
           <caption>
             <strong>Customer Information</strong>

@@ -20,7 +20,7 @@ module.exports = app => {
   app.get("/Products/:pid", Products.getProduct);
 
 // add product
-app.post("/Products/insert", Products.insertNewProducts);
+app.post("/Products/add", Products.insertNewProducts);
 
 // update product
 app.put("/Products/update/:pid", Products.updateProducts);

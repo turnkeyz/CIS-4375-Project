@@ -40,14 +40,16 @@ products.insertProducts = (obj) => {
     sql.connect(sqlConfig, function (err, result) {
       // PARAMETERIZING QUERIES
       var request = new sql.Request()
-        .input("cid", obj.cid)
-        .input("product_name", obj.name)
-        .input("description", obj.description)
-        .input("image", obj.image)
-        .input("price", obj.price);
+        .input("cid", obj.CategoryID)
+        .input("product_name", obj.ProductName)
+        .input("description", obj.ProductDescription)
+        // .input("image", obj.image)
+        .input("price", obj.Price)
+        .input("url", obj.Img_url)
+        .input("active", obj.Active)
 
       request.query(
-        `INSERT INTO Products (CategoryID, ProductName, ProductDescription, Price) VALUES (@cid, @product_name, @description, @image, @price);`,
+        `INSERT INTO Products (CategoryID, ProductName, ProductDescription, Price, Img_url, Active) VALUES (@cid, @product_name, @description, @price, @url, @active);`,
         (err, res) => {
           if (err) reject(err);
             console.log(res);
@@ -66,15 +68,17 @@ products.updateProducts = (param_id, obj) => {
       // PARAMETERIZING QUERIES
       var request = new sql.Request()
         .input("param_id", param_id)
-        .input("cid", obj.cid)
-        .input("product_name", obj.name)
-        .input("description", obj.description)
-        .input("image", obj.image)
-        .input("price", obj.price);
+        .input("cid", obj.CategoryID)
+        .input("product_name", obj.ProductName)
+        .input("description", obj.ProductDescription)
+        // .input("image", obj.image)
+        .input("price", obj.Price)
+        .input("url", obj.Img_url)
+        .input("active", obj.Active)
 
       request.query(
         `UPDATE Products 
-        SET CategoryID=@cid, ProductName=@product_name, ProductDescription=@description, Price=@price 
+        SET CategoryID=@cid, ProductName=@product_name, ProductDescription=@description, Price=@price, Img_url=@url, Active=@active
         WHERE ProductID = @param_id;`,
         (err, res) => {
           if (err) reject(err);
