@@ -18,7 +18,7 @@
     },
     methods: {
       cartsPage() {
-        this.$router.push('')
+        this.$router.push('/carts')
       },
       customersPage(){
         this.$router.push('/customers')
