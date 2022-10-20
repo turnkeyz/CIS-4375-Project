@@ -22,8 +22,7 @@ export default {
 
       //created function
   created() {
-   // Variable that stores the "find specific employee" route
-    let apiURL = `${import.meta.env.VITE_VUE_APP_ROOT_URL}/Customers/${this.$route.query.id}`;
+    let apiURL = `${import.meta.env.VITE_VUE_APP_ROOT_URL}/Customer/${this.$route.query.id}`;
     axios.get(apiURL).then((res) => {
         this.customers = res.data[0];
         if(this.$route.query.e === true || this.$route.query.e === 'true'){

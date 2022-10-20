@@ -5,7 +5,7 @@ module.exports = app => {
     app.get("/Customers/fetchAll", Customers.getAllCustomers);
 
      // get one customer
-     app.get("/Customers/:uid", Customers.getCustomer);
+     app.get("/Customer/:uid", Customers.getCustomer);
   
     // add customer
     app.post("/Customers/add", Customers.insertNewCustomers);
@@ -15,4 +15,8 @@ module.exports = app => {
   
     //delete customer
     app.delete("/Customers/delete/:uid", Customers.deleteCustomers);
+
+  
+    app.get("/Customers/fetchNames", Customers.getNames);
   };
+  
