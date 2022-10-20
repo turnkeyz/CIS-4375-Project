@@ -1,7 +1,7 @@
 <script>
 import axios from "axios";
 
-import {regex, emailregex} from '../../../src/methods/regex'
+import {regex, emailregex} from '../../../methods/regex'
 
 
 export default {

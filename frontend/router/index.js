@@ -2,8 +2,8 @@
 //https://www.vuemastery.com/blog/vue-router-a-tutorial-for-vue-3/#starting-from-scratch
 
 import { createWebHistory, createRouter } from "vue-router";
-import Home from "../views/Home.vue";
-import About from "../views/About.vue";
+import Home from "../src/views/Home.vue";
+import About from "../src/views/About.vue";
 
 const routes = [
   {
@@ -21,22 +21,22 @@ const routes = [
   {
     path: "/cakes",
     name: "Cakes",
-    component:() => import('../views/ProductPages/Cakes.vue'),
+    component:() => import('../src/views/ProductPages/Cakes.vue'),
   },
   {
     path: "/cookies",
     name: "Cookies",
-    component:()=>import('../views/ProductPages/Cookies.vue'),
+    component:()=>import('../src/views/ProductPages/Cookies.vue'),
   },
   {
     path: "/breads",
     name: "Breads",
-    component:()=>import('../views/ProductPages/Breads.vue'),
+    component:()=>import('../src/views/ProductPages/Breads.vue'),
   },
   {
     path: "/pastries",
     name: "Pastries",
-    component:()=>import('../views/ProductPages/Pastries.vue'),
+    component:()=>import('../src/views/ProductPages/Pastries.vue'),
   },
   
 
@@ -44,62 +44,62 @@ const routes = [
   {
     path: "/login",
     name: "Login",
-    component:() => import('../views/Admin/Login.vue'),
+    component:() => import('../src/views/Admin/Login.vue'),
   },
   {
     path:"/dashboard",
     name:"Dashboard",
-    component:()=> import("../views/Admin/Dashboard.vue")
+    component:()=> import("../src/views/Admin/Dashboard.vue")
   },
   //CUSTOMERS =========
   {
     path: "/customers",
     name: "Customers",
-    component:() => import('../views/Admin/Customers/Customers.vue'),
+    component:() => import('../src/views/Admin/Customers/Customers.vue'),
   },
   {
     path: "/customer-form",
     name: "Customer-form",
-    component:() => import('../views/Admin/Customers/CustomerForm.vue'),
+    component:() => import('../src/views/Admin/Customers/CustomerForm.vue'),
   },
   {
     path: "/customer",
     name: "Customer",
     props:true,
-    component:() => import('../views/Admin/Customers/CustomerView.vue'),
+    component:() => import('../src/views/Admin/Customers/CustomerView.vue'),
   },
   
   //PRODUCTS=========
   {
     path: "/product",
     name: "Product",
-    component:() => import('../views/Admin/Products/ProductView.vue')
+    component:() => import('../src/views/Admin/Products/ProductView.vue')
   },
   {
     path:"/products",
     name:"Products",
-    component:()=> import('../views/Admin/Products/Products.vue')
+    component:()=> import('../src/views/Admin/Products/Products.vue')
   },
   {
     path:"/product-form",
     name:"/Product-form",
-    component:()=> import('../views/Admin/Products/ProductForm.vue')
+    component:()=> import('../src/views/Admin/Products/ProductForm.vue')
   },
 
   {
     path: "/cart",
     name: "Cart",
-    component:() => import('../views/Admin/Cart/CartView.vue')
+    component:() => import('../src/views/Admin/Cart/CartView.vue')
   },
   {
     path:"/carts",
     name:"Carts",
-    component:()=> import('../views/Admin/Cart/Carts.vue')
+    component:()=> import('../src/views/Admin/Cart/Carts.vue')
   },
   {
     path:"/cart-form",
     name:"/Cart-form",
-    component:()=> import('../views/Admin/Cart/CartForm.vue')
+    component:()=> import('../src/views/Admin/Cart/CartForm.vue')
   },
 
 
