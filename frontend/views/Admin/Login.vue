@@ -7,7 +7,6 @@
                 pswd:""
             },
             errors:""
-            
         };
       },
       methods:{
