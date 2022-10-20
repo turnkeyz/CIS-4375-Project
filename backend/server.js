@@ -15,7 +15,7 @@ require('./routes/products.routes')(app)
 require('./routes/orders.routes')(app)
 require('./routes/categories.routes')(app)
 require('./routes/customers.routes')(app)
-
+require('./routes/cart.routes')(app)
 
 
 // setting port to 3000, & listening for requests http request.
