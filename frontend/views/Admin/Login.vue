@@ -2,13 +2,29 @@
     export default {
       data() {
         return {
-            user:"",
-            pswd:""
+            input:{
+                user:"",
+                pswd:""
+            },
+            errors:""
+            
         };
       },
       methods:{
         login(){
-
+            if(this.input.user != "" && this.input.pswd != ""){
+                if(this.input.user == 'user' && this.input.pswd =="pass"){
+                    this.$emit("authenticated", true)
+                    this.$parent.authenticated = true
+                    this.$router.replace({name:"Customers"})
+                }else{
+                    console.log("Username or Password is incorrect")
+                    this.errors="Username or Password is incorrect"
+                }
+            }else{
+                console.log("Username and Password is empty")
+                this.errors="Username and Password is empty"
+            }
         }
       }
     };
@@ -25,7 +41,7 @@
                 <div class="card-body p-md-5 mx-md-4">
 
                     <div class="text-center">
-                    <img src="../public/uploads/logo.png"
+                    <img src="../../public/uploads/logo.png"
                         style="width: 185px;" alt="logo">
                     <h4 class="mt-1 mb-5 pb-1">Admin</h4>
                     </div>
@@ -34,22 +50,28 @@
                     <p></p>
 
                     <div class="form-outline mb-4">
-                        <input type="email" id="form2Example11" name="user" class="form-control" placeholder="email address" v-model="input.user"/>
+                        <input type="email" id="form2Example11" class="form-control" v-model="input.user"/>
                         <label class="form-label" for="form2Example11">Username</label>
                     </div>
 
                     <div class="form-outline mb-4">
-                        <input type="password" name="pswd" id="form2Example22" class="form-control" v-model="input.pswd" />
+                        <input type="password" id="form2Example22" class="form-control" v-model="input.pswd" />
                         <label class="form-label" for="form2Example22">Password</label>
                     </div>
 
                     <div class="text-center pt-1 mb-5 pb-1">
                         <ul>
-                            <router-link to="/customers" class="btn btn-primary btn-block fa-lg gradient-custom-2 mb-3">Sign in</router-link>
+                            <button class="btn btn-primary btn-block fa-lg gradient-custom-2 mb-3" v-on:click="login()">Sign In</button>
                         </ul>
                         <ul>
                             <a class="text-muted" href="#!">Forgot password?</a>
                         </ul>
+                        <p v-if="errors.length">
+                            <b>Please correct the following error(s):</b>
+                            <ul>
+                                <li>{{ errors }} </li>
+                            </ul>
+                        </p>
                     </div>
 
                     <!-- <div class="d-flex align-items-center justify-content-center pb-4">
