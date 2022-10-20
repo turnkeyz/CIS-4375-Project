@@ -58,6 +58,7 @@
 
 <template>
     <div class="container">
+        <h1 class="text-center">All Customers</h1>
         <div class="table-responsive-sm">
             <table class="table table-hover table-responsive table-bordered">
                 <thead class="table-light">
