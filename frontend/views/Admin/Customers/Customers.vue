@@ -1,8 +1,5 @@
 <script>
-    // import Dashboard_nav from '../../src/components/Dashboard_nav.vue'
-    // import * as filestack from 'filestack-js';
     import axios from 'axios';
-    // const client = filestack.init('AFjicuE4KTkQYD5osjrBhz');
     export default {
     // register child component
     components: {
@@ -27,9 +24,8 @@
         seeMore(id){
             this.$router.push({
                 name:'Customer',
-                params:{data:5}
+                query:{id:id, e:false}
             })
-            // this.$router.push('/Customer')
         },
         
         delCustomer(id){
@@ -44,6 +40,17 @@
                     console.log(err)
                 })
             }
+        },
+        editCustomer(id){
+            this.$router.push({
+                name:'Customer',
+                query:{id:id, e:true}
+            })
+        }
+    },
+    mounted(){
+        if(!this.$parent.authenticated){
+            this.$router.replace({name:"Login"})
         }
     }
   }
@@ -72,8 +79,9 @@
                         <td>{{customer.Phone}}</td>
                         <td>
                             <tr>
-                                <td><router-link :to="{name:'Customer', query:{id:customer.CustomerID}}" class="btn btn-light">...</router-link></td>
-                                <td><button class="btn btn-secondary btn-sm">Edit</button></td>
+                                <!-- <td><router-link :to="{name:'Customer', query:{id:customer.CustomerID, e:false}}" class="btn btn-light">...</router-link></td> -->
+                                <td><button @click="seeMore(customer.CustomerID)" class="btn btn-light">...</button></td>
+                                <td><button @click="editCustomer(customer.CustomerID)" class="btn btn-secondary btn-sm">Edit</button></td>
                                 <td><button class="btn btn-danger btn-sm" @click.prevent="delCustomer(customer.CustomerID)">Delete</button></td>
                             </tr>
                         </td>

@@ -4,7 +4,8 @@
   export default {
     data(){
       return{
-        a:true
+        a:true,
+        authenticated:false
       }
     },
     // register child component
