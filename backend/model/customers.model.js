@@ -40,15 +40,16 @@ Customers.insertCustomers = (obj) => {
     sql.connect(sqlConfig, function (err, result) {
       // PARAMETERIZING QUERIES
       var request = new sql.Request()
-        .input("firstname", obj.firstname)
-        .input("lastname", obj.lastname)
-        .input("email", obj.email)
-        .input("phone", obj.phone)
-        .input("pay_type", obj.pay_type);
+        .input("firstname", obj.FirstName)
+        .input("lastname", obj.LastName)
+        .input("email", obj.Email)
+        .input("phone", obj.Phone)
+        .input("pay_type", obj.PaymentType)
+        .input("notes", obj.Notes)
 
       request.query(
-        `INSERT INTO Customers (FirstName, LastName, Email, Phone, PaymentType) 
-        VALUES (@firstname, @lastname, @email, @phone, @pay_type);`,
+        `INSERT INTO Customers (FirstName, LastName, Email, Phone, PaymentType, Notes) 
+        VALUES (@firstname, @lastname, @email, @phone, @pay_type, @notes);`,
         (err, res) => {
           if (err) reject(err);
             console.log(res);
@@ -66,15 +67,17 @@ Customers.updateCustomers = (param_id, obj) => {
     sql.connect(sqlConfig, function (err, result) {
       // PARAMETERIZING QUERIES
       var request = new sql.Request()
-      .input("firstname", obj.firstname)
-      .input("lastname", obj.lastname)
-      .input("email", obj.email)
-      .input("phone", obj.phone)
-      .input("pay_type", obj.pay_type);
+        .input("param_id", param_id)
+        .input("firstname", obj.FirstName)
+        .input("lastname", obj.LastName)
+        .input("email", obj.Email)
+        .input("phone", obj.Phone)
+        .input("pay_type", obj.PaymentType)
+        .input("notes", obj.Notes)
         
       request.query(
         `UPDATE Customers 
-        SET FirstName=@firstname, LastName=@lastname, Email=@email, Phone=@phone, PaymentType=@pay_type 
+        SET FirstName=@firstname, LastName=@lastname, Email=@email, Phone=@phone, PaymentType=@pay_type, Notes=@notes
         WHERE CustomerID = @param_id;`,
         (err, res) => {
           if (err) reject(err);

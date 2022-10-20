@@ -1,7 +1,9 @@
 <script>
     import axios from 'axios';
-    import {regex} from '../../src/methods/regex'
-    import {emailregex} from '../../src/methods/regex'
+
+    import {regex, emailregex} from '../../../src/methods/regex'
+
+
     export default {
     // register child component
     components: {
@@ -9,14 +11,15 @@
     },
     data(){
       return{
-        customers: [],
+        // customers: [],
         customers: {
-                    firstname: '',
-                    lastname: '',
-                    email: '',
-                    phone: '',
-                    pay_type:'',
-                    notes:''
+                    FirstName: '',
+                    LastName: '',
+                    Email: '',
+                    Phone: '',
+                    PaymentType:'',
+                    Notes:''
+
                 },
                 errors:[]
       }
@@ -24,32 +27,39 @@
     created(){
       
     },
+    mounted(){
+        if(!this.$parent.authenticated){
+            this.$router.replace({name:"Login"})
+        }
+    },
+
     methods: {
             //create new volunteer and reset values
             handleSubmitForm() {
                 this.errors=[]
                 //validations for required or formatted fields
-                if(!this.customers.firstname){
+                if(!this.customers.FirstName){
                     this.errors.push("First Name Required");
                     }
 
-                if(!this.customers.lastname){
+                if(!this.customers.LastName){
                     this.errors.push("Last Name Required");
                     }
                 
-                if(!emailregex.test(this.customers.email))
+                if(!emailregex.test(this.customers.Email))
                     this.errors.push("Please enter a valid email.");
 
-                if(!this.customers.phone)
+                if(!this.customers.Phone)
                 this.errors.push("phone is Required")
 
-                if (!regex.test(this.customers.phone))
+                if (!regex.test(this.customers.Phone))
                 this.errors.push("Please use correct phone number format.");
 
-                if(!this.customers.pay_type){
+                if(!this.customers.PaymentType){
                     this.errors.push("Payment type  is Required");
                     }
-                if(!this.customers.notes){
+                if(!this.customers.Notes){
+
                     this.errors.push("notes is Required");
                     }
 
@@ -59,12 +69,13 @@
                 axios.post(apiURL, this.customers).then(() => {
                 this.$router.push('/customers') //goes to customers view
                 this.customers = {
-                    firstname: '',
-                    lastname: '',
-                    email: '',
-                    phone: '',
-                    pay_type:'',
-                    notes:'',
+                    FirstName: '',
+                    LastName: '',
+                    Email: '',
+                    Phone: '',
+                    PaymentType:'',
+                    Notes:'',
+
                 }
                 }).catch(error => {
                     console.log(error)
@@ -87,7 +98,9 @@
                 <div class='row mb-4'>
                     <div class='col-sm-4'>
                         <label for='fName'>*First Name</label>
-                        <input type="text" id='fName' class="form-control" v-model="customers.firstname" required>
+
+                        <input type="text" id='fName' class="form-control" v-model="customers.FirstName" required>
+
                     </div>
                     <div class='col-sm-4'>
                         <label>Middle Name</label>
@@ -95,14 +108,18 @@
                     </div>    
                     <div class='col-sm-4'>
                         <label>*Last Name</label>
-                        <input type="text" class="form-control" v-model="customers.lastname" required>
+
+                        <input type="text" class="form-control" v-model="customers.LastName" required>
+
                         <div class='valid-feedback'></div>
                     </div>
                 </div>
                 <div class='row mb-4'>
                 <div class="col-sm-6">
                     <label>*Phone</label>
-                        <input type="text" class="form-control" placeholder="XXX-XXX-XXXX" v-model="customers.phone" required>
+
+                        <input type="text" class="form-control" placeholder="XXX-XXX-XXXX" v-model="customers.Phone" required>
+
                         <small id="phoneHelpBlock" class="form-text text-muted">
                         9 digit phone number should be entered with dashes
                         </small>
@@ -110,7 +127,9 @@
 
                     <div class="col-sm-3">
                         <label>*Email</label>
-                        <input type="email" class="form-control" v-model="customers.email" required>
+
+                        <input type="email" class="form-control" v-model="customers.Email" required>
+
                         <small id="phoneHelpBlock" class="form-text text-muted">
                         example@email.com
                         </small>
@@ -122,14 +141,18 @@
                 <div class='row mb-4'>
                     <div class="col-sm-12">
                         <label class="form-label">Notes</label>
-                        <textarea class="form-control" rows="5" v-model="customers.notes"></textarea>
+
+                        <textarea class="form-control" rows="5" v-model="customers.Notes"></textarea>
+
                     </div>
                     
                 </div>
                 <div class='row mb-4'>
                     <div class="col-sm-3">
                         <label>Payment type</label>
-                        <select class='form-select' v-model="customers.pay_type">
+
+                        <select class='form-select' v-model="customers.PaymentType">
+
                             <option disabled value="">Select option</option>
                             <option>Cash</option>
                             <option>Credit</option>
@@ -148,7 +171,9 @@
                     <li v-for="error in errors" :key="error">{{ error }} </li>
                 </ul>
             </p>
-            <button class="btn mb-5 create" >Create</button>
+
+            <button class="btn btn-success create" >Create</button>
+
         </form>
         
     </div>
