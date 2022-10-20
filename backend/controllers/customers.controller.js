@@ -1,5 +1,5 @@
 const { reset } = require("nodemon");
-const Customers = require("../model/customers.model");
+const Customers = require("../model/customers.model.js");
 
 // add customer
 exports.insertNewCustomers = async (req, res) => {
@@ -31,7 +31,12 @@ exports.deleteCustomers = async (req, res) => {
     res.send(obj);
 };
 
-exports.getNames = async(req, res) =>{
-    const obj = await Customers.fetchAllNames()
-    res.send(obj)
+// exports.getNames = async (req, res) => {
+//     const obj = await Customers.fetchAllNames();
+//     res.send(obj)
+// };
+
+exports.getNames = async (req, res) => {
+    const obj = await Customers.fetchAllNames();
+    res.send(obj);
 };

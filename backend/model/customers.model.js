@@ -15,22 +15,6 @@ Customers.findAllCustomers = () => {
     });
   });
 };
-
-Customers.fetchAllNames= () =>{
-  return new Promise((resolve, reject)=>{
-    sql.connect(sqlConfig, function(err, result){
-      var request = new sql.Request();
-      request.query(
-        `SELECT CustomerID, FirstName, LastName FROM Customers;`,
-        (err, res) => {
-          if(err) reject(err);
-            console.log(res.recordset)
-            return resolve(res.recordset);
-        });
-    });
-  });
-}
-
 // FETCHING ALL FROM Customers TABLE
 Customers.findCustomer = (param_id) => {
   return new Promise((resolve, reject) => {
@@ -40,7 +24,7 @@ Customers.findCustomer = (param_id) => {
       ;
       request.query(`SELECT * FROM Customers WHERE CustomerID=@uid;`, (err, res) => {
         if (err) reject(err);
-          console.table(res.recordset)
+          console.log('line 27', res.recordset)
           return resolve(res.recordset); // FETCHING ALL DATA
       });
     });
@@ -115,6 +99,19 @@ Customers.deleteCustomersById = (param_id) => {
         if (err) reject(err);
         console.log(res);
         return resolve(res); // DELETING Customers DATA
+      });
+    });
+  });
+};
+
+Customers.fetchAllNames = () => {
+  return new Promise((resolve, reject) => {
+    sql.connect(sqlConfig, function (err, result) {
+      var request = new sql.Request();
+      request.query(`SELECT CustomerID, FirstName, LastName FROM Customers;`, (err, res) => {
+        if (err) reject(err);
+          console.log(res.recordset)
+          return resolve(res.recordset); // FETCHING ALL DATA
       });
     });
   });
