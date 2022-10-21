@@ -9,7 +9,7 @@ Orders.findAllFromOrders = () => {
       var request = new sql.Request();
       request.query(`SELECT * FROM Orders;`, (err, res) => {
         if (err) reject('line 12',err);
-          console.table(res.recordset)
+          console.log(res.recordset)
           return resolve(res.recordset); // FETCHING ALL DATA
       });
     });
@@ -40,19 +40,20 @@ Orders.insertOrders = (obj) => {
     sql.connect(sqlConfig, function (err, result) {
       // PARAMETERIZING QUERIES
       var request = new sql.Request()
-        .input("email", obj.email)
-        .input("cart_id", obj.cid)
-        .input("datetime", obj.datetime)
-        .input("contents", obj.contents)
-        .input("custom", obj.custom)
-        .input('custom_notes', obj.custom_notes)
-        .input('delivery_datetime', obj.delivery_datetime)
-        .input('status', obj.status)
-        .input('subtotal', obj.subtotal)
+        .input("customer_id", obj.CustomerID)
+        .input("cart_id", obj.CartID)
+        .input("datetime", obj.DateTimeOrdered)
+        .input("contents", obj.Contents)
+        .input("custom", obj.Cusomization)
+        .input('custom_notes', obj.CustomerNotes)
+        .input('delivery_datetime', obj.DeliveryDateTime)
+        .input('status', obj.Status)
+        .input('subtotal', obj.Subtotal)
+        .input('called_back', obj.CalledBackValue)
 
       request.query(
-        `INSERT INTO Orders (Email, CartID, DateTimeOrdered, Contents, Customization, CustomerNotes, DeliveryDateTime, [Status], Subtotal) 
-            VALUES (@email, @cart_id, @datetime, @contents, @custom, @custom_notes, @delivery_datetime, @status, @subtotal);`,
+        `INSERT INTO Orders (CustomerID, CartID, DateTimeOrdered, Contents, Customization, CustomerNotes, DeliveryDateTime, [Status], Subtotal, CalledBackValue) 
+            VALUES (@customer_id, @cart_id, @datetime, @contents, @custom, @custom_notes, @delivery_datetime, @status, @subtotal, @called_back);`,
         (err, res) => {
           if (err) reject(err);
             console.log(res);
@@ -71,19 +72,20 @@ Orders.updateOrders = (param_id, obj) => {
       // PARAMETERIZING QUERIES
       var request = new sql.Request()
         .input("param_id", param_id)
-        .input("email", obj.email)
-        .input("cart_id", obj.cid)
-        .input("datetime", obj.datetime)
-        .input("contents", obj.contents)
-        .input("custom", obj.custom)
-        .input('custom_notes', obj.custom_notes)
-        .input('delivery_datetime', obj.delivery_datetime)
-        .input('status', obj.status)
-        .input('subtotal', obj.subtotal)
+        .input("customer_id", obj.CustomerID)
+        .input("cart_id", obj.CartID)
+        .input("datetime", obj.DateTimeOrdered)
+        .input("contents", obj.Contents)
+        .input("custom", obj.Cusomization)
+        .input('custom_notes', obj.CustomerNotes)
+        .input('delivery_datetime', obj.DeliveryDateTime)
+        .input('status', obj.Status)
+        .input('subtotal', obj.Subtotal)
+        .input('called_back', obj.CalledBackValue)
 
     request.query(
         `UPDATE Orders 
-        SET Email=@email, CartID=@cart_id, DateTimeOrdered=@datetime, Contents=@contents, Customization=@custom, CustomerNotes=@custom_notes, DeliveryDateTime=@delivery_datetime, [Status]=@status, Subtotal=@subtotal 
+        SET CustomerID=@customer_id, CartID=@cart_id, DateTimeOrdered=@datetime, Contents=@contents, Customization=@custom, CustomerNotes=@custom_notes, DeliveryDateTime=@delivery_datetime, [Status]=@status, Subtotal=@subtotal, CalledBackValue=@called_back
         WHERE OrderID = @param_id;`,
         (err, res) => {
           if (err) reject(err);
