@@ -106,6 +106,13 @@ const routes = [
     component:()=> import('../src/views/Admin/Cart/CartForm.vue')
   },
 
+  //======ORDERS
+  {
+    path:"/orders",
+    name:"Orders",
+    component:()=> import('../src/views/Admin/Orders/Orders.vue')
+  }
+
   //=========================================================ADMIN
 ];
 
