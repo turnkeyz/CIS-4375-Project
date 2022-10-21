@@ -55,7 +55,7 @@
           </ul>
         </div>
         <li class="nav-item">
-          <a class="nav-link mx-2" href="#">About</a>
+          <a class="nav-link mx-2" href="/about">About</a>
         </li>
         <li class="nav-item">
           <a class="nav-link mx-2" href="#">Cart</a>
