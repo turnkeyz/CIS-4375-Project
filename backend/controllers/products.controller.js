@@ -48,6 +48,12 @@ exports.getAllCookies = async (req, res) => {
   res.send(obj);
 };
 
+ // get all cake cups
+ exports.getAllCakeCups = async (req, res) => {
+  const obj = await Products.findAllCakeCups();
+  res.send(obj);
+};
+
  // get all breads
  exports.getAllBreads = async (req, res) => {
   const obj = await Products.findAllBreads();
