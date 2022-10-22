@@ -19,6 +19,6 @@ require('./routes/cart.routes')(app)
 
 
 // setting port to 3000, & listening for requests http request.
-app.listen(3000, () => {
+app.listen(5173, () => {
   console.log("Server is running on port 3000.");
 });
