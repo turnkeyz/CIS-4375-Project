@@ -167,4 +167,19 @@ products.findAllBreads = () => {
   });
 };
 
+
+// FETCHING ALL Cake Cups FROM Products TABLE
+products.findAllCakeCups = () => {
+  return new Promise((resolve, reject) => {
+    sql.connect(sqlConfig, function (err, result) {
+      var request = new sql.Request();
+      request.query(`SELECT * FROM Products where CategoryID=5;`, (err, res) => {
+        if (err) reject(err);
+          console.log(res.recordset)
+          return resolve(res.recordset); // FETCHING ALL DATA
+      });
+    });
+  });
+};
+
 module.exports = products;
