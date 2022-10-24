@@ -23,7 +23,7 @@
         seeMore(id){
             this.$router.push({
                 name:'Cart',
-                query:{id:id, e:false}
+                query:{id:id}
             })
         },
         
@@ -42,8 +42,8 @@
         },
         editCart(id){
             this.$router.push({
-                name:'Cart',
-                query:{id:id, e:true}
+                name:'cart-edit',
+                query:{id:id}
             })
         }
     },

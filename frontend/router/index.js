@@ -101,6 +101,11 @@ const routes = [
     name:"/Cart-form",
     component:()=> import('../src/views/Admin/Cart/CartForm.vue')
   },
+  {
+    path:"/cart-edit",
+    name:"cart-edit",
+    component:()=> import('../src/views/Admin/Cart/CartEdit.vue')
+  }
 
 
   //=========================================================ADMIN
