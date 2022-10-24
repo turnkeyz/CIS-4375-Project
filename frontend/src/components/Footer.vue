@@ -41,6 +41,9 @@
               <a href="/cakes" class="text-white">Cakes</a>
             </p>
             <p>
+              <a href="/cakecups" class="text-white">Cake Cups</a>
+            </p>
+            <p>
               <a href="/breads" class="text-white">Breads</a>
             </p>
             <p>
@@ -122,7 +125,18 @@
                role="button"
                ><i class="fab fa-github"></i
               ></a>
+            <!-- Worker Portal -->
+              <div class="col-md-3 col-lg-2 col-xl-5 mt-5">
+              <h6 class="text-uppercase mb-4 font-weight-bold">Maintenance</h6>
+              <a
+                class="btn button btn-primary btn-floating"
+                href="/login"
+                role="button"
+                >Worker Portal</a>       
+            </div>
           </div>
+          <!-- Grid column -->
+          
         </div>
         <!--Grid row-->
       </section>
@@ -147,3 +161,14 @@
 <!-- End of .container -->
 
 </template>
+
+<style>
+  .button {
+  transition-duration: 0.4s;
+}
+
+.button:hover {
+  background-color: #333333; /* Green */
+  color: white;
+}
+</style>
