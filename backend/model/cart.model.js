@@ -43,12 +43,11 @@ Cart.insertCart = (obj) => {
         .input("cid", obj.CustomerID)
         .input("p_json", obj.ProductsJSON)
         .input("customization", obj.Customization)
-        .input("notes", obj.CustomerNotes)
-        .input("price", obj.Price)
+        .input("customer_notes", obj.CustomerNotes)
         .input("subtotal", obj.Subtotal)
 
       request.query(
-        `INSERT INTO Cart (CustomerID, ProductsJSON, Customization, CustomerNotes, Price, Subtotal) VALUES (@cid, @p_json, @customization, @notes, @price, @subtotal);`,
+        `INSERT INTO Cart (CustomerID, ProductsJSON, Customization, CustomerNotes, Subtotal) VALUES (@cid, @p_json, @customization, @customer_notes, @subtotal);`,
         (err, res) => {
           if (err) reject(err);
             console.log(res);
@@ -70,13 +69,12 @@ Cart.updateCart = (param_id, obj) => {
         .input("cid", obj.CustomerID)
         .input("p_json", obj.ProductsJSON)
         .input("customization", obj.Customization)
-        .input("notes", obj.CustomerNotes)
-        .input("price", obj.Price)
-        .input("subtotal", obj.subtotal)
+        .input("customer_notes", obj.CustomerNotes)
+        .input("subtotal", obj.Subtotal)
 
       request.query(
         `UPDATE Cart 
-        SET CustomerID=@cid, ProductsJSON=@p_json, Customization=@customization, CustomerNotes=@notes, Price=@price, Subtotal=@subtotal
+        SET CustomerID=@cid, ProductsJSON=@p_json, Customization=@customization, CustomerNotes=@customer_notes, Subtotal=@subtotal
         WHERE CartID = @param_id;`,
         (err, res) => {
           if (err) reject(err);
