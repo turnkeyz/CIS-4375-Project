@@ -152,7 +152,6 @@
                         <label>Payment type</label>
 
                         <select class='form-select' v-model="customers.PaymentType">
-
                             <option disabled value="">Select option</option>
                             <option>Cash</option>
                             <option>Credit</option>
