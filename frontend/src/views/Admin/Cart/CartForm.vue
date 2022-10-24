@@ -56,7 +56,7 @@
             // this.Active=false
             }
             for(let i=0; i<this.items.length; i++){
-                this.Cart.ProductsJSON.push({'ProductID':this.items[i].Products[0], 'ProductName':this.items[i].Products[1], 'ProductPrice':this.items[i].Products[2],'Quantity':this.items[i].Quantity})
+                this.Cart.ProductsJSON.push({'ProductID':this.items[i].Products[0], 'ProductName':this.items[i].Products[1], 'Price':this.items[i].Products[2],'Quantity':this.items[i].Quantity})
             }
             this.Cart.Subtotal=this.total
             this.Cart.ProductsJSON = JSON.stringify(this.Cart.ProductsJSON)

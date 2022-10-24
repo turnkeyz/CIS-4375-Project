@@ -28,8 +28,7 @@
           this.Cart = res.data[0];
           this.items = JSON.parse(this.Cart.ProductsJSON)
           this.total = this.Cart.Subtotal
-        //   console.log(this.items)
-          
+          console.log(this.items)
         })
         .catch((error) => {
           console.log(error);
@@ -93,6 +92,8 @@
         
       },
       addProductLine(){
+            this.item.ProductID=this.item.Products[0]
+            this.item.ProductName = this.item.Products[1]
             this.item.Price = this.item.Products[2]*this.item.Quantity
             this.total = this.total + (this.item.Products[2]*this.item.Quantity)
             this.items.push(this.item)
@@ -101,7 +102,7 @@
         removeFromCart(id){
             console.log(this.items)
             let index = this.items.findIndex(i=>i.ProductID===id)
-            let price = this.items[index].ProductPrice
+            let price = this.items[index].Price
             let Quantity = this.items[index].Quantity
             this.total = this.total - (price*Quantity)
             this.items.splice(index, 1)
@@ -174,11 +175,11 @@
                             <tbody class="table-group-divider table-divider-color">
                                 <tr v-for="index in items" :key="index">
                                     <td>{{index.ProductName}}</td>
-                                    <td>{{index.ProductPrice}}</td>
+                                    <!-- <td>{{index.Products[1]}}</td> -->
+                                    <td>{{index.Price}}</td>
                                     <td>{{index.Quantity}}</td>
                                     <td>{{}}</td>
-                                    <td>{{index.ProductPrice * index.Quantity}}</td>
-                                    
+                                    <td>{{index.Price * index.Quantity}}</td>
                                     <td>
                                         <tr>
                                             <td><button class="btn btn-danger btn-sm" type="button" @click.prevent="removeFromCart(index.ProductID)">Remove</button></td>
