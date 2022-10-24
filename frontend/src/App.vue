@@ -61,10 +61,9 @@
         <li class="nav-item">
           <a class="nav-link mx-2" href="#">Cart</a>
         </li>
-        <li class="nav-item">
+        <!-- <li class="nav-item">
           <a class="nav-link mx-2 btn rounded-0 btn-danger" href="/login">Login</a>
-        </li>
-        
+        </li> -->
       </ul>
     </div>
   </div>
@@ -74,7 +73,6 @@
   <img src="/uploads/owl logo.png" height="50" alt="Company Logo">
 </a>
 </div>
-  <!-- <HelloWorld msg="Vite + Vue" /> -->
       <RouterView></RouterView>
     <Footer/>
 </div>

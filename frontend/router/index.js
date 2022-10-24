@@ -24,6 +24,11 @@ const routes = [
     component:() => import('../src/views/ProductPages/Cakes.vue'),
   },
   {
+    path: "/cakes",
+    name: "Cakes",
+    component:() => import('../src/views/ProductPages/Cakes.vue'),
+  },
+  {
     path: "/cookies",
     name: "Cookies",
     component:()=>import('../src/views/ProductPages/Cookies.vue'),
