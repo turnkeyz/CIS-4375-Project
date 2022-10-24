@@ -14,7 +14,7 @@
     },
     
   }
-  </script>
+</script>
 
 <template>
   <div v-if="a===true">

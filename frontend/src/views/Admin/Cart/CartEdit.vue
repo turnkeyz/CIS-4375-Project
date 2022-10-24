@@ -9,7 +9,9 @@
       //Storing the data being exported in a function
     data() {
       return {
-        Cart: {},
+        Cart: {
+          ProductsJSON: [],
+        },
         errors:[],
         Products:[],
         items:[],
@@ -28,7 +30,6 @@
           this.Cart = res.data[0];
           this.items = JSON.parse(this.Cart.ProductsJSON)
           this.total = this.Cart.Subtotal
-          console.log(this.items)
         })
         .catch((error) => {
           console.log(error);
@@ -63,28 +64,33 @@
       handleSubmitForm(pid){
         this.errors=[]
         //validations for required or formatted fields
+        if(!this.Cart.CartID){
+            this.errors.push("CartID is Required");
+            }
         if(!this.Cart.CustomerID){
-            this.errors.push("Category is Required");
+            this.errors.push("CustomerID  is Required");
             }
-        if(!this.Cart.ProductName)
-            this.errors.push("Name is Required.");
+        if(!this.Cart.ProductsJSON)
+            this.errors.push("ProductJSON is Required.");
 
-        if(!this.Cart.Customization)
-        this.errors.push("Price is Required")
+        if(!this.Cart.CustomerNotes)
+        this.errors.push("Customer Notes is Required")
 
-        if(!this.Cart.ProductDescription){
-            this.errors.push("Product Description is Required");
+        if(!this.Cart.Subtotal){
+            this.errors.push("Subtotal is Required");
             }
-        if(!this.Cart.Img_url){
-        this.errors.push("Image url required");
-        }
-
+       
+        this.Cart.ProductsJSON = JSON.stringify(this.items)
+        this.Cart.Subtotal=this.total
+       
         //only run if no errors
         if(this.errors.length === 0){
             let apiURL = `${import.meta.env.VITE_VUE_APP_ROOT_URL}/Cart/update/${pid}`;
-            console.log('line 86', apiURL)
             axios.put(apiURL, this.Cart).then(() => {
-            this.edit=false
+              this.$router.push({
+                name:'Cart',
+                query:{id:this.Cart.CartID}
+            })
             }).catch(error => {
                 console.log(error)
             });
@@ -92,15 +98,15 @@
         
       },
       addProductLine(){
-            this.item.ProductID=this.item.Products[0]
-            this.item.ProductName = this.item.Products[1]
+            // this.item.ProductID=this.item.Products[0]
+            // this.item.ProductName = this.item.Products[1]
             this.item.Price = this.item.Products[2]*this.item.Quantity
             this.total = this.total + (this.item.Products[2]*this.item.Quantity)
-            this.items.push(this.item)
+            let obj = {"ProductID":this.item.Products[0], "ProductName":this.item.Products[1], "Price":this.item.Products[2], "Quantity":this.item.Quantity}
+            this.items.push(obj)
             this.item = {}
         },
         removeFromCart(id){
-            console.log(this.items)
             let index = this.items.findIndex(i=>i.ProductID===id)
             let price = this.items[index].Price
             let Quantity = this.items[index].Quantity
