@@ -44,9 +44,13 @@ const routes = [
     name: "Pastries",
     component:()=>import('../src/views/ProductPages/Pastries.vue'),
   },
-  
+  {
+    path: "/custom",
+    name: "Custom",
+    component:() => import('../src/views/ProductPages/Custom.vue'),
+  },
 
-  //ADMIN ===================================================
+    //ADMIN ===================================================
   {
     path: "/login",
     name: "Login",
@@ -145,8 +149,25 @@ const routes = [
     meta:{
       requiresAuth:true
     }
+
   },
 
+  //======ORDERS
+  {
+    path:"/orders",
+    name:"Orders",
+    component:()=> import('../src/views/Admin/Orders/Orders.vue')
+  },
+  {
+    path: "/orders-view",
+    name: "Orders-View",
+    component:() => import('../src/views/Admin/Orders/OrderView.vue')
+  },
+  {
+    path: "/orders-edit",
+    name:"orders-edit",
+    component:() => import('../src/views/Admin/Orders/OrderEdit.vue')
+  },
 
   //=========================================================ADMIN
 ];

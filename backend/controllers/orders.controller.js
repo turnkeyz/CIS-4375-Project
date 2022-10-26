@@ -1,5 +1,11 @@
 const Orders = require("../model/orders.model");
 
+//testbackorder
+exports.getOrderbyID = async (req, res) => {
+    const obj = await Orders.findAllwithOrderID(req.params.pid, req.body);
+    res.send(obj);
+}
+
 //add order
 exports.insertNewOrders = async (req, res) => {
     const obj = await Orders.insertOrders(req.body);
