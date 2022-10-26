@@ -1,30 +1,60 @@
 <script>
+    // import ref from 'vue'
+    import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, GoogleAuthProvider, signInWithPopup } from "firebase/auth"
     export default {
       data() {
         return {
-            input:{
-                user:"",
-                pswd:""
-            },
+            email:'',
+            password:'',
+            errMsg:'',
             errors:""
         };
       },
       methods:{
-        login(){
-            if(this.input.user != "" && this.input.pswd != ""){
-                if(this.input.user == 'user' && this.input.pswd =="pass"){
-                    this.$emit("authenticated", true)
-                    this.$parent.authenticated = true
-                    this.$router.replace({name:"Dashboard"})
-                }else{
-                    console.log("Username or Password is incorrect")
-                    this.errors="Username or Password is incorrect"
+        signIn(){
+            const auth = getAuth()
+            signInWithEmailAndPassword(auth, this.email, this.password)
+            // signInWithEmailAndPassword(auth, this.email, this.password)
+            .then((userCredential)=>{
+                console.log("Successfully Signed In!")
+                console.log(userCredential.user)
+                this.$router.replace({name:"Dashboard"})
+            })
+            .catch((error)=>{
+                console.log(error.code)
+                // alert(error.message)
+                switch (error.code){
+                    case "auth/invalid-email":
+                        this.errMsg = "Invalid email"
+                        break
+                    case "auth/user-not-found":
+                        this.errMsg = "No account with that email was found"
+                        break
+                    case "auth/wrong-password":
+                        this.errMsg = "Incorrect password"
+                        break
+                    case "auth/invalid-email":
+                        this.errMsg = "Invalid email"
+                        break
+                    default:
+                        this.errMsg = "Email or password was incorrect"
                 }
-            }else{
-                console.log("Username and Password is empty")
-                this.errors="Username and Password is empty"
-            }
+
+            })
+        },
+        signInWithGoogle(){
+            console.log('here line 55')
+            const provider = new GoogleAuthProvider()
+            signInWithPopup(getAuth(), provider)
+                .then((result)=>{
+                    console.log(result.user)
+                    this.$router.replace({name:'Dashboard'})
+                })
+                .catch((error)=>{
+
+                })
         }
+
       }
     };
 </script>
@@ -45,32 +75,27 @@
                     <h4 class="mt-1 mb-5 pb-1">Admin</h4>
                     </div>
 
-                    <form>
+                    <form >
                     <p></p>
 
                     <div class="form-outline mb-4">
-                        <input type="email" id="form2Example11" class="form-control" v-model="input.user"/>
+                        <input type="email" id="form2Example11" class="form-control" v-model="email"/>
                         <label class="form-label" for="form2Example11">Username</label>
                     </div>
 
                     <div class="form-outline mb-4">
-                        <input type="password" id="form2Example22" class="form-control" v-model="input.pswd" />
+                        <input type="password" id="form2Example22" class="form-control" v-model="password" />
                         <label class="form-label" for="form2Example22">Password</label>
                     </div>
 
                     <div class="text-center pt-1 mb-5 pb-1">
                         <ul>
-                            <button class="btn btn-primary btn-block fa-lg gradient-custom-2 mb-3" v-on:click="login()">Sign In</button>
-                        </ul>
-                        <ul>
-                            <a class="text-muted" href="#!">Forgot password?</a>
-                        </ul>
-                        <p v-if="errors.length">
-                            <b>Please correct the following error(s):</b>
-                            <ul>
-                                <li>{{ errors }} </li>
-                            </ul>
-                        </p>
+                            <!-- <button class="btn btn-primary btn-block fa-lg gradient-custom-2 mb-3" v-on:click="login()">Sign In</button> -->
+                            <button type='button' class="btn btn-primary btn-block fa-lg gradient-custom-2 mb-3" @click="signIn()">Sign In</button>
+                            <p><button type="button" class="btn btn-primary btn-block fa-lg gradient-custom-2 mb-3" @click="signInWithGoogle()">Sign In with Google</button></p>
+                            
+                    </ul>
+                        <p v-if="errMsg">{{errMsg}}</p>
                     </div>
 
                     <!-- <div class="d-flex align-items-center justify-content-center pb-4">
