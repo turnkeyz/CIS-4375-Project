@@ -28,9 +28,7 @@
       
     },
     mounted(){
-        if(!this.$parent.authenticated){
-            this.$router.replace({name:"Login"})
-        }
+        
     },
 
     methods: {
@@ -152,7 +150,6 @@
                         <label>Payment type</label>
 
                         <select class='form-select' v-model="customers.PaymentType">
-
                             <option disabled value="">Select option</option>
                             <option>Cash</option>
                             <option>Credit</option>
