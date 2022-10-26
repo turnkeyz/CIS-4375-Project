@@ -4,6 +4,7 @@
 import { createWebHistory, createRouter } from "vue-router";
 import Home from "../src/views/Home.vue";
 import About from "../src/views/About.vue";
+import {getAuth, onAuthStateChanged} from "firebase/auth"
 
 const routes = [
   {
@@ -58,62 +59,97 @@ const routes = [
   {
     path:"/dashboard",
     name:"Dashboard",
-    component:()=> import("../src/views/Admin/Dashboard.vue")
+    component:()=> import("../src/views/Admin/Dashboard.vue"),
+    meta:{
+      requiresAuth:true
+    }
+
   },
   //CUSTOMERS =========
   {
     path: "/customers",
     name: "Customers",
     component:() => import('../src/views/Admin/Customers/Customers.vue'),
+    meta:{
+      requiresAuth:true
+    }
   },
   {
     path: "/customer-form",
     name: "Customer-form",
     component:() => import('../src/views/Admin/Customers/CustomerForm.vue'),
+    meta:{
+      requiresAuth:true
+    }
   },
   {
     path: "/customer",
     name: "Customer",
     props:true,
     component:() => import('../src/views/Admin/Customers/CustomerView.vue'),
+    meta:{
+      requiresAuth:true
+    }
   },
   
   //PRODUCTS=========
   {
     path: "/product",
     name: "Product",
-    component:() => import('../src/views/Admin/Products/ProductView.vue')
+    component:() => import('../src/views/Admin/Products/ProductView.vue'),
+    meta:{
+      requiresAuth:true
+    }
   },
   {
     path:"/products",
     name:"Products",
-    component:()=> import('../src/views/Admin/Products/Products.vue')
+    component:()=> import('../src/views/Admin/Products/Products.vue'),
+    meta:{
+      requiresAuth:true
+    }
   },
   {
     path:"/product-form",
     name:"/Product-form",
-    component:()=> import('../src/views/Admin/Products/ProductForm.vue')
+    component:()=> import('../src/views/Admin/Products/ProductForm.vue'),
+    meta:{
+      requiresAuth:true
+    }
   },
 
   {
     path: "/cart",
     name: "Cart",
-    component:() => import('../src/views/Admin/Cart/CartView.vue')
+    component:() => import('../src/views/Admin/Cart/CartView.vue'),
+    meta:{
+      requiresAuth:true
+    }
   },
   {
     path:"/carts",
     name:"Carts",
-    component:()=> import('../src/views/Admin/Cart/Carts.vue')
+    component:()=> import('../src/views/Admin/Cart/Carts.vue'),
+    meta:{
+      requiresAuth:true
+    }
   },
   {
     path:"/cart-form",
     name:"/Cart-form",
-    component:()=> import('../src/views/Admin/Cart/CartForm.vue')
+    component:()=> import('../src/views/Admin/Cart/CartForm.vue'),
+    meta:{
+      requiresAuth:true
+    }
   },
   {
     path:"/cart-edit",
     name:"cart-edit",
-    component:()=> import('../src/views/Admin/Cart/CartEdit.vue')
+    component:()=> import('../src/views/Admin/Cart/CartEdit.vue'),
+    meta:{
+      requiresAuth:true
+    }
+
   },
 
   //======ORDERS
@@ -140,5 +176,31 @@ const router = createRouter({
   history: createWebHistory(),
   routes,
 });
+
+const getCurrentUser=()=>{
+  return new Promise((resolve,reject)=>{
+    const removeListener= onAuthStateChanged(
+      getAuth(),
+      (user)=>{
+        removeListener();
+        resolve(user)
+      },
+      reject
+    )
+  })
+}
+
+router.beforeEach(async (to, from, next)=>{
+  if(to.matched.some((record)=>record.meta.requiresAuth)){
+    if(await getCurrentUser()){
+      next();
+    }else{
+      alert("You don't have access!")
+      next("/login")
+    }
+  }else{
+    next()
+  }
+})
 
 export default router;
