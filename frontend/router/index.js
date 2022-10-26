@@ -156,18 +156,28 @@ const routes = [
   {
     path:"/orders",
     name:"Orders",
-    component:()=> import('../src/views/Admin/Orders/Orders.vue')
+    component:()=> import('../src/views/Admin/Orders/Orders.vue'),
+    meta:{
+      requiresAuth:true
+    }
   },
   {
     path: "/orders-view",
     name: "Orders-View",
-    component:() => import('../src/views/Admin/Orders/OrderView.vue')
+    component:() => import('../src/views/Admin/Orders/OrderView.vue'),
+    meta:{
+      requiresAuth:true
+    }
   },
   {
     path: "/orders-edit",
     name:"orders-edit",
-    component:() => import('../src/views/Admin/Orders/OrderEdit.vue')
-  },
+    component:() => import('../src/views/Admin/Orders/OrderEdit.vue'),
+    meta:{
+      requiresAuth:true
+    }
+  }
+  
 
   //=========================================================ADMIN
 ];
