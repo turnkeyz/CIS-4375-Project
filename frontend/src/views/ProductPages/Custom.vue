@@ -20,12 +20,12 @@
 
                         <div class='col-sm-4'>
                             <label>First Name</label>
-                            <input type="text" class="form-control" v-model="Customers.FirstName" required>
+                            <input type="text" class="form-control" v-model="FirstName" required>
                         </div> 
 
                         <div class='col-sm-4'>
                             <label>Last Name</label>
-                            <input type="text" class="form-control" v-model="Customers.LastName" required>
+                            <input type="text" class="form-control" v-model="LastName" required>
                         </div>
 
                     </div>
@@ -34,17 +34,25 @@
 
                         <div class='col-sm-4'>
                             <label>Email Address</label>
-                            <input type="text" class="form-control" v-model="Customers.Email" required>
+                            <input type="text" class="form-control" v-model="Email" required>
                         </div>
 
                         <div class='col-sm-4'>
                             <label>Phone Number</label>
-                            <input type="text" class="form-control" v-model="Customers.Phone" required>
+                            <input type="text" class="form-control" v-model="Phone" required>
                         </div>
 
                         <div class="col-sm-4">
                             <label>Payement Type</label>
-                            <input type="text" class="form-control" v-model="Customers.PaymentType" required>
+                            <select class='form-select' v-model="PaymentType " required>
+                                <option disabled value="">Select option</option>
+                                <option>Cash</option>
+                                <option>Credit</option>
+                                <option>Check</option>
+                                <option>Money Order</option>
+                                <option>Crypto Currency</option>
+                                <option>Other</option>
+                            </select>
                         </div>
 
                             
@@ -54,7 +62,7 @@
 
                         <div class="col-sm-12">
                             <label>*Description</label>
-                            <textarea class="form-control" rows="5" v-model="Products.ProductDescription"></textarea>
+                            <textarea class="form-control" rows="5" v-model="ProductDescription"></textarea>
                         </div>
 
                         <div class="mb-3">
@@ -85,38 +93,20 @@
     export default {
     // register child component
     components: {
-    //   Dashboard_nav
+
     },
     data(){
       return{
         Categories: [],
-        Products: 
-        {
-            CategoryID: '',
-            ProductName: '',
-            Price: '',
-            Active: false,
-            Img_url:'',
-            ProductDescription:''
-        },
-
-        Customers:
-        {
-            FirstName: '',
-            LastName: '',
-            Email: '',
-            Phone: '',
-            PaymentType: '',
-
-        },
-
-        Orders:
-        {
-            
-
-        },
+        PaymentType:'',
+        FirstName: '',
+        LastName:'',
+        Email:'',
+        Phone:'',
+        ProductDescription:'',
         errors:[],
         file_type:'',
+        Products:[]
       }
     },
     created(){
@@ -149,15 +139,6 @@
             // this.Active=false
             }
 
-            //only run if no errors
-            if(this.errors.length === 0){
-                let apiURL = `${import.meta.env.VITE_VUE_APP_ROOT_URL}/Products/add`;
-                axios.post(apiURL, this.Products).then(() => {
-                this.edit=false
-                }).catch(error => {
-                    console.log(error)
-                });
-            }
         },
         handleFileUpload(evt){
             this.Products.Img_url = evt.target.files[0].name

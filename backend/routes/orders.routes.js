@@ -1,6 +1,9 @@
 module.exports = app => {
     const Orders = require("../controllers/orders.controller.js");
   
+    //back order
+    app.get("Orders/back/:pid", Orders.getOrderbyID);
+    
     // get al orders
     app.get("/Orders/fetchAll", Orders.getAllOrders);
 
