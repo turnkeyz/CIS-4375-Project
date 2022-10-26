@@ -1,23 +1,46 @@
 <script>
   import Footer from './components/Footer.vue'
-  
+  // const isLoggedIn = ref(false)
+  import {getAuth, onAuthStateChanged, signOut} from "firebase/auth"
+  // let auth = getAuth()
   export default {
     data(){
       return{
-        a:true,
-        authenticated:false
+        isLoggedIn:false,
+        // authenticated:false
       }
     },
     // register child component
     components: {
       Footer
     },
-    
+    mounted(){
+      let auth = getAuth();
+      onAuthStateChanged(auth, (user)=>{
+        if(user){
+          this.isLoggedIn = true
+          
+        }else{
+          this.isLoggedIn = false
+          
+        }
+      })
+    },
+    methods:{
+      logOut(){
+        let auth = getAuth()
+        signOut(auth).then(()=>{
+          this.logButton = false
+          this.$router.push('/login')
+        })
+        
+      }
+    }
   }
 </script>
 
 <template>
-  <div v-if="a===true">
+  
   	<nav class="navbar navbar-expand-md navbar-dark bg-dark">
   <div class="container">
     <a class="navbar-brand d-md-none d-xs-block py-3" href="#">
@@ -32,15 +55,6 @@
         <li class="nav-item">
           <a class="nav-link mx-2 active" aria-current="page" href="/">Home</a>
         </li>
-        
-        
-        <!-- <li class="nav-item">
-          <a class="nav-link mx-2" href="#">Catering</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link mx-2" href="#">Reserve</a>
-        </li> -->
-        
         <div class="dropdown">
           <a class="nav-link dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
             Products
@@ -59,12 +73,11 @@
           <a class="nav-link mx-2" href="/about">About</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link mx-2" href="#">Cart</a>
+          <button @click="logOut()" v-if="isLoggedIn" class="btn btn-danger navbar-btn">Logout</button>
         </li>
-        <li class="nav-item">
+        <!-- <li class="nav-item">
           <a class="nav-link mx-2 btn rounded-0 btn-danger" href="/login">Login</a>
-        </li>
-        
+        </li> -->
       </ul>
     </div>
   </div>
@@ -74,10 +87,9 @@
   <img src="/uploads/owl logo.png" height="50" alt="Company Logo">
 </a>
 </div>
-  <!-- <HelloWorld msg="Vite + Vue" /> -->
       <RouterView></RouterView>
     <Footer/>
-</div>
+
 
 </template>
 

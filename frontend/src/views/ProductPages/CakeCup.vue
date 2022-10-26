@@ -16,7 +16,7 @@
       axios.get(apiURL).then((res)=>{
         this.allproducts = res.data;
         this.rows = Math.ceil(res.data.length/3)
-        this.cakecups =cakecupList(this.allproducts, this.rows)
+        this.cakecups =cakeList(this.allproducts, this.rows)
         
       }).catch(err=>{
         console.log(err)
@@ -33,8 +33,9 @@
   <section style="background-color: #eee;">
      <div class="container py-5">
       <h1 class="text-center mb-5"><strong>Cake Cups</strong></h1>
-      <div v-for="row in cakecups" :key="cakecups.ProductID" class="row">
-          <div v-for="item in row" class="col-lg-4 col-md-6 mb-4">
+      <!-- next two lines are something that may need to be looked back on for troubleshooting. -->
+      <div v-for="row in cakecups" :key="row.ProductID" class="row">
+          <div v-for="item in row" :key="item" class="col-lg-4 col-md-6 mb-4">
               <div class="bg-image hover-zoom ripple shadow-1-strong rounded">
                 <img :src="'/uploads/cakecups/'+item.Img_url" class="w-100"/>
                 
