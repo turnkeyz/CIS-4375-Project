@@ -14,7 +14,7 @@
     },
     
   }
-  </script>
+</script>
 
 <template>
   <div v-if="a===true">
@@ -52,18 +52,19 @@
             <li><a class="dropdown-item" href="/breads">Breads</a></li>
             <li><a class="dropdown-item" href="/pastries">Pastries</a></li>
             <li><a class="dropdown-item" href="/custom">Custom Orders</a></li>
+            <li><a class="dropdown-item" href="/cakecups">Cake Cups</a></li>
+
           </ul>
         </div>
         <li class="nav-item">
-          <a class="nav-link mx-2" href="#">About</a>
+          <a class="nav-link mx-2" href="/about">About</a>
         </li>
         <li class="nav-item">
           <a class="nav-link mx-2" href="#">Cart</a>
         </li>
-        <li class="nav-item">
+        <!-- <li class="nav-item">
           <a class="nav-link mx-2 btn rounded-0 btn-danger" href="/login">Login</a>
-        </li>
-        
+        </li> -->
       </ul>
     </div>
   </div>
@@ -73,7 +74,6 @@
   <img src="/uploads/owl logo.png" height="50" alt="Company Logo">
 </a>
 </div>
-  <!-- <HelloWorld msg="Vite + Vue" /> -->
       <RouterView></RouterView>
     <Footer/>
 </div>

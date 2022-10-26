@@ -113,6 +113,18 @@
           </div>
         </div>
         <div class="col mt-3">
+          <a href="/cakecups">
+            <img src="/uploads/cakecup.jpg" class="img-fluid" alt="image">
+          </a>
+            <p>Cake Cups</p>
+          <div class="input-group mb-3">
+              <!-- <input type="number" id="typeNumber" class="form-control" placeholder="" aria-label="" aria-describedby=""> -->
+              <!-- <div class="input-group-append">
+                <button class="btn btn-info" type="button">Add to cart</button>
+              </div> -->
+          </div>
+        </div>
+        <div class="col mt-3">
           <img src="/uploads/baking.jpg" class="img-fluid" alt="image">
           <p>Custom Orders</p>
         </div>

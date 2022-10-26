@@ -13,6 +13,9 @@ module.exports = app => {
   // get all cakes
   app.get("/Products/allCakes", Products.getAllCakes);
 
+  // get all cake cups
+  app.get("/Products/allCakeCups", Products.getAllCakeCups);
+
   // get all breads
   app.get("/Products/allBreads", Products.getAllBreads);
 
