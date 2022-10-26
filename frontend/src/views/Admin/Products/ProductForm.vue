@@ -29,9 +29,7 @@
       })
     },
     mounted(){
-        if(!this.$parent.authenticated){
-            this.$router.replace({name:"Login"})
-        }
+        
     },
     methods: {
             //create new volunteer and reset values

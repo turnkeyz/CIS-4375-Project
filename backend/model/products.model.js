@@ -8,7 +8,8 @@ products.findAllFromProducts = () => {
     sql.connect(sqlConfig, function (err, result) {
       var request = new sql.Request();
       request.query(
-        `SELECT * FROM Products as p
+        `SELECT p.ProductID, p.CategoryID, p.ProductName, p.ProductDescription, p.Price, p.Active, p.Img_url, c.CategoryName
+        FROM Products as p
         LEFT JOIN Categories as c
         ON p.CategoryID = c.CategoryID;`, 
         (err, res) => {
@@ -159,6 +160,21 @@ products.findAllBreads = () => {
     sql.connect(sqlConfig, function (err, result) {
       var request = new sql.Request();
       request.query(`SELECT * FROM Products where CategoryID=4;`, (err, res) => {
+        if (err) reject(err);
+          console.log(res.recordset)
+          return resolve(res.recordset); // FETCHING ALL DATA
+      });
+    });
+  });
+};
+
+
+// FETCHING ALL Cake Cups FROM Products TABLE
+products.findAllCakeCups = () => {
+  return new Promise((resolve, reject) => {
+    sql.connect(sqlConfig, function (err, result) {
+      var request = new sql.Request();
+      request.query(`SELECT * FROM Products where CategoryID=5;`, (err, res) => {
         if (err) reject(err);
           console.log(res.recordset)
           return resolve(res.recordset); // FETCHING ALL DATA

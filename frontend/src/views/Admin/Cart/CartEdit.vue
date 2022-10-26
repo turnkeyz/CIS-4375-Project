@@ -17,6 +17,7 @@
         items:[],
         item:{},
         total:'',
+
         Order: {},
         oid:'',
       };
@@ -60,6 +61,7 @@
             });
         }
       },
+
       backOrder(id){
         // this.$router.push({
         //     name:'Orders-View',
@@ -153,10 +155,6 @@
                 <td>{{Cart.CustomerID}}</td>
           </tr>
           <tr>
-            <th>Order ID</th>
-            <td>{{Order.OrderID}}</td>
-          </tr>
-          <tr>
             <th>Products</th>
             <!-- <td><input type="text" class="form-control" v-model="Cart.ProductsJSON" required></td> -->
             <div class="row mb-4">
@@ -233,8 +231,11 @@
         </table>
           <div class="d-grid gap-2 d-md-flex justify-content-md-end">
             <button type="submit" class="btn btn-success me-md-2">Update</button>
+
             <button  @click="cancelEdit(Cart.CartID)" class="btn btn-secondary" type="button">Back to Cart</button>
             <button @click="backOrder(Order.OrderID)" class="btn btn-secondary" type="button">Back to Order</button>
+
+            <button  @click="cancelEdit(Cart.CartID)" class="btn btn-secondary" type="button">Cancel</button>
           </div>
         </form>
         <p v-if="errors.length">

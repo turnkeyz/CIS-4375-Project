@@ -48,9 +48,7 @@
         }
     },
     mounted(){
-        if(!this.$parent.authenticated){
-            this.$router.replace({name:"Login"})
-        }
+        
     }
   }
 </script>
@@ -71,11 +69,12 @@
                     </tr>
                 </thead>
                 <tbody class="table-group-divider table-divider-color">
-                    <tr v-for="Product in Products" :key="Product.ProductID">
+                    <tr v-for="Product in Products" :key="Product">
                         <td>{{Product.ProductID}}</td>
                         <td>{{Product.CategoryID}}</td>
                         <td>{{Product.ProductName}}</td>
                         <td>{{Product.Price}}</td>
+                        
                         <td>
                             <tr>
                                 <!-- <td><router-link :to="{name:'Product', query:{id:Product.ProductID, e:false}}" class="btn btn-light">...</router-link></td> -->
