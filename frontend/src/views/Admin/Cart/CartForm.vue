@@ -9,7 +9,6 @@
     data(){
       return{
         Customers:[],
-        Categories:[],
         Products:[],
         item:{},
         items:[],
@@ -49,20 +48,30 @@
             if(!this.Cart.CustomerID){
                 this.errors.push("Customer ID is Required");
                 }
-            if(!this.items){
-                this.errors.push("Products are empty."); 
-            // this.Active=false
+            if(this.items.length == 0){
+                this.errors.push("Cart will not be created without products"); 
             }
-            for(let i=0; i<this.items.length; i++){
-                this.Cart.ProductsJSON.push({'ProductID':this.items[i].Products[0], 'ProductName':this.items[i].Products[1], 'Price':this.items[i].Products[2],'Quantity':this.items[i].Quantity})
+            // for(let i=0; i< this.items.length; i++){
+            //     let item = {'ProductID':this.items[i].Products[0], 'ProductName':this.items[i].Products[1], 'Price':this.items[i].Products[2],'Quantity':this.items[i].Quantity}
+            //     this.Cart.ProductsJSON.push(item)
+            // }
+            
+            
+            this.Cart.Subtotal=Number(this.total)
+            if(!this.Cart.Subtotal){
+                this.errors.push("No subtotal")
             }
-            this.Cart.Subtotal=this.total
-            this.Cart.ProductsJSON = JSON.stringify(this.Cart.ProductsJSON)
+            
+            this.Cart.ProductsJSON = JSON.stringify(this.items)
+            if(this.Cart.ProductsJSON.length == 0){
+                this.errors.push("Products table is empty")
+            }
             
             if(this.errors.length === 0){
+                console.log('line 71', this.Cart)
                 let apiURL = `${import.meta.env.VITE_VUE_APP_ROOT_URL}/Cart/add`;
                 axios.post(apiURL, this.Cart).then(() => {
-                    // this.edit=false
+                
                     this.$router.push('/carts')
                     this.Cart={
                         CustomerID: '',
@@ -79,7 +88,8 @@
         addProductLine(){
             this.item.Price = this.item.Products[2]*this.item.Quantity
             this.total = this.total + (this.item.Products[2]*this.item.Quantity)
-            this.items.push(this.item)
+            let obj = {"ProductID":this.item.Products[0], "ProductName":this.item.Products[1], "Price":this.item.Products[2], "Quantity":this.item.Quantity}
+            this.items.push(obj)
             this.item = {}
         },
         removeFromCart(id){
@@ -129,11 +139,11 @@
                                 </option>
                             </select>
                         </div> 
-                        <div class="col-sm-1">
+                        <div class="col-sm-2">
                             <label >Quantity</label>
                             <input type="number" class="form-control" reauired min=1 v-model="item.Quantity">
                         </div>  
-                        <div class="col-sm-1">
+                        <div class="col-sm-2">
                             <label for='fName'>Custom</label>
                             <select class='form-select' v-model="item.Custom">
                                 <option disabled value="">Select option</option>
@@ -141,7 +151,7 @@
                                 <option>No</option>
                             </select>
                         </div> 
-                        <div class="col-sm-1">
+                        <div class="col-sm-2">
                             <label>Subtotal</label>
                             <input disabled type="number" class="form-control" v-model="total">
                         </div>
@@ -166,11 +176,11 @@
                             </thead>
                             <tbody class="table-group-divider table-divider-color">
                                 <tr v-for="index in items" :key="index">
-                                    <td>{{index.Products[1]}}</td>
-                                    <td>{{index.Products[2]}}</td>
+                                    <td>{{index.ProductName}}</td>
+                                    <td>{{index.Price}}</td>
                                     <td>{{index.Quantity}}</td>
                                     <td>{{index.Custom}}</td>
-                                    <td>{{index.Price}}</td>
+                                    <td>{{index.Price * index.Quantity}}</td>
                                     
                                     <td>
                                         <tr>

@@ -11,7 +11,7 @@
       }
     },
     created(){
-      let apiUrl=`${import.meta.env.VITE_VUE_APP_ROOT_URL}/Cart/fetchall`
+      let apiUrl=`${import.meta.env.VITE_VUE_APP_ROOT_URL}/Cart/fetchAll`
       axios.get(apiUrl).then((res)=>{
         this.Cart=res.data
       })

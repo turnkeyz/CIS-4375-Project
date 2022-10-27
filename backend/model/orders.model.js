@@ -26,10 +26,11 @@ Orders.findAllFromOrders = () => {
   return new Promise((resolve, reject) => {
     sql.connect(sqlConfig, function (err, result) {
       var request = new sql.Request();
-      request.query(`Select c.CartID, c.CustomerID, c.ProductsJSON, c.Customization, c.CustomerNotes, c.Subtotal, o.DateTimeOrdered, o.DeliveryDateTime, o.Status, o.CalledBackValue 
+      request.query(`
+      Select c.CartID, c.CustomerID, c.ProductsJSON, c.Customization, c.CustomerNotes, c.Subtotal, 
+      o.OrderID, o.DateTimeOrdered, o.DeliveryDateTime, o.Status, o.CalledBackValue,
       FROM Orders as o
-      LEFT JOIN Cart as c 
-      ON o.CartID = c.CartID;`, (err, res) => {
+      LEFT JOIN Cart as c ON o.CartID = c.CartID;`, (err, res) => {
         if (err) reject('line 12',err);
           console.log(res.recordset)
           return resolve(res.recordset); // FETCHING ALL DATA
@@ -46,13 +47,16 @@ Orders.findOrder = (param_id) => {
       var request = new sql.Request()
       .input("oid", param_id)
       ;
-      request.query(`Select c.CartID, c.CustomerID, c.ProductsJSON, c.Customization, c.CustomerNotes, c.Subtotal, o.DateTimeOrdered, o.DeliveryDateTime, o.Status, o.CalledBackValue 
+      request.query(`
+      Select c.CartID, c.CustomerID, c.ProductsJSON, c.Customization, c.CustomerNotes, c.Subtotal, 
+      o.OrderID, o.DateTimeOrdered, o.DeliveryDateTime, o.Status, o.CalledBackValue,
+      cu.FirstName, cu.LastName
       FROM Orders as o
-      LEFT JOIN Cart as c 
-      ON o.CartID = c.CartID 
+      LEFT JOIN Cart as c ON o.CartID = c.CartID 
+      LEFT JOIN Customers as cu ON cu.CustomerID = c.CustomerID
       WHERE OrderID=@oid;`, (err, res) => {
         if (err) reject(err);
-          console.table(res.recordset)
+          console.log(res.recordset)
           return resolve(res.recordset); // FETCHING ALL DATA
       });
     });

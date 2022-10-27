@@ -40,14 +40,15 @@ Cart.insertCart = (obj) => {
     sql.connect(sqlConfig, function (err, result) {
       // PARAMETERIZING QUERIES
       var request = new sql.Request()
-        .input("cid", obj.CustomerID)
-        .input("p_json", obj.ProductsJSON)
-        .input("customization", obj.Customization)
-        .input("customer_notes", obj.CustomerNotes)
-        .input("subtotal", obj.Subtotal)
+      .input("cid", obj.CustomerID)
+      .input("p_json", obj.ProductsJSON)
+      .input("customization", obj.Customization)
+      .input("customer_notes", obj.CustomerNotes)
+      .input('subtotal', obj.Subtotal)
 
       request.query(
-        `INSERT INTO Cart (CustomerID, ProductsJSON, Customization, CustomerNotes, Subtotal) VALUES (@cid, @p_json, @customization, @customer_notes, @subtotal);`,
+        `INSERT INTO dbo.Cart (CustomerID, ProductsJSON, Customization, CustomerNotes, [Subtotal])
+         VALUES (@cid, @p_json, @customization, @customer_notes, @subtotal);`,
         (err, res) => {
           if (err) reject(err);
             console.log(res);
@@ -70,7 +71,7 @@ Cart.updateCart = (param_id, obj) => {
         .input("p_json", obj.ProductsJSON)
         .input("customization", obj.Customization)
         .input("customer_notes", obj.CustomerNotes)
-        .input("subtotal", obj.Subtotal)
+        .input('subtotal', obj.Subtotal)
 
       request.query(
         `UPDATE Cart 
