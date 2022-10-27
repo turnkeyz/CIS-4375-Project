@@ -48,8 +48,9 @@
                         <th scope="col">#</th>
                         <th scope="col">CustomerID</th>
                         <th scope ="col">CartID</th>
+                        <th scope="col">Call Back</th>
                         <th scope="col">Status</th>
-                        <th scope="col">Called Back?</th>
+                        <th scope="col">Payment Status</th>
                         <th scope="col"></th>
                 
                         <!-- <th><button class="btn btn-success btn-sm" @click="newOrder()">Add New Order</button></th> -->
@@ -60,8 +61,10 @@
                         <td>{{Order.OrderID}}</td>
                         <td>{{Order.CustomerID}}</td>
                         <td>{{Order.CartID}}</td>
-                        <td>{{Order.Status}}</td>
                         <td>{{Order.CalledBackValue}}</td>
+                        <td>{{Order.Status}}</td>
+                        <td>{{Order.PaymentStatus}}</td>
+                        
                         <td>
                     <tr>
                                 <!-- <td><router-link :to="{name:'Order', query:{id:Order.OrderID, e:false}}" class="btn btn-light">...</router-link></td> -->
