@@ -27,6 +27,22 @@
       axios.get(apiURL).then((res) => {
           this.Orders = res.data[0];
           this.items = JSON.parse(this.Orders.ProductsJSON)
+
+          function formatDate(date){
+            var arr1 = date.split('-')
+            var year = arr1[0]
+            var month = arr1[1]
+            var arr2 = arr1[2].split(':')
+            var day = arr2[0].slice(0,2)
+            var min = arr2[1]
+            var hour = arr2[0].slice(3,5)
+            let new_date = `${month}/${day}/${year}`
+            let new_time = `${hour}:${min}`
+            return [new_date, new_time]
+
+          }
+          let date = this.Orders.DateTimeOrdered
+          this.formatted_date = formatDate(date)
         })
         .catch((error) => {
           console.log(error);
@@ -116,29 +132,38 @@
             <td>{{ Orders.OrderID }}</td>
           </tr>
           <tr>
-            <th>Customer ID</th>
-             <td>{{Orders.CustomerID}}</td>
+            <th>Customer ID/Name</th>
+            <td>({{ Orders.CustomerID }}) {{Orders.FirstName}} {{Orders.LastName}}</td>
           </tr>
           <tr>
             <th>Cart ID</th>
             <td>{{ Orders.CartID }}</td>
           </tr>
           <tr>
-            <th>Date</th>
-            <td>{{ Orders.DateTimeOrdered }}</td>
+            <th>Date Ordered</th>
+            <td>{{formatted_date[0]}} ({{formatted_date[1]}})</td>
+          </tr>
+          <tr>
+            <th>Delivery Date</th>
+            <td>{{Orders.DeliveryDateTime}}</td>
           </tr>
           <tr>
             <th>Products</th>
-            <td>{{ Orders.ProductsJSON }}</td>
+            <tr v-for="item in items" :key="item">({{item.ProductID}}) {{item.ProductName}} x{{item.Quantity}}</tr>
+          </tr>
+          <tr>
+            <th>Subtotal</th>
+            <td>${{Orders.Subtotal}}</td>
           </tr>
           <tr>
             <th>Customer Notes</th>
-            <td><textarea class="form-control" rows="5" v-model="Orders.CustomerNotes" required></textarea></td>
+            <td><textarea class="form-control" rows="5" v-model="Orders.CustomerNotes" disabled></textarea></td>
           </tr>
           <tr>
             <th>Status</th>
             <td><select class="form-select" v-model="Orders.Status" required>
                 <option disabled value="">Select Option</option>
+                <option>Ordered</option>
                 <option>In-Transit</option>
                 <option>In-Progress</option>
                 <option>Pending</option>
@@ -146,9 +171,13 @@
                 <option>Delivered</option>
             </select></td>
           </tr>
+          <tr>
+            <th>Called Back?</th>
+            <td>{{Orders.CalledBackValue}}</td>
+          </tr>
         </tbody>
         </table>
-
+        <p>**edit Order allows for modifying of Status, Delivery Date, Called back</p>
 
           <div class="d-grid gap-2 d-md-flex justify-content-md-end">
             <button type="submit" class="btn btn-success me-md-2">Update</button>

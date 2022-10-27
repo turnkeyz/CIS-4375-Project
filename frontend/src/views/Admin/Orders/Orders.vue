@@ -3,7 +3,7 @@
     export default {
     // register child component
     components: {
-    //   Dashboard_nav
+    
     },
     data(){
       return{
@@ -14,6 +14,7 @@
       let apiUrl=`${import.meta.env.VITE_VUE_APP_ROOT_URL}/Orders/fetchAll`
       axios.get(apiUrl).then((res)=>{
         this.Orders=res.data
+        console.log(this.Orders)
       })
     },
     methods:{
@@ -32,9 +33,7 @@
         }
     },
     mounted(){
-        if(!this.$parent.authenticated){
-            this.$router.replace({name:"Login"})
-        }
+
     }
   }
 </script>
@@ -48,9 +47,10 @@
                     <tr>
                         <th scope="col">#</th>
                         <th scope="col">CustomerID</th>
-                        <th scope = "col">CartID</th>
-                        <th scope="col">Contents</th>
+                        <th scope ="col">CartID</th>
                         <th scope="col">Status</th>
+                        <th scope="col">Called Back?</th>
+                        <th scope="col"></th>
                 
                         <!-- <th><button class="btn btn-success btn-sm" @click="newOrder()">Add New Order</button></th> -->
                     </tr>
@@ -60,10 +60,10 @@
                         <td>{{Order.OrderID}}</td>
                         <td>{{Order.CustomerID}}</td>
                         <td>{{Order.CartID}}</td>
-                        <td>{{Order.Contents}}</td>
                         <td>{{Order.Status}}</td>
+                        <td>{{Order.CalledBackValue}}</td>
                         <td>
-                            <tr>
+                    <tr>
                                 <!-- <td><router-link :to="{name:'Order', query:{id:Order.OrderID, e:false}}" class="btn btn-light">...</router-link></td> -->
                                 <td><button @click="seeMore(Order.OrderID)" class="btn btn-light">View</button></td>
                                 <td><button @click="editOrder(Order.OrderID)" class="btn btn-secondary btn-sm">Edit</button></td>

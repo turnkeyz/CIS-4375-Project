@@ -13,6 +13,8 @@
         Orders: {},
         errors:[],
         edit:"",
+        formatted_date:[],
+        items:[]
       };
     },
     mounted(){
@@ -24,6 +26,25 @@
       let apiURL = `${import.meta.env.VITE_VUE_APP_ROOT_URL}/Orders/${this.$route.query.id}`;
       axios.get(apiURL).then((res) => {
           this.Orders = res.data[0];
+          this.items = JSON.parse(this.Orders.ProductsJSON)
+
+          function formatDate(date){
+            var arr1 = date.split('-')
+            var year = arr1[0]
+            var month = arr1[1]
+            var arr2 = arr1[2].split(':')
+            var day = arr2[0].slice(0,2)
+            var min = arr2[1]
+            var hour = arr2[0].slice(3,5)
+            let new_date = `${month}/${day}/${year}`
+            let new_time = `${hour}:${min}`
+            return [new_date, new_time]
+
+          }
+          let date = this.Orders.DateTimeOrdered
+          this.formatted_date = formatDate(date)
+          
+          console.log(this.Orders)
           // if(this.$route.query.e === true || this.$route.query.e === 'true'){
           //   this.edit=true
           // }else{
@@ -119,32 +140,45 @@
             <td>{{ Orders.OrderID }}</td>
           </tr>
           <tr>
-            <th>Customer ID</th>
-            <td>{{ Orders.CustomerID }}</td>
+            <th>Customer ID/Name</th>
+            <td>({{ Orders.CustomerID }}) {{Orders.FirstName}} {{Orders.LastName}}</td>
           </tr>
           <tr>
             <th>Cart ID</th>
             <td>{{ Orders.CartID }}</td>
           </tr>
           <tr>
-            <th>Date</th>
-            <td>{{Orders.DateTimeOrdered}}</td>
+            <th>Date Ordered</th>
+            <td>{{formatted_date[0]}} ({{formatted_date[1]}})</td>
+          </tr>
+          <tr>
+            <th>Delivery Date</th>
+            <td>{{Orders.DeliveryDateTime}}</td>
           </tr>
           <tr>
             <th>Products</th>
-            <td>{{Orders.ProductsJSON}}</td>
+            <tr v-for="item in items" :key="item">({{item.ProductID}}) {{item.ProductName}} x{{item.Quantity}}</tr>
+          </tr>
+          <tr>
+            <th>Subtotal</th>
+            <td>${{Orders.Subtotal}}</td>
           </tr>
           <tr>
             <th>Customer Notes</th>
-            <td>{{Orders.CustomerNotes}}</td>
+            <td><textarea disabled class="form-control" rows="5" v-model="Orders.CustomerNotes"></textarea></td>
           </tr>
           <tr>
             <th>Status</th>
             <td>{{Orders.Status}}</td>
           </tr>
+          <tr>
+            <th>Called Back?</th>
+            <td>{{Orders.CalledBackValue}}</td>
+          </tr>
         </tbody>
       </table>
-      
+      <p>**edit cart allows for modifying of Products, Subtotal, Customer Notes, CustomerID</p>
+      <p>**edit Order allows for modifying of Status, Delivery Date, Called back</p>
       </div>
       <div class="d-grid gap-2 d-md-flex justify-content-md-end">
         <button @click="showEdit(Orders.OrderID)" class="btn btn-secondary me-md-2">Edit</button>

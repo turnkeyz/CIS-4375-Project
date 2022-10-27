@@ -61,7 +61,8 @@ const routes = [
     name:"Dashboard",
     component:()=> import("../src/views/Admin/Dashboard.vue"),
     meta:{
-      requiresAuth:true
+      requiresAuth:true,
+      hideNavbar:true
     }
 
   },
