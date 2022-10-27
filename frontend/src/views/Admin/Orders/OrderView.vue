@@ -5,8 +5,6 @@
     components: {
       
     },
-
-
       //Storing the data being exported in a function
     data() {
       return {
@@ -27,22 +25,8 @@
       axios.get(apiURL).then((res) => {
           this.Orders = res.data[0];
           this.items = JSON.parse(this.Orders.ProductsJSON)
-
-          function formatDate(date){
-            var arr1 = date.split('-')
-            var year = arr1[0]
-            var month = arr1[1]
-            var arr2 = arr1[2].split(':')
-            var day = arr2[0].slice(0,2)
-            var min = arr2[1]
-            var hour = arr2[0].slice(3,5)
-            let new_date = `${month}/${day}/${year}`
-            let new_time = `${hour}:${min}`
-            return [new_date, new_time]
-
-          }
           let date = this.Orders.DateTimeOrdered
-          this.formatted_date = formatDate(date)
+          this.formatted_date = formatDateTimeFromSQLTOJS(date)
           
           console.log(this.Orders)
           // if(this.$route.query.e === true || this.$route.query.e === 'true'){

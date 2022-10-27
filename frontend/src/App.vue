@@ -51,10 +51,30 @@
  
     <div class="collapse navbar-collapse" id="navbarNavDropdown">
       <ul class="navbar-nav mx-auto">
-        <li class="nav-item">
+        <li v-if="!$route.meta.hideNavbar" class="nav-item">
           <a class="nav-link mx-2 active" aria-current="page" href="/">Home</a>
         </li>
-        <div class="dropdown">
+        
+        <!-- Dashboard navigation -->
+        <li v-if="$route.meta.hideNavbar" class="nav-item">
+          <a class="nav-link mx-2 active" aria-current="page" href="/dashboard">Dashboard</a>
+        </li>
+        <li v-if="$route.meta.hideNavbar" class="nav-item">
+          <a class="nav-link mx-2 active" aria-current="page" href="/customers">Customers</a>
+        </li>
+        <li v-if="$route.meta.hideNavbar" class="nav-item">
+          <a class="nav-link mx-2 active" aria-current="page" href="/products">Products</a>
+        </li>
+        <li v-if="$route.meta.hideNavbar" class="nav-item">
+          <a class="nav-link mx-2 active" aria-current="page" href="/carts">Carts</a>
+        </li>
+        <li v-if="$route.meta.hideNavbar" class="nav-item">
+          <a class="nav-link mx-2 active" aria-current="page" href="/orders">Orders</a>
+        </li>
+        <!-- Dashboard Navigation -->
+
+
+        <div v-if="!$route.meta.hideNavbar" class="dropdown">
           <a class="nav-link dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
             Products
           </a>
@@ -66,10 +86,9 @@
             <li><a class="dropdown-item" href="/pastries">Pastries</a></li>
             <li><a class="dropdown-item" href="/custom">Custom Orders</a></li>
             <li><a class="dropdown-item" href="/cakecups">Cake Cups</a></li>
-
           </ul>
         </div>
-        <li class="nav-item">
+        <li v-if="!$route.meta.hideNavbar" class="nav-item">
           <a class="nav-link mx-2" href="/about">About</a>
         </li>
         <li class="nav-item">

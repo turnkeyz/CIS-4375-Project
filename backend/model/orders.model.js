@@ -70,20 +70,16 @@ Orders.insertOrders = (obj) => {
     sql.connect(sqlConfig, function (err, result) {
       // PARAMETERIZING QUERIES
       var request = new sql.Request()
-        .input("customer_id", obj.CustomerID)
         .input("cart_id", obj.CartID)
         .input("datetime", obj.DateTimeOrdered)
-        .input("contents", obj.Contents)
-        .input("custom", obj.Cusomization)
-        .input('custom_notes', obj.CustomerNotes)
         .input('delivery_datetime', obj.DeliveryDateTime)
         .input('status', obj.Status)
-        .input('subtotal', obj.Subtotal)
         .input('called_back', obj.CalledBackValue)
+        .input('pay_status', obj.PaymentStatus)
 
       request.query(
-        `INSERT INTO Orders (CustomerID, CartID, DateTimeOrdered, Contents, Customization, CustomerNotes, DeliveryDateTime, [Status], Subtotal, CalledBackValue) 
-            VALUES (@customer_id, @cart_id, @datetime, @contents, @custom, @custom_notes, @delivery_datetime, @status, @subtotal, @called_back);`,
+        `INSERT INTO Orders (CartID, DateTimeOrdered, DeliveryDateTime, [Status], CalledBackValue, PaymentStatus) 
+            VALUES (@cart_id, @datetime, @delivery_datetime, @status, @called_back, @pay_status);`,
         (err, res) => {
           if (err) reject(err);
             console.log(res);
@@ -102,20 +98,16 @@ Orders.updateOrders = (param_id, obj) => {
       // PARAMETERIZING QUERIES
       var request = new sql.Request()
         .input("param_id", param_id)
-        .input("customer_id", obj.CustomerID)
         .input("cart_id", obj.CartID)
         .input("datetime", obj.DateTimeOrdered)
-        .input("contents", obj.Contents)
-        .input("custom", obj.Cusomization)
-        .input('custom_notes', obj.CustomerNotes)
         .input('delivery_datetime', obj.DeliveryDateTime)
         .input('status', obj.Status)
-        .input('subtotal', obj.Subtotal)
         .input('called_back', obj.CalledBackValue)
+        .input('pay_status', obj.PaymentStatus)
 
     request.query(
         `UPDATE Orders 
-        SET CustomerID=@customer_id, CartID=@cart_id, DateTimeOrdered=@datetime, Contents=@contents, Customization=@custom, CustomerNotes=@custom_notes, DeliveryDateTime=@delivery_datetime, [Status]=@status, Subtotal=@subtotal, CalledBackValue=@called_back
+        SET CustomerID=@customer_id, CartID=@cart_id, DateTimeOrdered=@datetime, DeliveryDateTime=@delivery_datetime, [Status]=@status, CalledBackValue=@called_back, PaymentStatus=@pay_status
         WHERE OrderID = @param_id;`,
         (err, res) => {
           if (err) reject(err);

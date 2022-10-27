@@ -1,6 +1,6 @@
 <script>
   import axios from "axios";
-
+  import {formatDateTimeFromSQLTOJS} from '../../../methods/format_date' 
 
   export default {
     components: {
@@ -28,22 +28,8 @@
       axios.get(apiURL).then((res) => {
           this.Orders = res.data[0];
           this.items = JSON.parse(this.Orders.ProductsJSON)
-
-          function formatDate(date){
-            var arr1 = date.split('-')
-            var year = arr1[0]
-            var month = arr1[1]
-            var arr2 = arr1[2].split(':')
-            var day = arr2[0].slice(0,2)
-            var min = arr2[1]
-            var hour = arr2[0].slice(3,5)
-            let new_date = `${month}/${day}/${year}`
-            let new_time = `${hour}:${min}`
-            return [new_date, new_time]
-
-          }
           let date = this.Orders.DateTimeOrdered
-          this.formatted_date = formatDate(date)
+          this.formatted_date = formatDateTimeFromSQLTOJS(date)
         })
         .catch((error) => {
           console.log(error);
@@ -125,7 +111,7 @@
         <form @submit.prevent="handleSubmitForm(Orders.OrderID)" novalidate>
         <table class="table table-light caption-top">
           <caption>
-            <strong>Orders Information</strong>
+            <strong>Order Information</strong>
           </caption>
           <tbody>
           <tr>
@@ -146,7 +132,7 @@
           </tr>
           <tr>
             <th>Date Ordered</th>
-            <td>{{formatted_date[0]}} ({{formatted_date[1]}})</td>
+            <td>{{formatted_date[0]}}</td>
           </tr>
           <tr>
             <th>Status</th>
@@ -182,7 +168,7 @@
             <td>${{Orders.Subtotal}}</td>
           </tr>
           <tr>
-            <th>Customer Notes</th>
+            <th>Notes</th>
             <td><textarea class="form-control" rows="5" v-model="Orders.CustomerNotes" disabled></textarea></td>
           </tr>
         </tbody>
