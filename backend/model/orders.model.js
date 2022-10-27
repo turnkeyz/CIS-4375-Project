@@ -28,7 +28,7 @@ Orders.findAllFromOrders = () => {
       var request = new sql.Request();
       request.query(`
       Select c.CartID, c.CustomerID, c.ProductsJSON, c.Customization, c.CustomerNotes, c.Subtotal, 
-      o.OrderID, o.DateTimeOrdered, o.DeliveryDateTime, o.Status, o.CalledBackValue,
+      o.OrderID, o.DateTimeOrdered, o.DeliveryDateTime, o.Status, o.CalledBackValue
       FROM Orders as o
       LEFT JOIN Cart as c ON o.CartID = c.CartID;`, (err, res) => {
         if (err) reject('line 12',err);
