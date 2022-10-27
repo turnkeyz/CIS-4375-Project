@@ -140,8 +140,33 @@
             <td>{{ Orders.CartID }}</td>
           </tr>
           <tr>
+            <th>Called Back?</th>
+            <td>{{Orders.CalledBackValue}}</td>
+          </tr>
+          <tr>
             <th>Date Ordered</th>
             <td>{{formatted_date[0]}} ({{formatted_date[1]}})</td>
+          </tr>
+          <tr>
+            <th>Status</th>
+            <td><select class="form-select" v-model="Orders.Status" required>
+                <option disabled value="">Select Option</option>
+                <option>Order recieved</option>
+                <option>In-Progress</option>
+                <option>Completed</option>
+                <option>Awaiting Delivery</option>
+                <option>Shipped</option>
+                <option>Delivered</option>
+            </select></td>
+          </tr>
+          <tr>
+            <th>Payment</th>
+            <td><select class="form-select" v-model="Orders.Payment" required>
+                <option disabled value="">Select Option</option>
+                <option>Awaiting Payment</option>
+                <option>Pending Payment</option>
+                <option>Paid in Full</option>
+            </select></td>
           </tr>
           <tr>
             <th>Delivery Date</th>
@@ -158,22 +183,6 @@
           <tr>
             <th>Customer Notes</th>
             <td><textarea class="form-control" rows="5" v-model="Orders.CustomerNotes" disabled></textarea></td>
-          </tr>
-          <tr>
-            <th>Status</th>
-            <td><select class="form-select" v-model="Orders.Status" required>
-                <option disabled value="">Select Option</option>
-                <option>Ordered</option>
-                <option>In-Transit</option>
-                <option>In-Progress</option>
-                <option>Pending</option>
-                <option>Awaiting Delivery</option>
-                <option>Delivered</option>
-            </select></td>
-          </tr>
-          <tr>
-            <th>Called Back?</th>
-            <td>{{Orders.CalledBackValue}}</td>
           </tr>
         </tbody>
         </table>

@@ -148,8 +148,20 @@
             <td>{{ Orders.CartID }}</td>
           </tr>
           <tr>
+            <th>Called Back?</th>
+            <td>{{Orders.CalledBackValue}}</td>
+          </tr>
+          <tr>
             <th>Date Ordered</th>
             <td>{{formatted_date[0]}} ({{formatted_date[1]}})</td>
+          </tr>
+          <tr>
+            <th>Status</th>
+            <td>{{Orders.Status}}</td>
+          </tr>
+          <tr>
+            <th>Payment</th>
+            <td></td>
           </tr>
           <tr>
             <th>Delivery Date</th>
@@ -166,14 +178,6 @@
           <tr>
             <th>Customer Notes</th>
             <td><textarea disabled class="form-control" rows="5" v-model="Orders.CustomerNotes"></textarea></td>
-          </tr>
-          <tr>
-            <th>Status</th>
-            <td>{{Orders.Status}}</td>
-          </tr>
-          <tr>
-            <th>Called Back?</th>
-            <td>{{Orders.CalledBackValue}}</td>
           </tr>
         </tbody>
       </table>
