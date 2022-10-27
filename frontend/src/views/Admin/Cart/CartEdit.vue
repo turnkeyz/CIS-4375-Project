@@ -17,6 +17,9 @@
         items:[],
         item:{},
         total:'',
+
+        Order: {},
+        oid:'',
       };
     },
     mounted(){
@@ -39,6 +42,12 @@
         axios.get(apiURL2).then((res)=>{
           this.Products = res.data
         })
+
+        let apiURL3=`${import.meta.env.VITE_VUE_APP_ROOT_URL}/Orders/back/${this.$route.query.id}`;
+        axios.get(apiURL3).then((res) => {
+            this.Order = res.data
+            this.oid = this.Order.OrderID
+        })
     },
     methods: {
       delProduct(id) {
@@ -51,6 +60,15 @@
               console.log(error);
             });
         }
+      },
+
+      backOrder(id){
+        // this.$router.push({
+        //     name:'Orders-View',
+        //     query:{id:id}
+        this.$router.go(-1)
+        // })
+
       },
       addProduct(){
         this.$router.push('/Product-form')
@@ -213,6 +231,10 @@
         </table>
           <div class="d-grid gap-2 d-md-flex justify-content-md-end">
             <button type="submit" class="btn btn-success me-md-2">Update</button>
+
+            <button  @click="cancelEdit(Cart.CartID)" class="btn btn-secondary" type="button">Back to Cart</button>
+            <button @click="backOrder(Order.OrderID)" class="btn btn-secondary" type="button">Back to Order</button>
+
             <button  @click="cancelEdit(Cart.CartID)" class="btn btn-secondary" type="button">Cancel</button>
           </div>
         </form>

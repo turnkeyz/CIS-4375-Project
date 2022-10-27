@@ -1,9 +1,9 @@
 <template>    
     <div class="container">
-        <div>
+        <div ref="content"> 
             <h1 class="text-center"><strong>Custom Orders</strong></h1>
 
-            <form @submit.prevent="handleSubmitForm" novalidate>
+            <form id="element" @submit.prevent="handleSubmitForm" novalidate>
                 <fieldset class="form-control mb-5">
                     <legend><strong>Order Information</strong></legend>
 
@@ -72,15 +72,16 @@
 
                     </div>
 
-                    <p v-if="errors.length">
+                </fieldset>
+
+                <p v-if="errors.length">
                         <b>Please correct the following error(s):</b>
                         <ul>
                             <li v-for="error in errors" :key="error">{{ error }} </li>
                         </ul>
                     </p>
-                    <button type="submit" class="btn btn-success create" >Create</button>
+                    <button @click="ExportPDF" class="btn btn-success create" >Create</button>
 
-                </fieldset>
             </form>
         </div>
     </div>
@@ -89,6 +90,8 @@
 
 <script>
     import axios from 'axios';
+    import jsPDF from 'jsPDF';  //unused jspdf
+    import html2pdf from 'html2pdf.js';
 
     export default {
     // register child component
@@ -121,29 +124,47 @@
             //create new volunteer and reset values
         handleSubmitForm(){
             this.errors=[]
-            //validations for required or formatted fields
-            if(!this.Products.CategoryID){
-                this.errors.push("Category is Required");
-                }
-            if(!this.Products.ProductName)
-                this.errors.push("Name is Required.");
+            // // validations for required or formatted fields
+            // if(!this.Products.CategoryID){
+            //     this.errors.push("Category is Required");
+            //     }
+            // if(!this.Products.ProductName)
+            //     this.errors.push("Name is Required.");
 
-            if(!this.Products.Price)
-            this.errors.push("Price is Required")
+            // if(!this.Products.Price)
+            // this.errors.push("Price is Required")
 
-            if(!this.Products.ProductDescription){
-                this.errors.push("Product Description is Required");
-                }
-            if(!this.Products.Img_url){
-            this.errors.push("Image url required");
-            // this.Active=false
-            }
+            // if(!this.Products.ProductDescription){
+            //     this.errors.push("Product Description is Required");
+            //     }
+            // // if(!this.Products.Img_url){
+            // // this.errors.push("Image url required");
+            // // // this.Active=false
+            // // }
 
         },
         handleFileUpload(evt){
             this.Products.Img_url = evt.target.files[0].name
             this.file_type = evt.target.files[0].type
-        }
-    } 
-}
+        },
+        Download(){     //old jspdf function --leaving in for testing
+            const doc = new jsPDF()
+
+            const newPDF = this.$refs.documents.innerHTML
+
+            doc
+            doc.text(newPDF, 15, 15, {
+                width: 480
+            })
+
+            doc.save('order.pdf')
+        },
+        ExportPDF(){        //creates an image rendering that is saved to a pdf
+            html2pdf(document.getElementById("element"), {
+                margin: 1,
+                filename: "temp.pdf",
+            });
+        },
+    }, 
+};
 </script>
