@@ -57,7 +57,7 @@
             if(this.errors.length === 0){
                 let apiURL = `${import.meta.env.VITE_VUE_APP_ROOT_URL}/Products/add`;
                 axios.post(apiURL, this.Products).then(() => {
-                this.edit=false
+                this.$router.push('/products')
                 }).catch(error => {
                     console.log(error)
                 });
