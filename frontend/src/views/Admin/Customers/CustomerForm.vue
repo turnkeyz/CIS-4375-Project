@@ -125,9 +125,7 @@
 
                     <div class="col-sm-3">
                         <label>*Email</label>
-
                         <input type="email" class="form-control" v-model="customers.Email" required>
-
                         <small id="phoneHelpBlock" class="form-text text-muted">
                         example@email.com
                         </small>
@@ -139,7 +137,6 @@
                 <div class='row mb-4'>
                     <div class="col-sm-12">
                         <label class="form-label">Notes</label>
-
                         <textarea class="form-control" rows="5" v-model="customers.Notes"></textarea>
 
                     </div>

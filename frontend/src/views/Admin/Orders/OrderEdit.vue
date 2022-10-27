@@ -1,6 +1,6 @@
 <script>
   import axios from "axios";
-
+  import {formatDateTimeFromSQLTOJS} from '../../../methods/format_date' 
 
   export default {
     components: {
@@ -15,6 +15,8 @@
         // CartID: '',
         errors:[],
         items:[],
+        formatted_date:[],
+        formatted_delivery_date:[]
       };
     },
     mounted(){
@@ -23,10 +25,15 @@
         //created function
     created() {
     // Variable that stores the "find specific employee" route
-      let apiURL = `${import.meta.env.VITE_VUE_APP_ROOT_URL}/Orders/${this.$route.query.id}`;
+      let apiURL = `${import.meta.env.VITE_VUE_APP_ROOT_URL}/Orders/fetchOne/${this.$route.query.id}`;
       axios.get(apiURL).then((res) => {
           this.Orders = res.data[0];
           this.items = JSON.parse(this.Orders.ProductsJSON)
+          let date = this.Orders.DateTimeOrdered
+          let del_date = this.Orders.DeliveryDateTime
+          this.formatted_date = formatDateTimeFromSQLTOJS(date)
+          this.Orders.DeliveryDateTime = formatDateTimeFromSQLTOJS(del_date)[1]
+
         })
         .catch((error) => {
           console.log(error);
@@ -48,11 +55,11 @@
       editProduct(id){
         this.$router.push({
             name:'cart-edit',
-            query:{id:id}
+            query:{id:id, e:true}
         })
       },
 
-      handleSubmitForm(pid){
+      handleSubmitForm(oid){
         this.errors=[]
         //validations for required or formatted fields
         if(!this.Orders.OrderID){
@@ -81,7 +88,6 @@
        
         this.Orders.ProductsJSON = JSON.stringify(this.items)
         // this.Orders.Subtotal=this.total
-       
         //only run if no errors
         if(this.errors.length === 0){
             let apiURL = `${import.meta.env.VITE_VUE_APP_ROOT_URL}/Orders/update/${oid}`;
@@ -102,13 +108,13 @@
 
 <template>
     <div class="container">
-      <h1 class="mb-5">Customer:{{Orders.CustomerID}} ID#{{Orders.OrderID}}</h1>
+      <h1 class="mb-5">{{Orders.FirstName}} {{Orders.LastName}} (Cart ID#{{Orders.CartID}})</h1>
     <div class="wrapper m-5"></div>
       <div class="table1">
         <form @submit.prevent="handleSubmitForm(Orders.OrderID)" novalidate>
         <table class="table table-light caption-top">
           <caption>
-            <strong>Orders Information</strong>
+            <strong>Order Information</strong>
           </caption>
           <tbody>
           <tr>
@@ -116,39 +122,67 @@
             <td>{{ Orders.OrderID }}</td>
           </tr>
           <tr>
-            <th>Customer ID</th>
-             <td>{{Orders.CustomerID}}</td>
+            <th>Customer ID/Name</th>
+            <td>({{ Orders.CustomerID }}) {{Orders.FirstName}} {{Orders.LastName}}</td>
           </tr>
           <tr>
             <th>Cart ID</th>
             <td>{{ Orders.CartID }}</td>
           </tr>
           <tr>
-            <th>Date</th>
-            <td>{{ Orders.DateTimeOrdered }}</td>
+            <th>Called Back?</th>
+            <td>{{Orders.CalledBackValue}}</td>
           </tr>
           <tr>
-            <th>Products</th>
-            <td>{{ Orders.ProductsJSON }}</td>
-          </tr>
-          <tr>
-            <th>Customer Notes</th>
-            <td><textarea class="form-control" rows="5" v-model="Orders.CustomerNotes" required></textarea></td>
+            <th>Date Ordered</th>
+            <td>{{formatted_date[1]}}</td>
           </tr>
           <tr>
             <th>Status</th>
             <td><select class="form-select" v-model="Orders.Status" required>
                 <option disabled value="">Select Option</option>
-                <option>In-Transit</option>
+                <option>Order Recieved</option>
                 <option>In-Progress</option>
-                <option>Pending</option>
+                <option>Completed</option>
                 <option>Awaiting Delivery</option>
+                <option>Shipped</option>
                 <option>Delivered</option>
             </select></td>
           </tr>
+          <tr>
+            <th>Payment</th>
+            <td><select class="form-select" v-model="Orders.PaymentStatus" required>
+                <option disabled value="">Select Option</option>
+                <option>Awaiting Payment</option>
+                <option>Pending Payment</option>
+                <option>Paid in Full</option>
+            </select></td>
+          </tr>
+          <tr>
+            <th>Delivery Date</th>
+            <td><input type="text" class="form-control" reauired min=1 v-model="Orders.DeliveryDateTime" 
+              pattern="(?:19|20)[0-9]{2}-(?:(?:0[1-9]|1[0-2])-(?:0[1-9]|1[0-9]|2[0-9])|(?:(?!02)(?:0[1-9]|1[0-2])-(?:30))|(?:(?:0[13578]|1[02])-31))">
+              <small id="phoneHelpBlock" class="form-text text-muted">
+                YYYY-MM--DD
+              </small>
+            </td>
+            <!-- <td>{{Orders.DeliveryDateTime}}</td> -->
+          </tr>
+          <tr>
+            <th>Products</th>
+            <tr v-for="item in items" :key="item">({{item.ProductID}}) {{item.ProductName}} x{{item.Quantity}}</tr>
+          </tr>
+          <tr>
+            <th>Subtotal</th>
+            <td>${{Orders.Subtotal}}</td>
+          </tr>
+          <tr>
+            <th>Notes</th>
+            <td><textarea class="form-control" rows="5" v-model="Orders.CustomerNotes" disabled></textarea></td>
+          </tr>
         </tbody>
         </table>
-
+        <p>**edit Order allows for modifying of Status, Delivery Date, Called back</p>
 
           <div class="d-grid gap-2 d-md-flex justify-content-md-end">
             <button type="submit" class="btn btn-success me-md-2">Update</button>

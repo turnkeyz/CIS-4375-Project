@@ -104,6 +104,9 @@
         if(id==4){
           return '/breads/'+url
         }
+        if(id==6){
+          return '/cakecups/'+url
+        }
       },
       handleFileUpload(evt){
         // this.file = event.target.files[0]
@@ -153,7 +156,7 @@
           </tr>
           <tr>
             <th>Description</th>
-            <td><textarea disabled class="form-control" rows="5">{{Products.ProductDescription}}</textarea></td>
+            <td><textarea disabled class="form-control" rows="5" v-model="Products.ProductDescription"></textarea></td>
           </tr>
           <tr>
             <th>Image URL</th>
@@ -161,7 +164,7 @@
           </tr>
           <tr>
             <td>
-              <img :src="'/uploads/'+getCategory(Products.CategoryID, Products.Img_url)" class="w-100"/>
+              <img :src="'/uploads'+getCategory(Products.CategoryID, Products.Img_url)" class="w-100"/>
             </td>
           </tr>
         </tbody>

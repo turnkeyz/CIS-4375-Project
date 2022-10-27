@@ -40,11 +40,10 @@
 </script>
 
 <template>
-  
-  	<nav class="navbar navbar-expand-md navbar-dark bg-dark">
+  	<nav  class="navbar navbar-expand-md navbar-dark bg-dark">
   <div class="container">
     <a class="navbar-brand d-md-none d-xs-block py-3" href="#">
-      <img src="/static_files/images/logos/beer_white.png" height="40" alt="Company Logo">
+      <img src="" height="40" alt="Company Logo">
     </a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -52,10 +51,58 @@
  
     <div class="collapse navbar-collapse" id="navbarNavDropdown">
       <ul class="navbar-nav mx-auto">
-        <li class="nav-item">
+        <li v-if="!$route.meta.hideNavbar" class="nav-item">
           <a class="nav-link mx-2 active" aria-current="page" href="/">Home</a>
         </li>
-        <div class="dropdown">
+        
+        <!-- Dashboard navigation -->
+        <li v-if="$route.meta.hideNavbar" class="nav-item">
+          <a class="nav-link mx-2 active" aria-current="page" href="/dashboard">Home</a>
+        </li>
+        <div v-if="$route.meta.hideNavbar" class="dropdown">
+          <a class="nav-link dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+            Customers
+          </a>
+
+          <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+            <li><a class="dropdown-item" href="/customers">View All</a></li>
+            <li><a class="dropdown-item" href="/customer-form">Add</a></li>
+          </ul>
+        </div>
+        <div v-if="$route.meta.hideNavbar" class="dropdown">
+          <a class="nav-link dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+            Products
+          </a>
+
+          <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+            <li><a class="dropdown-item" href="/products">View All</a></li>
+            <li><a class="dropdown-item" href="/product-form">Add</a></li>
+          </ul>
+        </div>
+        <div v-if="$route.meta.hideNavbar" class="dropdown">
+          <a class="nav-link dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+            Carts
+          </a>
+
+          <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+            <li><a class="dropdown-item" href="/carts">View All</a></li>
+            <li><a class="dropdown-item" href="/cart-form">Add</a></li>
+          </ul>
+        </div>
+        <div v-if="$route.meta.hideNavbar" class="dropdown">
+          <a class="nav-link dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+            Orders
+          </a>
+
+          <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+            <li><a class="dropdown-item" href="/orders">View All</a></li>
+            <li><a class="dropdown-item" href="/orders-form">Add</a></li>
+          </ul>
+        </div>
+        <!-- Dashboard Navigation -->
+
+
+        <div v-if="!$route.meta.hideNavbar" class="dropdown">
           <a class="nav-link dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
             Products
           </a>
@@ -67,10 +114,9 @@
             <li><a class="dropdown-item" href="/pastries">Pastries</a></li>
             <li><a class="dropdown-item" href="/custom">Custom Orders</a></li>
             <li><a class="dropdown-item" href="/cakecups">Cake Cups</a></li>
-
           </ul>
         </div>
-        <li class="nav-item">
+        <li v-if="!$route.meta.hideNavbar" class="nav-item">
           <a class="nav-link mx-2" href="/about">About</a>
         </li>
         <li class="nav-item">
@@ -85,11 +131,11 @@
 </nav>
 <div class="text-center p-3 d-none d-md-block">
   <a href="/">
-  <img src="/uploads/owl logo.png" height="50" alt="Company Logo">
+  <img src="/uploads/owllogo.png" height="50" alt="Company Logo">
 </a>
 </div>
       <RouterView></RouterView>
-    <Footer/>
+    <Footer v-if="!$route.meta.hideNavbar"/>
 
 
 </template>

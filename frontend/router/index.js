@@ -61,7 +61,8 @@ const routes = [
     name:"Dashboard",
     component:()=> import("../src/views/Admin/Dashboard.vue"),
     meta:{
-      requiresAuth:true
+      requiresAuth:true,
+      hideNavbar:true
     }
 
   },
@@ -71,7 +72,8 @@ const routes = [
     name: "Customers",
     component:() => import('../src/views/Admin/Customers/Customers.vue'),
     meta:{
-      requiresAuth:true
+      requiresAuth:true,
+      hideNavbar:true
     }
   },
   {
@@ -79,7 +81,8 @@ const routes = [
     name: "Customer-form",
     component:() => import('../src/views/Admin/Customers/CustomerForm.vue'),
     meta:{
-      requiresAuth:true
+      requiresAuth:true,
+      hideNavbar:true
     }
   },
   {
@@ -88,7 +91,8 @@ const routes = [
     props:true,
     component:() => import('../src/views/Admin/Customers/CustomerView.vue'),
     meta:{
-      requiresAuth:true
+      requiresAuth:true,
+      hideNavbar:true
     }
   },
   
@@ -98,7 +102,8 @@ const routes = [
     name: "Product",
     component:() => import('../src/views/Admin/Products/ProductView.vue'),
     meta:{
-      requiresAuth:true
+      requiresAuth:true,
+      hideNavbar:true
     }
   },
   {
@@ -106,7 +111,8 @@ const routes = [
     name:"Products",
     component:()=> import('../src/views/Admin/Products/Products.vue'),
     meta:{
-      requiresAuth:true
+      requiresAuth:true,
+      hideNavbar:true
     }
   },
   {
@@ -114,7 +120,8 @@ const routes = [
     name:"/Product-form",
     component:()=> import('../src/views/Admin/Products/ProductForm.vue'),
     meta:{
-      requiresAuth:true
+      requiresAuth:true,
+      hideNavbar:true
     }
   },
 
@@ -123,7 +130,8 @@ const routes = [
     name: "Cart",
     component:() => import('../src/views/Admin/Cart/CartView.vue'),
     meta:{
-      requiresAuth:true
+      requiresAuth:true,
+      hideNavbar:true
     }
   },
   {
@@ -131,7 +139,8 @@ const routes = [
     name:"Carts",
     component:()=> import('../src/views/Admin/Cart/Carts.vue'),
     meta:{
-      requiresAuth:true
+      requiresAuth:true,
+      hideNavbar:true
     }
   },
   {
@@ -139,7 +148,8 @@ const routes = [
     name:"/Cart-form",
     component:()=> import('../src/views/Admin/Cart/CartForm.vue'),
     meta:{
-      requiresAuth:true
+      requiresAuth:true,
+      hideNavbar:true
     }
   },
   {
@@ -147,7 +157,8 @@ const routes = [
     name:"cart-edit",
     component:()=> import('../src/views/Admin/Cart/CartEdit.vue'),
     meta:{
-      requiresAuth:true
+      requiresAuth:true,
+      hideNavbar:true
     }
 
   },
@@ -158,7 +169,8 @@ const routes = [
     name:"Orders",
     component:()=> import('../src/views/Admin/Orders/Orders.vue'),
     meta:{
-      requiresAuth:true
+      requiresAuth:true,
+      hideNavbar:true
     }
   },
   {
@@ -166,7 +178,8 @@ const routes = [
     name: "Orders-View",
     component:() => import('../src/views/Admin/Orders/OrderView.vue'),
     meta:{
-      requiresAuth:true
+      requiresAuth:true,
+      hideNavbar:true
     }
   },
   {
@@ -174,11 +187,19 @@ const routes = [
     name:"orders-edit",
     component:() => import('../src/views/Admin/Orders/OrderEdit.vue'),
     meta:{
-      requiresAuth:true
+      requiresAuth:true,
+      hideNavbar:true
+    }
+  },
+  {
+    path: "/orders-form",
+    name:"orders-form",
+    component:() => import('../src/views/Admin/Orders/OrderForm.vue'),
+    meta:{
+      requiresAuth:true,
+      hideNavbar:true
     }
   }
-  
-
   //=========================================================ADMIN
 ];
 

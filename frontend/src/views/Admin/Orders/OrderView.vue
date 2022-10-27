@@ -1,18 +1,20 @@
 <script>
   import axios from "axios";
-
+  import {formatDateTimeFromSQLTOJS} from '../../../methods/format_date' 
+  import {sendInvoice} from '../../../methods/send_email'
   export default {
     components: {
       
     },
-
-
       //Storing the data being exported in a function
     data() {
       return {
         Orders: {},
         errors:[],
         edit:"",
+        formatted_date:[],
+        items:[],
+        formatted_delivery_date:[]
       };
     },
     mounted(){
@@ -21,9 +23,15 @@
         //created function
     created() {
     // Variable that stores the "find specific employee" route
-      let apiURL = `${import.meta.env.VITE_VUE_APP_ROOT_URL}/Orders/${this.$route.query.id}`;
+      let apiURL = `${import.meta.env.VITE_VUE_APP_ROOT_URL}/Orders/fetchOne/${this.$route.query.id}`;
       axios.get(apiURL).then((res) => {
           this.Orders = res.data[0];
+          this.items = JSON.parse(this.Orders.ProductsJSON)
+          let date = this.Orders.DateTimeOrdered
+          let del_date = this.Orders.DeliveryDateTime
+          this.formatted_date = formatDateTimeFromSQLTOJS(date)
+          this.formatted_delivery_date = formatDateTimeFromSQLTOJS(del_date)
+          console.log(this.Orders)
           // if(this.$route.query.e === true || this.$route.query.e === 'true'){
           //   this.edit=true
           // }else{
@@ -92,7 +100,6 @@
         //only run if no errors
         if(this.errors.length === 0){
             let apiURL = `${import.meta.env.VITE_VUE_APP_ROOT_URL}/Orders/update/${pid}`;
-            console.log('line 86', apiURL)
             axios.put(apiURL, this.Orders).then(() => {
             this.edit=false
             }).catch(error => {
@@ -100,6 +107,10 @@
             });
         }
       },
+      sendUpdate(){
+        // sendInvoice(this.Orders)
+        console.log('not connected')
+      }
     },
   };
 </script>
@@ -119,36 +130,54 @@
             <td>{{ Orders.OrderID }}</td>
           </tr>
           <tr>
-            <th>Customer ID</th>
-            <td>{{ Orders.CustomerID }}</td>
+            <th>Customer ID/Name</th>
+            <td>({{ Orders.CustomerID }}) {{Orders.FirstName}} {{Orders.LastName}}</td>
           </tr>
           <tr>
             <th>Cart ID</th>
             <td>{{ Orders.CartID }}</td>
           </tr>
           <tr>
-            <th>Date</th>
-            <td>{{Orders.DateTimeOrdered}}</td>
+            <th>Called Back?</th>
+            <td>{{Orders.CalledBackValue}}</td>
           </tr>
           <tr>
-            <th>Products</th>
-            <td>{{Orders.ProductsJSON}}</td>
-          </tr>
-          <tr>
-            <th>Customer Notes</th>
-            <td>{{Orders.CustomerNotes}}</td>
+            <th>Date Ordered</th>
+            <td>{{formatted_date[0]}}</td>
           </tr>
           <tr>
             <th>Status</th>
             <td>{{Orders.Status}}</td>
           </tr>
+          <tr>
+            <th>Payment</th>
+            <td>{{Orders.PaymentStatus}}</td>
+          </tr>
+          <tr>
+            <th>Delivery Date</th>
+            <td>{{formatted_delivery_date[0]}}</td>
+          </tr>
+          <tr>
+            <th>Products</th>
+            <tr v-for="item in items" :key="item">({{item.ProductID}}) {{item.ProductName}} x{{item.Quantity}}</tr>
+          </tr>
+          <tr>
+            <th>Subtotal</th>
+            <td>${{Orders.Subtotal}}</td>
+          </tr>
+          <tr>
+            <th>Customer Notes</th>
+            <td><textarea disabled class="form-control" rows="5" v-model="Orders.CustomerNotes"></textarea></td>
+          </tr>
         </tbody>
       </table>
-      
+      <p>**edit cart allows for modifying of Products, Subtotal, Customer Notes, CustomerID</p>
+      <p>**edit Order allows for modifying of Status, Delivery Date, Called back</p>
       </div>
       <div class="d-grid gap-2 d-md-flex justify-content-md-end">
         <button @click="showEdit(Orders.OrderID)" class="btn btn-secondary me-md-2">Edit</button>
         <button @click="cancelShow()" class="btn btn-primary me-md-2">Back</button>
+        <button @click="sendUpdate()" class="btn btn-primary">Send Invoice</button>
       </div>
     </div>
 </template>

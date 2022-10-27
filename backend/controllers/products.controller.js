@@ -59,3 +59,9 @@ exports.getAllCookies = async (req, res) => {
   const obj = await Products.findAllBreads();
   res.send(obj);
 };
+
+// get all breads
+exports.getAllActiveProducts = async (req, res) => {
+  const obj = await Products.findAllActiveProducts();
+  res.send(obj);
+};

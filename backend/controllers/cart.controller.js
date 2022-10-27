@@ -31,3 +31,10 @@ exports.deleteCart = async (req, res) => {
   res.send(obj);
 };
 
+// delete product
+exports.getAllIds = async (req, res) => {
+  const obj = await Cart.getAllCartIds(req.body);
+  res.send(obj);
+};
+
+
