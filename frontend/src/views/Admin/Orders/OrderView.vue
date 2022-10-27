@@ -161,7 +161,7 @@
           </tr>
           <tr>
             <th>Payment</th>
-            <td></td>
+            <td>{{Orders.PaymentStatus}}</td>
           </tr>
           <tr>
             <th>Delivery Date</th>

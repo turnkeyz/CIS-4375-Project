@@ -40,8 +40,7 @@
 </script>
 
 <template>
-  
-  	<nav class="navbar navbar-expand-md navbar-dark bg-dark">
+  	<nav  class="navbar navbar-expand-md navbar-dark bg-dark">
   <div class="container">
     <a class="navbar-brand d-md-none d-xs-block py-3" href="#">
       <img src="/static_files/images/logos/beer_white.png" height="40" alt="Company Logo">
@@ -89,7 +88,7 @@
 </a>
 </div>
       <RouterView></RouterView>
-    <Footer/>
+    <Footer v-if="!$route.meta.hideNavbar"/>
 
 
 </template>
