@@ -32,9 +32,9 @@
         }
     },
     mounted(){
-        if(!this.$parent.authenticated){
-            this.$router.replace({name:"Login"})
-        }
+        // if(!this.$parent.authenticated){
+        //     this.$router.replace({name:"Login"})
+        // }
     }
   }
 </script>
