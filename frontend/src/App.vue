@@ -57,20 +57,48 @@
         
         <!-- Dashboard navigation -->
         <li v-if="$route.meta.hideNavbar" class="nav-item">
-          <a class="nav-link mx-2 active" aria-current="page" href="/dashboard">Dashboard</a>
+          <a class="nav-link mx-2 active" aria-current="page" href="/dashboard">Home</a>
         </li>
-        <li v-if="$route.meta.hideNavbar" class="nav-item">
-          <a class="nav-link mx-2 active" aria-current="page" href="/customers">Customers</a>
-        </li>
-        <li v-if="$route.meta.hideNavbar" class="nav-item">
-          <a class="nav-link mx-2 active" aria-current="page" href="/products">Products</a>
-        </li>
-        <li v-if="$route.meta.hideNavbar" class="nav-item">
-          <a class="nav-link mx-2 active" aria-current="page" href="/carts">Carts</a>
-        </li>
-        <li v-if="$route.meta.hideNavbar" class="nav-item">
-          <a class="nav-link mx-2 active" aria-current="page" href="/orders">Orders</a>
-        </li>
+        <div v-if="$route.meta.hideNavbar" class="dropdown">
+          <a class="nav-link dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+            Customers
+          </a>
+
+          <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+            <li><a class="dropdown-item" href="/customers">View All</a></li>
+            <li><a class="dropdown-item" href="/customer-form">Add</a></li>
+          </ul>
+        </div>
+        <div v-if="$route.meta.hideNavbar" class="dropdown">
+          <a class="nav-link dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+            Products
+          </a>
+
+          <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+            <li><a class="dropdown-item" href="/products">View All</a></li>
+            <li><a class="dropdown-item" href="/product-form">Add</a></li>
+          </ul>
+        </div>
+        <div v-if="$route.meta.hideNavbar" class="dropdown">
+          <a class="nav-link dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+            Carts
+          </a>
+
+          <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+            <li><a class="dropdown-item" href="/carts">View All</a></li>
+            <li><a class="dropdown-item" href="/cart-form">Add</a></li>
+          </ul>
+        </div>
+        <div v-if="$route.meta.hideNavbar" class="dropdown">
+          <a class="nav-link dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+            Orders
+          </a>
+
+          <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+            <li><a class="dropdown-item" href="/orders">View All</a></li>
+            <li><a class="dropdown-item" href="/orders-form">Add</a></li>
+          </ul>
+        </div>
         <!-- Dashboard Navigation -->
 
 

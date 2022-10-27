@@ -41,7 +41,6 @@
       <button @click="productsPage()" class="btn btn-primary me-md-2">Products</button>
       <button  @click="ordersPage()" class="btn btn-secondary">Orders</button>
       <button  @click="cartsPage()" class="btn btn-primary">Carts</button>
-      <button class="btn btn-danger navbar-btn">Logout</button>
     </div>
   </div>
 </template>

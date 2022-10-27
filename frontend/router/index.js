@@ -190,9 +190,16 @@ const routes = [
       requiresAuth:true,
       hideNavbar:true
     }
+  },
+  {
+    path: "/orders-form",
+    name:"orders-form",
+    component:() => import('../src/views/Admin/Orders/OrderForm.vue'),
+    meta:{
+      requiresAuth:true,
+      hideNavbar:true
+    }
   }
-  
-
   //=========================================================ADMIN
 ];
 

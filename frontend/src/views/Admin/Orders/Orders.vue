@@ -18,6 +18,9 @@
       })
     },
     methods:{
+        newOrder(){
+            this.$router.push('/orders-form')
+        },
         seeMore(id){
             this.$router.push({
                 name:'Orders-View',
@@ -30,14 +33,26 @@
                 name:'orders-edit',
                 query:{id:id}
             })
-        }
+        },
+        delCart(id){
+            let apiUrl = `${import.meta.env.VITE_VUE_APP_ROOT_URL}/Orders/delete/${id}`
+            let resetArray = this.Orders.findIndex((i)=>i.CartID ===id)
+        
+            if(window.confirm("Are you sure you want to delete Cart?")){
+                axios.delete(apiUrl).then(()=>{
+                    this.Orders.splice(resetArray, 1)
+                })
+                .catch((err)=>{
+                    console.log(err)
+                })
+            }
+        },
     },
     mounted(){
 
     }
   }
 </script>
-
 <template>
     <div class="container">
         <h1 class="text-center">All Orders</h1>
@@ -45,13 +60,13 @@
             <table class="table table-hover table-responsive table-bordered">
                 <thead class="table-light">
                     <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">CustomerID</th>
-                        <th scope ="col">CartID</th>
+                        <th scope="col">Order #</th>
+                        <th scope="col">Customer ID</th>
+                        <th scope ="col">Cart ID</th>
                         <th scope="col">Call Back</th>
                         <th scope="col">Status</th>
                         <th scope="col">Payment Status</th>
-                        <th scope="col"></th>
+                        <th><button class="btn btn-success btn-sm" @click="newOrder()">Add New Order</button></th>
                 
                         <!-- <th><button class="btn btn-success btn-sm" @click="newOrder()">Add New Order</button></th> -->
                     </tr>
@@ -68,8 +83,9 @@
                         <td>
                     <tr>
                                 <!-- <td><router-link :to="{name:'Order', query:{id:Order.OrderID, e:false}}" class="btn btn-light">...</router-link></td> -->
-                                <td><button @click="seeMore(Order.OrderID)" class="btn btn-light">View</button></td>
+                                <td><button @click="seeMore(Order.OrderID)" class="btn btn-light">...</button></td>
                                 <td><button @click="editOrder(Order.OrderID)" class="btn btn-secondary btn-sm">Edit</button></td>
+                                <td><button class="btn btn-danger btn-sm" @click.prevent="delCart(Cart.CartID)">Delete</button></td>
                             </tr>
                         </td>
                     </tr>

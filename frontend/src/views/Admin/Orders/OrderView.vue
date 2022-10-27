@@ -1,6 +1,6 @@
 <script>
   import axios from "axios";
-
+  import {formatDateTimeFromSQLTOJS} from '../../../methods/format_date' 
   export default {
     components: {
       
@@ -12,7 +12,8 @@
         errors:[],
         edit:"",
         formatted_date:[],
-        items:[]
+        items:[],
+        formatted_delivery_date:[]
       };
     },
     mounted(){
@@ -26,8 +27,9 @@
           this.Orders = res.data[0];
           this.items = JSON.parse(this.Orders.ProductsJSON)
           let date = this.Orders.DateTimeOrdered
+          let del_date = this.Orders.DeliveryDateTime
           this.formatted_date = formatDateTimeFromSQLTOJS(date)
-          
+          this.formatted_delivery_date = formatDateTimeFromSQLTOJS(del_date)
           console.log(this.Orders)
           // if(this.$route.query.e === true || this.$route.query.e === 'true'){
           //   this.edit=true
@@ -97,7 +99,6 @@
         //only run if no errors
         if(this.errors.length === 0){
             let apiURL = `${import.meta.env.VITE_VUE_APP_ROOT_URL}/Orders/update/${pid}`;
-            console.log('line 86', apiURL)
             axios.put(apiURL, this.Orders).then(() => {
             this.edit=false
             }).catch(error => {
@@ -137,7 +138,7 @@
           </tr>
           <tr>
             <th>Date Ordered</th>
-            <td>{{formatted_date[0]}} ({{formatted_date[1]}})</td>
+            <td>{{formatted_date[0]}}</td>
           </tr>
           <tr>
             <th>Status</th>
@@ -149,7 +150,7 @@
           </tr>
           <tr>
             <th>Delivery Date</th>
-            <td>{{Orders.DeliveryDateTime}}</td>
+            <td>{{formatted_delivery_date[0]}}</td>
           </tr>
           <tr>
             <th>Products</th>
