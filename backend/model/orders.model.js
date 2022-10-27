@@ -76,7 +76,6 @@ Orders.insertOrders = (obj) => {
         .input('status', obj.Status)
         .input('called_back', obj.CalledBackValue)
         .input('pay_status', obj.PaymentStatus)
-
       request.query(
         `INSERT INTO Orders (CartID, DateTimeOrdered, DeliveryDateTime, [Status], CalledBackValue, PaymentStatus) 
             VALUES (@cart_id, @datetime, @delivery_datetime, @status, @called_back, @pay_status);`,
@@ -107,7 +106,7 @@ Orders.updateOrders = (param_id, obj) => {
 
     request.query(
         `UPDATE Orders 
-        SET CustomerID=@customer_id, CartID=@cart_id, DateTimeOrdered=@datetime, DeliveryDateTime=@delivery_datetime, [Status]=@status, CalledBackValue=@called_back, PaymentStatus=@pay_status
+        SET CartID=@cart_id, DateTimeOrdered=@datetime, DeliveryDateTime=@delivery_datetime, [Status]=@status, CalledBackValue=@called_back, PaymentStatus=@pay_status
         WHERE OrderID = @param_id;`,
         (err, res) => {
           if (err) reject(err);

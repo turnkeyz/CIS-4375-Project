@@ -104,4 +104,19 @@ Cart.deleteCartById = (param_id) => {
   });
 };
 
+// FETCHING ALL FROM Cart TABLE
+Cart.getAllCartIds = () => {
+  return new Promise((resolve, reject) => {
+    sql.connect(sqlConfig, function (err, result) {
+      var request = new sql.Request();
+      request.query(`SELECT CartID FROM Cart;`, (err, res) => {
+        if (err) reject(err);
+          console.log(res.recordset)
+          return resolve(res.recordset); // FETCHING ALL DATA
+      });
+    });
+  });
+};
+
+
 module.exports = Cart;

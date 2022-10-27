@@ -21,6 +21,24 @@ products.findAllFromProducts = () => {
   });
 };
 
+products.findAllActiveProducts = () => {
+  return new Promise((resolve, reject) => {
+    sql.connect(sqlConfig, function (err, result) {
+      var request = new sql.Request();
+      request.query(
+        `SELECT p.ProductID, p.CategoryID, p.ProductName, p.ProductDescription, p.Price, p.Active, p.Img_url, c.CategoryName
+        FROM Products as p
+        LEFT JOIN Categories as c ON p.CategoryID = c.CategoryID
+        WHERE Active=1;`, 
+        (err, res) => {
+        if (err) reject(err);
+          console.log(res.recordset)
+          return resolve(res.recordset); // FETCHING ALL DATA
+      });
+    });
+  });
+};
+
 // FETCHING ALL FROM Products TABLE
 products.findProduct = (param_id) => {
   return new Promise((resolve, reject) => {
