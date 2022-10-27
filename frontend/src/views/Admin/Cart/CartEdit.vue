@@ -232,8 +232,8 @@
           <div class="d-grid gap-2 d-md-flex justify-content-md-end">
             <button type="submit" class="btn btn-success me-md-2">Update</button>
 
-            <button  @click="cancelEdit(Cart.CartID)" class="btn btn-secondary" type="button">Back to Cart</button>
-            <button @click="backOrder(Order.OrderID)" class="btn btn-secondary" type="button">Back to Order</button>
+            <!-- <button  @click="cancelEdit(Cart.CartID)" class="btn btn-secondary" type="button">Back to Cart</button> -->
+            <!-- <button @click="backOrder(Order.OrderID)" class="btn btn-secondary" type="button">Back to Order</button> -->
 
             <button  @click="cancelEdit(Cart.CartID)" class="btn btn-secondary" type="button">Cancel</button>
           </div>
