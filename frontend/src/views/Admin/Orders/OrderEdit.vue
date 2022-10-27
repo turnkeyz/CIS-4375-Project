@@ -15,6 +15,7 @@
         // CartID: '',
         errors:[],
         items:[],
+        formatted_date:[]
       };
     },
     mounted(){
@@ -151,7 +152,7 @@
             <th>Status</th>
             <td><select class="form-select" v-model="Orders.Status" required>
                 <option disabled value="">Select Option</option>
-                <option>Order recieved</option>
+                <option>Order Recieved</option>
                 <option>In-Progress</option>
                 <option>Completed</option>
                 <option>Awaiting Delivery</option>
@@ -161,7 +162,7 @@
           </tr>
           <tr>
             <th>Payment</th>
-            <td><select class="form-select" v-model="Orders.Payment" required>
+            <td><select class="form-select" v-model="Orders.PaymentStatus" required>
                 <option disabled value="">Select Option</option>
                 <option>Awaiting Payment</option>
                 <option>Pending Payment</option>

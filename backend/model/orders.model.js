@@ -49,7 +49,7 @@ Orders.findOrder = (param_id) => {
       ;
       request.query(`
       Select c.CartID, c.CustomerID, c.ProductsJSON, c.Customization, c.CustomerNotes, c.Subtotal, 
-      o.OrderID, o.DateTimeOrdered, o.DeliveryDateTime, o.Status, o.CalledBackValue,
+      o.OrderID, o.DateTimeOrdered, o.DeliveryDateTime, o.Status, o.CalledBackValue, o.PaymentStatus,
       cu.FirstName, cu.LastName
       FROM Orders as o
       LEFT JOIN Cart as c ON o.CartID = c.CartID 
