@@ -27,7 +27,7 @@ Orders.findAllFromOrders = () => {
     sql.connect(sqlConfig, function (err, result) {
       var request = new sql.Request();
       request.query(`
-      Select c.CartID, c.CustomerID, c.ProductsJSON, c.Customization, c.CustomerNotes, c.Subtotal, 
+      Select c.CartID, c.ProductsJSON, c.Customization, c.CustomerNotes, c.Subtotal, 
       o.OrderID, o.DateTimeOrdered, o.DeliveryDateTime, o.Status, o.CalledBackValue, o.PaymentStatus
       FROM Orders as o
       LEFT JOIN Cart as c ON o.CartID = c.CartID;`, (err, res) => {
@@ -50,7 +50,7 @@ Orders.findOrder = (param_id) => {
       request.query(`
       Select c.CartID, c.CustomerID, c.ProductsJSON, c.Customization, c.CustomerNotes, c.Subtotal, 
       o.OrderID, o.DateTimeOrdered, o.DeliveryDateTime, o.Status, o.CalledBackValue, o.PaymentStatus,
-      cu.FirstName, cu.LastName
+      cu.FirstName, cu.LastName, cu.Email
       FROM Orders as o
       LEFT JOIN Cart as c ON o.CartID = c.CartID 
       LEFT JOIN Customers as cu ON cu.CustomerID = c.CustomerID

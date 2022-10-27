@@ -1,6 +1,7 @@
 <script>
   import axios from "axios";
   import {formatDateTimeFromSQLTOJS} from '../../../methods/format_date' 
+  import {sendInvoice} from '../../../methods/send_email'
   export default {
     components: {
       
@@ -22,7 +23,7 @@
         //created function
     created() {
     // Variable that stores the "find specific employee" route
-      let apiURL = `${import.meta.env.VITE_VUE_APP_ROOT_URL}/Orders/${this.$route.query.id}`;
+      let apiURL = `${import.meta.env.VITE_VUE_APP_ROOT_URL}/Orders/fetchOne/${this.$route.query.id}`;
       axios.get(apiURL).then((res) => {
           this.Orders = res.data[0];
           this.items = JSON.parse(this.Orders.ProductsJSON)
@@ -106,6 +107,10 @@
             });
         }
       },
+      sendUpdate(){
+        // sendInvoice(this.Orders)
+        console.log('not connected')
+      }
     },
   };
 </script>
@@ -172,6 +177,7 @@
       <div class="d-grid gap-2 d-md-flex justify-content-md-end">
         <button @click="showEdit(Orders.OrderID)" class="btn btn-secondary me-md-2">Edit</button>
         <button @click="cancelShow()" class="btn btn-primary me-md-2">Back</button>
+        <button @click="sendUpdate()" class="btn btn-primary">Send Invoice</button>
       </div>
     </div>
 </template>

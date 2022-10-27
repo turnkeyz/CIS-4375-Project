@@ -11,7 +11,7 @@
         ['May', 32], ['Jun', 15], ['Jul',40], ['Oct', 5], ['Nov', 24]],
         graph2:[['Cookies', 32], ['Pastries', 46], ['Cakes', 28], ['Breads', 39], 
         ['CakeCups', 32], ['Pies', 15]],
-        graph3:[['Chocolate Chip Cookies', 100], ['Eclair', 80], ['CheeseCake', 79], ['French Sourdough', 76], ['Chocolate Cake', 90]]
+        graph3:[['Chocolate Chip Cookies', 100], ['Eclair', 80], ['CheeseCake', 79], ['French Sourdough', 76], ['Chocolate Cake', 90]],
       };
     },
     mounted(){
@@ -34,7 +34,6 @@
       ordersPage(){
         this.$router.push('/orders')
       },
-      
     },
   };
 </script>
@@ -62,14 +61,16 @@
     <p></p>
   </fieldset>
   </div>
-  <!-- <div class="container">
+  <div class="container">
     <div class="d-grid gap-2 d-md-flex justify-content-center">
-      <button @click="customersPage()" class="btn btn-primary me-md-2">Customers</button>
+      <!-- <button @click="customersPage()" class="btn btn-primary me-md-2">Customers</button>
       <button @click="productsPage()" class="btn btn-primary me-md-2">Products</button>
       <button  @click="ordersPage()" class="btn btn-secondary">Orders</button>
-      <button  @click="cartsPage()" class="btn btn-primary">Carts</button>
+      <button  @click="cartsPage()" class="btn btn-primary">Carts</button> -->
     </div>
-  </div> -->
+  </div>
+
+
 </template>
 
 <style scoped>

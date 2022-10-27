@@ -43,7 +43,7 @@
   	<nav  class="navbar navbar-expand-md navbar-dark bg-dark">
   <div class="container">
     <a class="navbar-brand d-md-none d-xs-block py-3" href="#">
-      <img src="/static_files/images/logos/beer_white.png" height="40" alt="Company Logo">
+      <img src="" height="40" alt="Company Logo">
     </a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -131,7 +131,7 @@
 </nav>
 <div class="text-center p-3 d-none d-md-block">
   <a href="/">
-  <img src="/uploads/owl logo.png" height="50" alt="Company Logo">
+  <img src="/uploads/owllogo.png" height="50" alt="Company Logo">
 </a>
 </div>
       <RouterView></RouterView>
