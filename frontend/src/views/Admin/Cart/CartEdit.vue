@@ -28,7 +28,7 @@
         //created function
     created() {
     // Variable that stores the "find specific employee" route
-      let apiURL = `${import.meta.env.VITE_VUE_APP_ROOT_URL}/Cart/${this.$route.query.id}`;
+      let apiURL = `${import.meta.env.VITE_VUE_APP_ROOT_URL}/Cart/fetchOne/${this.$route.query.id}`;
       axios.get(apiURL).then((res) => {
           this.Cart = res.data[0];
           this.items = JSON.parse(this.Cart.ProductsJSON)

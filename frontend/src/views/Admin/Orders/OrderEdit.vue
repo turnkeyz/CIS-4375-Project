@@ -15,7 +15,8 @@
         // CartID: '',
         errors:[],
         items:[],
-        formatted_date:[]
+        formatted_date:[],
+        formatted_delivery_date:[]
       };
     },
     mounted(){
@@ -29,7 +30,10 @@
           this.Orders = res.data[0];
           this.items = JSON.parse(this.Orders.ProductsJSON)
           let date = this.Orders.DateTimeOrdered
+          let del_date = this.Orders.DeliveryDateTime
           this.formatted_date = formatDateTimeFromSQLTOJS(date)
+          this.Orders.DeliveryDateTime = formatDateTimeFromSQLTOJS(del_date)[1]
+
         })
         .catch((error) => {
           console.log(error);
@@ -55,7 +59,7 @@
         })
       },
 
-      handleSubmitForm(pid){
+      handleSubmitForm(oid){
         this.errors=[]
         //validations for required or formatted fields
         if(!this.Orders.OrderID){
@@ -84,7 +88,6 @@
        
         this.Orders.ProductsJSON = JSON.stringify(this.items)
         // this.Orders.Subtotal=this.total
-       
         //only run if no errors
         if(this.errors.length === 0){
             let apiURL = `${import.meta.env.VITE_VUE_APP_ROOT_URL}/Orders/update/${oid}`;
@@ -105,7 +108,7 @@
 
 <template>
     <div class="container">
-      <h1 class="mb-5">Customer:{{Orders.CustomerID}} ID#{{Orders.OrderID}}</h1>
+      <h1 class="mb-5">{{Orders.FirstName}} {{Orders.LastName}} (Cart ID#{{Orders.CartID}})</h1>
     <div class="wrapper m-5"></div>
       <div class="table1">
         <form @submit.prevent="handleSubmitForm(Orders.OrderID)" novalidate>
@@ -132,7 +135,7 @@
           </tr>
           <tr>
             <th>Date Ordered</th>
-            <td>{{formatted_date[0]}}</td>
+            <td>{{formatted_date[1]}}</td>
           </tr>
           <tr>
             <th>Status</th>
@@ -157,7 +160,13 @@
           </tr>
           <tr>
             <th>Delivery Date</th>
-            <td>{{Orders.DeliveryDateTime}}</td>
+            <td><input type="text" class="form-control" reauired min=1 v-model="Orders.DeliveryDateTime" 
+              pattern="(?:19|20)[0-9]{2}-(?:(?:0[1-9]|1[0-2])-(?:0[1-9]|1[0-9]|2[0-9])|(?:(?!02)(?:0[1-9]|1[0-2])-(?:30))|(?:(?:0[13578]|1[02])-31))">
+              <small id="phoneHelpBlock" class="form-text text-muted">
+                YYYY-MM--DD
+              </small>
+            </td>
+            <!-- <td>{{Orders.DeliveryDateTime}}</td> -->
           </tr>
           <tr>
             <th>Products</th>
