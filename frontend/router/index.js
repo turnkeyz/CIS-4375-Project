@@ -49,6 +49,11 @@ const routes = [
     name: "Custom",
     component:() => import('../src/views/ProductPages/Custom.vue'),
   },
+  {
+    path:"/order-form",
+    name:'order-form',
+    component:() =>import('../src/views/ProductPages/OrderForm.vue')
+  },
 
     //ADMIN ===================================================
   {

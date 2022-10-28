@@ -112,8 +112,10 @@
             <li><a class="dropdown-item" href="/cakes">Cakes</a></li>
             <li><a class="dropdown-item" href="/breads">Breads</a></li>
             <li><a class="dropdown-item" href="/pastries">Pastries</a></li>
-            <li><a class="dropdown-item" href="/custom">Custom Orders</a></li>
             <li><a class="dropdown-item" href="/cakecups">Cake Cups</a></li>
+            <li><a class="dropdown-item" href="/order-form">Order Form</a></li>
+            <li><a class="dropdown-item" href="/Custom"> Custom</a></li>
+            
           </ul>
         </div>
         <li v-if="!$route.meta.hideNavbar" class="nav-item">
