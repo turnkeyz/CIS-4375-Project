@@ -57,7 +57,7 @@
         
         <!-- Dashboard navigation -->
         <li v-if="$route.meta.hideNavbar" class="nav-item">
-          <a class="nav-link mx-2 active" aria-current="page" href="/dashboard">Home</a>
+          <a class="nav-link mx-2 active" aria-current="page" href="/dashboard">DashBoard</a>
         </li>
         <div v-if="$route.meta.hideNavbar" class="dropdown">
           <a class="nav-link dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">

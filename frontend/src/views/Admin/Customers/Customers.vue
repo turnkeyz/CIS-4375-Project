@@ -61,7 +61,7 @@
             <table class="table table-hover table-responsive table-bordered">
                 <thead class="table-light">
                     <tr>
-                        <th scope="col">#</th>
+                        <th scope="col">Customer #</th>
                         <th scope="col">First Name</th>
                         <th scope="col">Last Name</th>
                         <th scope="col">Email</th>

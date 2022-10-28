@@ -181,8 +181,15 @@
             <td><textarea class="form-control" rows="5" v-model="Orders.CustomerNotes" disabled></textarea></td>
           </tr>
         </tbody>
+
+        <tfoot>
+          <tr>
+            <td colspan="3">**edit Order allows for modifying of Status, Delivery Date, Called back.</td>
+          </tr>
+        </tfoot>
+
         </table>
-        <p>**edit Order allows for modifying of Status, Delivery Date, Called back</p>
+        <p></p>
 
           <div class="d-grid gap-2 d-md-flex justify-content-md-end">
             <button type="submit" class="btn btn-success me-md-2">Update</button>

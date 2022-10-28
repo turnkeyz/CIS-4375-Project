@@ -99,7 +99,7 @@
 
 <template>
     <div class="container">
-    <h1 class="mb-5">Customer:{{Cart.CustomerID}} ID#:{{Cart.CartID}}</h1>
+    <h1 class="mb-5">Cart ID#:{{Cart.CartID}} </h1>
     <div class="wrapper m-5"></div>
     <div class="table1">
       <table class="table table-light caption-top">
@@ -112,13 +112,13 @@
             <td>{{ Cart.CartID }}</td>
           </tr>
           <tr>
-            <th>Customer ID</th>
-            <td>{{ Cart.CustomerID }}</td>
+            <th>Customer</th>
+            <td>ID#{{ Cart.CustomerID }} {{Cart.FirstName}} {{Cart.LastName}}</td>
           </tr>
           <tr>
             <th>Products</th>
             <!-- <td>{{ Cart.ProductsJSON }}</td> -->
-            <tr v-for="item in items" :key="item.ProductID">({{item.ProductID}}) {{item.ProductName}} x{{item.Quantity}}</tr>
+            <tr class="d-flex p-2 bd-highlight" v-for="item in items" :key="item.ProductID">({{item.ProductID}}) {{item.ProductName}} x{{item.Quantity}}</tr>
             <!-- <td v-for="item in Cart.ProductsJSON" :key="item.ProductsJSON">{{JSON.stringify(JSON.parse(item))}}</td> -->
           </tr>
           <tr>

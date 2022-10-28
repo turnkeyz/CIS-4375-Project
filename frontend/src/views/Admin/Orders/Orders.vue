@@ -60,7 +60,7 @@
                 <thead class="table-light">
                     <tr>
                         <th scope="col">Order #</th>
-                        <th scope="col">Customer ID</th>
+                        <th scope="col">Customer</th>
                         <th scope ="col">Cart ID</th>
                         <th scope="col">Call Back</th>
                         <th scope="col">Status</th>
@@ -73,7 +73,7 @@
                 <tbody class="table-group-divider table-divider-color">
                     <tr v-for="Order in Orders" :key="Order.OrderID">
                         <td>{{Order.OrderID}}</td>
-                        <td>{{Order.CustomerID}}</td>
+                        <td>{{Order.FirstName}} {{Order.LastName}} (#{{Order.CustomerID}})</td>
                         <td>{{Order.CartID}}</td>
                         <td>{{Order.CalledBackValue}}</td>
                         <td>{{Order.Status}}</td>
@@ -89,6 +89,7 @@
                         </td>
                     </tr>
                 </tbody>
+               
             </table>
         </div>
     </div>

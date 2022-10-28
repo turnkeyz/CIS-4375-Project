@@ -60,7 +60,7 @@
             <table class="table table-hover table-responsive table-bordered">
                 <thead class="table-light">
                     <tr>
-                        <th scope="col">#</th>
+                        <th scope="col">Product #</th>
                         <th scope="col">Category</th>
                         <th scope="col">Name</th>
                         <th scope="col">Price</th>
@@ -71,7 +71,7 @@
                 <tbody class="table-group-divider table-divider-color">
                     <tr v-for="Product in Products" :key="Product">
                         <td>{{Product.ProductID}}</td>
-                        <td>{{Product.CategoryID}}</td>
+                        <td>{{Product.CategoryName}}</td>
                         <td>{{Product.ProductName}}</td>
                         <td>{{Product.Price}}</td>
                         

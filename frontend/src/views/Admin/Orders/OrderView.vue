@@ -108,8 +108,8 @@
         }
       },
       sendUpdate(){
-        // sendInvoice(this.Orders)
-        console.log('not connected')
+        sendInvoice(this.Orders)
+        // console.log('not connected')
       }
     },
   };
@@ -117,7 +117,7 @@
 
 <template>
     <div class="container">
-    <h1 class="mb-5">ID#{{Orders.OrderID}}</h1>
+    <h1 class="mb-5">Order ID#{{Orders.OrderID}}</h1>
     <div class="wrapper m-5"></div>
     <div class="table1">
       <table class="table table-light caption-top">
@@ -159,7 +159,7 @@
           </tr>
           <tr>
             <th>Products</th>
-            <tr v-for="item in items" :key="item">({{item.ProductID}}) {{item.ProductName}} x{{item.Quantity}}</tr>
+            <tr class="d-flex p-2 bd-highlight" v-for="item in items" :key="item">({{item.ProductID}}) {{item.ProductName}} x{{item.Quantity}}</tr>
           </tr>
           <tr>
             <th>Subtotal</th>
@@ -170,14 +170,27 @@
             <td><textarea disabled class="form-control" rows="5" v-model="Orders.CustomerNotes"></textarea></td>
           </tr>
         </tbody>
+        <tfoot>
+          <tr>
+            <td colspan="3">**edit Cart allows for modifying of Products, Subtotal, Customer Notes, & CustomerID</td>
+          </tr>
+          <tr>
+            <td colspan="3">**edit Order allows for modifying of Status, Delivery Date, Call backs, & Payment</td>
+          </tr>
+        </tfoot>
       </table>
-      <p>**edit cart allows for modifying of Products, Subtotal, Customer Notes, CustomerID</p>
-      <p>**edit Order allows for modifying of Status, Delivery Date, Called back</p>
       </div>
       <div class="d-grid gap-2 d-md-flex justify-content-md-end">
         <button @click="showEdit(Orders.OrderID)" class="btn btn-secondary me-md-2">Edit</button>
-        <button @click="cancelShow()" class="btn btn-primary me-md-2">Back</button>
+        <button @click="cancelShow()" class="btn btn-primary me-md-2">Cancel</button>
         <button @click="sendUpdate()" class="btn btn-primary">Send Invoice</button>
       </div>
     </div>
 </template>
+
+<style>
+  .productRow{
+    width: 100%;
+    max-width: 100%;
+  }
+</style>

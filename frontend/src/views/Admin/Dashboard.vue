@@ -39,6 +39,7 @@
 </script>
 
 <template>
+  <div class="container">
   <div>
     <h1 class="text-center mb-5">2022 Reports</h1>
     <fieldset class='form-control mb-5'>
@@ -70,7 +71,7 @@
     </div>
   </div>
 
-
+</div>
 </template>
 
 <style scoped>

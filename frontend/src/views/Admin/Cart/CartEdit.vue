@@ -50,11 +50,11 @@
           this.Products = res.data
         })
 
-        let apiURL3=`${import.meta.env.VITE_VUE_APP_ROOT_URL}/Orders/back/${this.$route.query.id}`;
-        axios.get(apiURL3).then((res) => {
-            this.Order = res.data
-            this.oid = this.Order.OrderID
-        })
+        // let apiURL3=`${import.meta.env.VITE_VUE_APP_ROOT_URL}/Orders/fetchOne/${this.$route.query.id}`;
+        // axios.get(apiURL3).then((res) => {
+        //     this.Order = res.data
+        //     this.oid = this.Order.OrderID
+        // })
     },
     methods: {
       delProduct(id) {
