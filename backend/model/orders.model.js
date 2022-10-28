@@ -8,7 +8,8 @@ Orders.findAllwithOrderID = () => {
   return new Promise((resolve,  reject) => {
     sql.connect(sqlConfig, function (err, result) {
       var request = new sql.Request().input("pid", param_id);
-      request.query(`Select TOP 1 o.OrderID, c.CartID, c.CustomerID, c.ProductsJSON, c.Customization, c.CustomerNotes, c.Subtotal, o.DateTimeOrdered, o.DeliveryDateTime, o.Status, o.CalledBackValue 
+      request.query(`Select TOP 1 o.OrderID, c.CartID, c.CustomerID, c.ProductsJSON, c.Customization, c.CustomerNotes, c.Subtotal, 
+      o.DateTimeOrdered, o.DeliveryDateTime, o.Status, o.CalledBackValue 
       FROM Orders as o
       LEFT JOIN Cart as c 
       ON o.CartID = c.CartID
@@ -28,9 +29,11 @@ Orders.findAllFromOrders = () => {
       var request = new sql.Request();
       request.query(`
       Select c.CartID, c.ProductsJSON, c.Customization, c.CustomerNotes, c.Subtotal, 
-      o.OrderID, o.DateTimeOrdered, o.DeliveryDateTime, o.Status, o.CalledBackValue, o.PaymentStatus
+      o.OrderID, o.DateTimeOrdered, o.DeliveryDateTime, o.Status, o.CalledBackValue, o.PaymentStatus,
+      cu.CustomerID, cu.FirstName, cu.LastName
       FROM Orders as o
-      LEFT JOIN Cart as c ON o.CartID = c.CartID;`, (err, res) => {
+      LEFT JOIN Cart as c ON o.CartID = c.CartID
+      LEFT JOIN Customers as cu ON cu.CustomerID = c.CustomerID;`, (err, res) => {
         if (err) reject(err);
           console.log(res.recordset)
           return resolve(res.recordset); // FETCHING ALL DATA

@@ -60,8 +60,8 @@
             <table class="table table-hover table-responsive table-bordered">
                 <thead class="table-light">
                     <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">Customer ID</th>
+                        <th scope="col">Cart #</th>
+                        <th scope="col">Customer #</th>
                         <th scope="col">Subtotal</th>
                         <th scope="col">Custom</th>
                 
