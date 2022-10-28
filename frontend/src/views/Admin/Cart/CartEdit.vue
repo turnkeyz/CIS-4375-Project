@@ -17,6 +17,7 @@
         items:[],
         item:{},
         total:'',
+        edit:"",
 
         Order: {},
         oid:'',
@@ -33,6 +34,12 @@
           this.Cart = res.data[0];
           this.items = JSON.parse(this.Cart.ProductsJSON)
           this.total = this.Cart.Subtotal
+          
+          if(this.$route.query.e === true || this.$route.query.e === 'true'){
+            this.edit=true
+          }else{
+            this.edit=false
+          }
         })
         .catch((error) => {
           console.log(error);
@@ -61,15 +68,6 @@
             });
         }
       },
-
-      backOrder(id){
-        // this.$router.push({
-        //     name:'Orders-View',
-        //     query:{id:id}
-        this.$router.go(-1)
-        // })
-
-      },
       addProduct(){
         this.$router.push('/Product-form')
       },
@@ -78,6 +76,9 @@
                 name:'Cart',
                 query:{id:id}
             })
+      },
+      goBack(){
+        this.$router.go(-1)
       },
       handleSubmitForm(pid){
         this.errors=[]
@@ -231,11 +232,8 @@
         </table>
           <div class="d-grid gap-2 d-md-flex justify-content-md-end">
             <button type="submit" class="btn btn-success me-md-2">Update</button>
-
-            <!-- <button  @click="cancelEdit(Cart.CartID)" class="btn btn-secondary" type="button">Back to Cart</button> -->
-            <!-- <button @click="backOrder(Order.OrderID)" class="btn btn-secondary" type="button">Back to Order</button> -->
-
             <button  @click="cancelEdit(Cart.CartID)" class="btn btn-secondary" type="button">Cancel</button>
+            <button v-if="edit==true" @click="goBack" class="btn btn-secondary" type="button">Back to Order</button>
           </div>
         </form>
         <p v-if="errors.length">

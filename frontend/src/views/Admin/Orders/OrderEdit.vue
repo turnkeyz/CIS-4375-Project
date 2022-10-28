@@ -55,7 +55,7 @@
       editProduct(id){
         this.$router.push({
             name:'cart-edit',
-            query:{id:id}
+            query:{id:id, e:true}
         })
       },
 
