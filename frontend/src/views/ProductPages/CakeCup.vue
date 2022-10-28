@@ -34,8 +34,8 @@
      <div class="container py-5">
       <h1 class="text-center mb-5"><strong>Cake Cups</strong></h1>
       <!-- next two lines are something that may need to be looked back on for troubleshooting. -->
-      <div v-for="row in cakecups" :key="row.ProductID" class="row">
-          <div v-for="item in row" :key="item" class="col-lg-4 col-md-6 mb-4">
+      <div v-for="row in cakes" :key="cakes.ProductID" class="row">
+          <div v-for="item in row" class="col-lg-4 col-md-6 mb-4">
               <div class="bg-image hover-zoom ripple shadow-1-strong rounded">
                 <img :src="'/uploads/cakecups/'+item.Img_url" class="w-100"/>
                 

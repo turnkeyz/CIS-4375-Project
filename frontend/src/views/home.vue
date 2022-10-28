@@ -114,7 +114,7 @@
         </div>
         <div class="col mt-3">
           <a href="/cakecups">
-            <img src="/uploads/cakecup.jpg" class="img-fluid" alt="image">
+            <img id="img" src="/uploads/cakecup.jpg" class="contain" alt="image">
           </a>
             <p>Cake Cups</p>
           <div class="input-group mb-3">
@@ -139,6 +139,12 @@
   width: 100% !important;
   height: 75vh;
   object-fit: cover;
+}
+img {
+float: left;
+width: 100px;
+height: 100px;
+object-fit: contain;
 }
 /* .col mt-3{
   width: 100% !important;
