@@ -1,10 +1,13 @@
 <template>    
     <div class="container">
         <div ref="content"> 
-            <h1 class="text-center"><strong>Order Form</strong></h1>
+            
 
-            <form id="element" @submit.prevent="handleSubmitForm" novalidate>
+            <form @submit.prevent="handleSubmitForm" novalidate>
+                <div id="element">
+                <p>Order Form</p>
                 <fieldset class="form-control mb-5">
+                    <br/>
                     <fieldset class="form-control mb-5">
                     <legend><strong>Customer Information</strong></legend>
 
@@ -25,6 +28,7 @@
                         <div class='col-sm-3'>
                             <label>Phone Number</label>
                             <input type="text" class="form-control" v-model="Order.Phone" required>
+                            <label></label>
                         </div>
                     </div>
 
@@ -129,7 +133,7 @@
                 </div>
             </fieldset>
             </fieldset>
-
+        </div>
                 <p v-if="errors.length">
                         <b>Please correct the following error(s):</b>
                         <ul>
@@ -137,8 +141,8 @@
                         </ul>
                     </p>
                     <!-- <button @click="ExportPDF" class="btn btn-success create" >Create</button> -->
-                    <button  class="btn btn-success create" >Submit</button>
-
+                    <button v-if="submitted==false" class="btn btn-success create" >Submit</button>
+                    <button type="button" @click="resetPage" class="btn btn-secondary" >Reset</button>
             </form>
         </div>
     </div>
@@ -177,6 +181,7 @@
     import jsPDF from 'jsPDF';  //unused jspdf
     import html2pdf from 'html2pdf.js';
     import {customOrder} from '../../methods/custom_order'
+    // import {pdfOrderDownload} from '../../methods/pdf_order_form'
 
     export default {
     // register child component
@@ -208,6 +213,7 @@
         show:false,
         currentCategory:'',
         currentPrice:'',
+        submitted:false,
       }
     },
     created(){
@@ -248,11 +254,12 @@
             
             this.Order.Subtotal=Number(this.total) 
             this.Order.ProductsJSON = this.items
-            customOrder(this.Order)
-        },
-        handleFileUpload(evt){
-            this.Products.Img_url = evt.target.files[0].name
-            this.file_type = evt.target.files[0].type
+            if(this.errors.length === 0){
+                this.submitted=true
+                customOrder(this.Order)
+                this.ExportPDF()
+            }
+            
         },
         Download(){     //old jspdf function --leaving in for testing
             const doc = new jsPDF()
@@ -264,11 +271,13 @@
 
             doc.save('order.pdf')
         },
-        ExportPDF(){        //creates an image rendering that is saved to a pdf
-            html2pdf(document.getElementById("element"), {
+        ExportPDF(){  //creates an image rendering that is saved to a pdf
+            if (window.confirm("Download Form?")){
+                html2pdf(document.getElementById("element"), {
                 margin: 1,
                 filename: "temp.pdf",
-            });
+                });
+            }
         },
         addProductLine(){
             this.item.Price = this.item.Products[2]*this.item.Quantity
@@ -297,7 +306,34 @@
             this.currentCategory = this.item.Products[3]
             this.currentPrice = this.item.Products[2]
             this.item.Quantity = 1
-        }
+        },
+        resetPage(){
+            
+                this.Order={
+                    FirstName:'',
+                    LastName:'',
+                    Email:'',
+                    Phone:'',
+                    PaymentType:'',
+                    ProductsJSON: [],
+                    CustomerNotes:'',
+                    Subtotal:0,
+                    ReturnCustomer:'No',
+                    CustomerID:'',
+                    Subtotal:0
+                    
+                }
+                this.items=[],
+                this.submitted=false
+                
+
+            
+            
+        
+        
+        
+            },
+        
 
     }, 
 };
