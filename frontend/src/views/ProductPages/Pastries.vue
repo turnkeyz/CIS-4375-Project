@@ -33,8 +33,8 @@
   <section style="background-color: #eee;">
      <div class="container py-5">
       <h1 class="text-center mb-5"><strong>Pastries</strong></h1>
-      <div v-for="row in cakes" :key="cakes.ProductID" class="row">
-          <div v-for="item in row" class="col-lg-4 col-md-6 mb-4">
+      <div v-for="row in cakes" :key="row" class="row">
+          <div v-for="item in row" :key="item" class="col-lg-4 col-md-6 mb-4">
               <div class="bg-image hover-zoom ripple shadow-1-strong rounded">
                 <img :src="'/uploads/pastries/'+item.Img_url" class="w-100"/>
                 

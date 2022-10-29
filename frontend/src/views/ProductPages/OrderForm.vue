@@ -78,7 +78,7 @@
             this.Order.ProductsJSON = this.items
             if(this.errors.length === 0){
                 this.submitted=true
-                // customOrder(this.Order)
+                customOrder(this.Order)
                 this.ExportPDF()
             }
             
@@ -222,7 +222,6 @@
                 </fieldset>
             <fieldset class="form-control mb-5">
                 <legend><strong>Products</strong></legend>
-                <!-- <div v-for="index in counter" :key="index"> -->
                     <div>
                     <div class="row mb-4">
                         <div class="col-sm-4">
@@ -273,9 +272,9 @@
                                 <tr v-for="index in items" :key="index">
                                     <td>{{index.ProductName}}</td>
                                     <td>{{index.CategoryName}}</td>
-                                    <td>{{index.Price}}</td>
+                                    <td>${{index.Price}}</td>
                                     <td>{{index.Quantity}}</td>
-                                    <td>{{index.Price * index.Quantity}}</td>
+                                    <td>${{index.Price * index.Quantity}}</td>
                                     <td>
                                         <tr>
                                             <td><button class="btn btn-danger btn-sm" type="button" @click.prevent="removeFromCart(index.ProductID)">Remove</button></td>
@@ -395,10 +394,7 @@
                 <ul>Carrot</ul>
                 <ul>Funfetti</ul>
             </ul>
-
-
         </fieldset>
-
     </div>
 </template>
 

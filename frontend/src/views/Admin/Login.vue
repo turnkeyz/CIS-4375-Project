@@ -43,11 +43,11 @@
             })
         },
         signInWithGoogle(){
-            console.log('here line 55')
             const provider = new GoogleAuthProvider()
             signInWithPopup(getAuth(), provider)
                 .then((result)=>{
-                    console.log(result.user)
+                    // console.log(result.user)
+                    console.log('Welcome!')
                     this.$router.replace({name:'Dashboard'})
                 })
                 .catch((error)=>{

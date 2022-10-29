@@ -31,7 +31,7 @@
           let del_date = this.Orders.DeliveryDateTime
           this.formatted_date = formatDateTimeFromSQLTOJS(date)
           this.formatted_delivery_date = formatDateTimeFromSQLTOJS(del_date)
-          console.log(this.Orders)
+          // console.log(this.Orders)
           // if(this.$route.query.e === true || this.$route.query.e === 'true'){
           //   this.edit=true
           // }else{
