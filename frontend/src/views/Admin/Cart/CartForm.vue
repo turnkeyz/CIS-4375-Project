@@ -23,6 +23,8 @@
         errors:[],
         file_type:'',
         total:0,
+        currentCategory:'',
+        currentPrice:''
       }
     },
     created(){
@@ -97,7 +99,12 @@
             let price = this.items[index].Price
             this.total = this.total - price
             this.items.splice(index, 1)
-        }
+        },
+        setCatPrice(){
+            this.currentCategory = this.item.Products[3]
+            this.currentPrice = this.item.Products[2]
+            this.item.Quantity = 1
+        },
     } 
 }
 </script>
@@ -132,7 +139,7 @@
                     <div class="row mb-4">
                         <div class="col-sm-4">
                             <label for='fName'>Name</label>
-                            <select class='form-select' v-model="item.Products">
+                            <select class='form-select' @change="setCatPrice()" v-model="item.Products">
                                 <option disabled value="">Select option</option>
                                 <option v-for="product in Products" :key="product.ProductID" :value="[product.ProductID, product.ProductName, product.Price]">
                                     {{product.ProductName}} / {{product.CategoryName}}/ ${{product.Price}}
@@ -141,7 +148,7 @@
                         </div> 
                         <div class="col-sm-2">
                             <label >Quantity</label>
-                            <input type="number" class="form-control" reauired min=1 v-model="item.Quantity">
+                            <input type="number" class="form-control" required min=1 v-model="item.Quantity">
                         </div>  
                         <div class="col-sm-2">
                             <label for='fName'>Custom</label>

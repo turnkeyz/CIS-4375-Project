@@ -121,7 +121,7 @@
 <template>
   <div v-if="edit==false">
     <div class="container">
-    <h1 class="mb-5">{{Products.ProductName}}ID#{{Products.ProductID}}</h1>
+    <h1 class="mb-5">Product View ID#{{Products.ProductID}}</h1>
     <div class="wrapper m-5"></div>
     <div class="table1">
       <table class="table table-light caption-top">
@@ -163,13 +163,13 @@
             <td>{{Products.Img_url}}</td>
           </tr>
           <tr>
-            <td>
+            <!-- <td>
               <img :src="'/uploads'+getCategory(Products.CategoryID, Products.Img_url)" class="w-100"/>
-            </td>
+            </td> -->
           </tr>
         </tbody>
       </table>
-      
+      <img :src="'/uploads/'+getCategory(Products.CategoryID, Products.Img_url)" class="w-100"/>
       </div>
       <div class="d-grid gap-2 d-md-flex justify-content-md-end">
         <button @click="addProduct()" class="btn btn-success me-md-2">New</button>
@@ -181,7 +181,7 @@
   
   <div v-if="edit==true">
     <div class="container">
-      <h1 class="mb-5">{{Products.ProductName}} ID#{{Products.ProductID}}</h1>
+      <h1 class="mb-5">Product Edit ID#{{Products.ProductID}}</h1>
     <div class="wrapper m-5"></div>
       <div class="table1">
         <form @submit.prevent="handleSubmitForm(Products.ProductID)" novalidate>
@@ -232,22 +232,26 @@
             <th>Image URL</th>
             <td>{{Products.Img_url}}</td>
           </tr>
-          <tr>
+          <!-- <tr>
             <td>
               <img :src="'/uploads/'+getCategory(Products.CategoryID, Products.Img_url)" class="w-100"/>
             </td>
-          </tr>
-          <tr>
+          </tr> -->
+          <!-- <tr>
             <td>
               <div class="mb-3">
                 <label for="formFileSm" class="form-label">File must be in Public/Uploads</label>
-                <!-- <input class="form-control form-control-sm" type="file" @change="handleFileUpload($event)"> -->
                 <input class="form-control form-control-sm" type="file" @change="handleFileUpload($event)">
               </div>
             </td>
-          </tr>
+          </tr> -->
         </tbody>
         </table>
+        <div class="mb-3">
+                <label for="formFileSm" class="form-label">File must be in Public/Uploads</label>
+                <input class="form-control form-control-sm" type="file" @change="handleFileUpload($event)">
+              </div>
+        <img :src="'/uploads/'+getCategory(Products.CategoryID, Products.Img_url)" class="w-100"/>
           <div class="d-grid gap-2 d-md-flex justify-content-md-end">
             <button type="submit" class="btn btn-success me-md-2">Update</button>
             <button  @click="cancelEdit()" class="btn btn-secondary" type="button">Cancel</button>
