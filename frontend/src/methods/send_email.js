@@ -39,8 +39,8 @@ function getQuantity(arr){
 function productString(products){
   let string = ''
   for (var i=0; i < products.length;i++ ){
-    string += `$${products[i].Price} ${products[i].ProductName} x${products[i].Quantity}|| `
-    string += "\n\n"
+    string += `$${products[i].Price} ${products[i].ProductName} x${products[i].Quantity}\n`
+    // string += "\n\n"
     
   }
   return string
