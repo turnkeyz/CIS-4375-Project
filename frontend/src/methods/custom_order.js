@@ -24,8 +24,8 @@ function customOrder(Order){
    function productString(products){
       let string = ''
       for (var i=0; i < products.length;i++ ){
-        string += `${products[i].ProductName} x${products[i].Quantity}|    |`
-        string += "\n\n"
+        string += `${products[i].ProductName} x${products[i].Quantity}\n`
+      //   string += '<br />'
         
       }
       return string
