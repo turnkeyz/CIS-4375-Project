@@ -26,7 +26,7 @@
       axios.get(apiURL).then((res) => {
           this.Cart = res.data[0];
           this.items = JSON.parse(this.Cart.ProductsJSON)
-          console.log(this.items)
+          // console.log(this.items)
           
           if(this.$route.query.e === true || this.$route.query.e === 'true'){
             this.edit=true
@@ -85,7 +85,7 @@
         //only run if no errors
         if(this.errors.length === 0){
             let apiURL = `${import.meta.env.VITE_VUE_APP_ROOT_URL}/Cart/update/${pid}`;
-            console.log('line 86', apiURL)
+            // console.log('line 86', apiURL)
             axios.put(apiURL, this.Cart).then(() => {
             this.edit=false
             }).catch(error => {

@@ -43,7 +43,7 @@
 
                 if (!this.Orders.PaymentStatus)
                 this.errors.push("Payment Status is required");
-                console.log(this.Orders)
+                // console.log(this.Orders)
             //only run if no errors
             if(this.errors.length === 0){
                 let apiURL = `${import.meta.env.VITE_VUE_APP_ROOT_URL}/Orders/add`;
