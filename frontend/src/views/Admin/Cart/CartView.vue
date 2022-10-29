@@ -13,7 +13,7 @@
         errors:[],
         Products:[],
         items:{},
-        
+  
       };
     },
     mounted(){
@@ -99,7 +99,7 @@
 
 <template>
     <div class="container">
-    <h1 class="mb-5">Cart ID#:{{Cart.CartID}} </h1>
+    <h1 class="mb-5">Cart View ID#:{{Cart.CartID}} </h1>
     <div class="wrapper m-5"></div>
     <div class="table1">
       <table class="table table-light caption-top">

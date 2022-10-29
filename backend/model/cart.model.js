@@ -7,7 +7,10 @@ Cart.findAllFromCart = () => {
   return new Promise((resolve, reject) => {
     sql.connect(sqlConfig, function (err, result) {
       var request = new sql.Request();
-      request.query(`SELECT * FROM Cart;`, (err, res) => {
+      request.query(`SELECT c.CartID, c.CustomerID, c.ProductsJSON, c.Customization, c.CustomerNotes, c.Subtotal,
+      cu.FirstName, Cu.LastName 
+       FROM Cart as c
+       LEFT JOIN Customers as cu ON cu.CustomerID = c.CustomerID ;`, (err, res) => {
         if (err) reject(err);
           console.log(res.recordset)
           return resolve(res.recordset); // FETCHING ALL DATA

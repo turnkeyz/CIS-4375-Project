@@ -21,6 +21,8 @@
 
         Order: {},
         oid:'',
+        currentCategory:'',
+        currentPrice:''
       };
     },
     mounted(){
@@ -114,7 +116,6 @@
                 console.log(error)
             });
         }
-        
       },
       addProductLine(){
             // this.item.ProductID=this.item.Products[0]
@@ -132,13 +133,18 @@
             this.total = this.total - (price*Quantity)
             this.items.splice(index, 1)
          },
+         setCatPrice(){
+            this.currentCategory = this.item.Products[3]
+            this.currentPrice = this.item.Products[2]
+            this.item.Quantity = 1
+        },
     },
   };
 </script>
 
 <template>
     <div class="container">
-      <h1 class="mb-5">Customer:{{Cart.CustomerID}} ID#{{Cart.CartID}}</h1>
+      <h1 class="mb-5">Cart Edit ID#{{Cart.CartID}}</h1>
     <div class="wrapper m-5"></div>
       <div class="table1">
         <form @submit.prevent="handleSubmitForm(Cart.CartID)" novalidate>
@@ -161,18 +167,18 @@
             <div class="row mb-4">
                         <div class="col-sm-4">
                             <label for='fName'>Name</label>
-                            <select class='form-select' v-model="item.Products">
+                            <select @change="setCatPrice()" class='form-select' v-model="item.Products">
                                 <option disabled value="">Select option</option>
                                 <option v-for="product in Products" :key="product.ProductID" :value="[product.ProductID, product.ProductName, product.Price]">
                                     {{product.ProductName}} / {{product.CategoryName}}/ ${{product.Price}}
                                 </option>
                             </select>
                         </div> 
-                        <div class="col-sm-1">
+                        <div class="col-sm-2">
                             <label >Quantity</label>
-                            <input type="number" class="form-control" reauired min=1 v-model="item.Quantity">
+                            <input type="number" class="form-control" required min=1 v-model="item.Quantity">
                         </div>  
-                        <div class="col-sm-1">
+                        <div class="col-sm-2">
                             <label for='fName'>Custom</label>
                             <select class='form-select' v-model="item.Custom">
                                 <option disabled value="">Select option</option>
@@ -180,7 +186,7 @@
                                 <option>No</option>
                             </select>
                         </div> 
-                        <div clas="col-sm-1">
+                        <div clas="col-sm-2">
                             <button @click="addProductLine()" class="btn btn-secondary" type="button">Add</button>
                         </div>
                     </div>
@@ -201,10 +207,10 @@
                                 <tr v-for="index in items" :key="index">
                                     <td>{{index.ProductName}}</td>
                                     <!-- <td>{{index.Products[1]}}</td> -->
-                                    <td>{{index.Price}}</td>
+                                    <td>${{index.Price}}</td>
                                     <td>{{index.Quantity}}</td>
                                     <td>{{}}</td>
-                                    <td>{{index.Price * index.Quantity}}</td>
+                                    <td>${{index.Price * index.Quantity}}</td>
                                     <td>
                                         <tr>
                                             <td><button class="btn btn-danger btn-sm" type="button" @click.prevent="removeFromCart(index.ProductID)">Remove</button></td>

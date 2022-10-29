@@ -61,7 +61,7 @@
                 <thead class="table-light">
                     <tr>
                         <th scope="col">Cart #</th>
-                        <th scope="col">Customer #</th>
+                        <th scope="col">Customer</th>
                         <th scope="col">Subtotal</th>
                         <th scope="col">Custom</th>
                 
@@ -70,9 +70,9 @@
                 </thead>
                 <tbody class="table-group-divider table-divider-color">
                     <tr v-for="Cart in Cart" :key="Cart.CartID">
-                        <td>{{Cart.CartID}}</td>
-                        <td>{{Cart.CustomerID}}</td>
-                        <td>{{Cart.Subtotal}}</td>
+                        <td>{{Cart.CartID}} </td>
+                        <td>(#{{Cart.CustomerID}}) {{Cart.FirstName}} {{Cart.LastName}}</td>
+                        <td>${{Cart.Subtotal}}</td>
                         <td>{{Cart.Customization}}</td>
                         <td>
                             <tr>

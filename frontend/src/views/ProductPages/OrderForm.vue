@@ -195,7 +195,7 @@
 
                     <div class="row mb-5">
                         <div class="col-sm-3">
-                            <label>Payement Type</label>
+                            <label>Payment Type</label>
                             <select class='form-select' v-model="Order.PaymentType " required>
                                 <option disabled value="">Select option</option>
                                 <option>Cash</option>
@@ -243,7 +243,7 @@
                         </div>
                         <div class="col-sm-2">
                             <label >Quantity</label>
-                            <input type="number" class="form-control" reauired min=1 v-model="item.Quantity" required>
+                            <input type="number" class="form-control" min=1 v-model="item.Quantity" required>
                         </div>  
                         <div class="col-sm-2">
                             <label>Subtotal</label>
