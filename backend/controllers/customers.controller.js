@@ -1,4 +1,3 @@
-const { reset } = require("nodemon");
 const Customers = require("../model/customers.model.js");
 
 // add customer
