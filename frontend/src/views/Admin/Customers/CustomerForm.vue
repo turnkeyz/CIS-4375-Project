@@ -85,7 +85,7 @@
 </script>
 
 <template>
-    <div class="container">
+    <div class="container-sm">
     <div>
         <h1 class="text-center">New Customer Form</h1>
         <!-- create volunteer  -->
@@ -138,7 +138,6 @@
                     <div class="col-sm-12">
                         <label class="form-label">Notes</label>
                         <textarea class="form-control" rows="5" v-model="customers.Notes"></textarea>
-
                     </div>
                     
                 </div>
@@ -158,7 +157,7 @@
                     </div>
                 </div>
             </fieldset>
-
+            <button class="btn btn-success create" >Create</button>
             <p v-if="errors.length">
                 <b>Please correct the following error(s):</b>
                 <ul>
@@ -166,7 +165,7 @@
                 </ul>
             </p>
 
-            <button class="btn btn-success create" >Create</button>
+            
 
         </form>
         

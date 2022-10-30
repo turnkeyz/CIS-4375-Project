@@ -1,6 +1,16 @@
 <script>
-
+  import axios from "axios";
   export default {
+    
+    data(){
+      return{
+        cartsNotInOrder:[],
+        topSellingProduct:[],
+        ordersThisYear:[],
+        topFiveSellers:[],
+        monthlyRevenue:[]
+      }
+    },
     components: {
     
 },
@@ -19,7 +29,26 @@
       },
         //created function
     created() {
-    
+      let cartApiUrl=`${import.meta.env.VITE_VUE_APP_ROOT_URL}/Graphs/CartNotInOrder`
+      axios.get(cartApiUrl).then((res)=>{
+        this.cartsNotInOrder=res.data
+      })
+      // let productApiUrl=`${import.meta.env.VITE_VUE_APP_ROOT_URL}/Graphs/MonthlySellerName`
+      // axios.get(productApiUrl).then((res)=>{
+      //   this.topSellingProduct=res.data
+      // })
+      // let ordersApiUrl=`${import.meta.env.VITE_VUE_APP_ROOT_URL}/Graphs/OrdersThisYear`
+      // axios.get(ordersApiUrl).then((res)=>{
+      //   this.ordersThisYear=res.data
+      // })
+      // let topApiUrl=`${import.meta.env.VITE_VUE_APP_ROOT_URL}/Graphs/TopFiveByName`
+      // axios.get(topApiUrl).then((res)=>{
+      //   this.topFiveSellers=res.data
+      // })
+      // let monthlyApiUrl=`${import.meta.env.VITE_VUE_APP_ROOT_URL}/Graphs/MonthlyRevenue`
+      // axios.get(monthlyApiUrl).then((res)=>{
+      //   this.monthlyRevenue=res.data
+      // })
     },
     methods: {
       cartsPage() {
@@ -39,7 +68,12 @@
 </script>
 
 <template>
-  <div class="container">
+  <div class="container mb-5">
+
+
+  </div>
+
+  <div class="container mb-5">
   <div>
     <h1 class="text-center mb-5">2022 Reports</h1>
     <fieldset class='form-control mb-5'>
