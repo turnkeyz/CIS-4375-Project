@@ -3,12 +3,12 @@ module.exports = app => {
     
     app.get("/Graphs/CartNotInOrder", Graphs.getAllCartsNotInOrder);
     
-    // app.get("/Graphs/MonthlySellerName", Graphs.getMonthlySellerByName);
+    app.get("/Graphs/MonthlySellerName", Graphs.getMonthlySellerByName);
     
-    // app.get("/Graphs/OrdersThisYear", Graphs.getOrdersInLastYear);
+    app.get("/Graphs/OrdersThisYear", Graphs.getOrdersInLastYear);
     
-    // app.get("/Graphs/TopFiveByName", Graphs.getYearlyTopFiveByName);
+    app.get("/Graphs/TopFiveByName", Graphs.getYearlyTopFiveByName);
     
-    // app.get("/Graphs/MonthlyRevenue", Graphs.getRevenueByMonth);
+    app.get("/Graphs/MonthlyRevenue", Graphs.getRevenueByMonth);
   
 };
