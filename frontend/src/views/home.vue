@@ -9,7 +9,8 @@
 </script>
     
 <template>
-  <main>
+  <!-- <main> -->
+    <div class="container-fluid">
     <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
       <div class="carousel-indicators">
         <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
@@ -48,15 +49,20 @@
             <span class="visually-hidden">Next</span>
           </button>
       </div>
-
-
-
-      <div class="container">
-        <h1 class="text-center mb-5"><strong>Our Products</strong></h1>
-        <p text-center>Our items our made at home</p>
       </div>
 
-      <div class="container">
+
+      
+      <div class="container mt-5 mb-5">
+        <h1 class="text-center mb-3"><strong>Our Products</strong></h1>
+        <p class="text-center">Staring two years ago in Mom's kitchen, Owl B Baking Bakery has been making the neighborhoods favorite baked goods from scratch, 
+          in small batches, and using the finest ingredients. Custom availables are also available for any item not displayed. Just send 
+          us a description and picture and we'll have it made!
+        </p>
+      </div>
+      
+
+      <div class="container mb-5">
       <div class="row row-cols-1 row-cols-md-2 row-cols-md-3">
           <div class="col mt-3">
             <a href="/cookies">
@@ -130,21 +136,17 @@
         </div>
       </div>
     </div>
-  </main>
+  <!-- </main> -->
 </template>
 
-<style>
+<style scoped>
  
-.w-100 {
-  width: 100% !important;
-  height: 75vh;
-  object-fit: cover;
-}
-/* .col mt-3{
+/* .w-100 {
   width: 100% !important;
   height: 75vh;
   object-fit: cover;
 } */
+
 
 
 </style>

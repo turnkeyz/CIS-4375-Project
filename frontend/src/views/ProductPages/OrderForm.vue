@@ -307,7 +307,7 @@
     </div>
     <br/>
     <!-- Completed Ordered form -->
-    <div ref="content" v-show="submitted" class="container">
+    <div ref="content" v-show="submitted" class="container mb-5">
         <p>Thank you for your purchase</p>
         <form id="element-to-print" >
             <fieldset class="form-control mb-5">
@@ -373,7 +373,7 @@
         <button type="button" @click="resetPage" class="btn btn-secondary" >Reset</button>
     </div>
         
-    <div class="container">
+    <div class="container mt-5 mb-5">
         <h2 class="text-center"><strong>Custom Orders</strong></h2>
         <br/>
         <fieldset>
