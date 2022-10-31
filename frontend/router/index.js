@@ -25,9 +25,9 @@ const routes = [
     component:() => import('../src/views/ProductPages/Cakes.vue'),
   },
   {
-    path: "/cakes",
-    name: "Cakes",
-    component:() => import('../src/views/ProductPages/Cakes.vue'),
+    path: "/cakecups",
+    name: "CakeCups",
+    component:() => import('../src/views/ProductPages/CakeCup.vue'),
   },
   {
     path: "/cookies",

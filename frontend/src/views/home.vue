@@ -50,7 +50,9 @@
           </button>
       </div>
       </div>
-
+      <!--this div above seems to be causing an issue because it's being closed too soon and there can only be one root element.
+          made it hard to test effectively on 10/30/2022.
+          just making a note here cause it might be on my end but I don't want to forget - Kyler -->
 
       
       <div class="container mt-5 mb-5">
@@ -120,7 +122,7 @@
         </div>
         <div class="col mt-3">
           <a href="/cakecups">
-            <img src="/uploads/cakecup.jpg" class="img-fluid" alt="image">
+            <img id="img" src="/uploads/cakecup.jpg" class="contain" alt="image">
           </a>
             <p>Cake Cups</p>
           <div class="input-group mb-3">
@@ -141,11 +143,17 @@
 
 <style scoped>
  
-/* .w-100 {
+.w-100 {
   width: 100% !important;
   height: 75vh;
   object-fit: cover;
-} */
+}
+img {
+float: left;
+width: 100px;
+height: 100px;
+object-fit: contain;
+}
 
 
 
