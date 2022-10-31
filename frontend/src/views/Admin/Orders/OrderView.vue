@@ -31,7 +31,7 @@
           let del_date = this.Orders.DeliveryDateTime
           this.formatted_date = formatDateTimeFromSQLTOJS(date)
           this.formatted_delivery_date = formatDateTimeFromSQLTOJS(del_date)
-          console.log(this.Orders)
+          // console.log(this.Orders)
           // if(this.$route.query.e === true || this.$route.query.e === 'true'){
           //   this.edit=true
           // }else{
@@ -117,7 +117,7 @@
 
 <template>
     <div class="container">
-    <h1 class="mb-5">Order ID#{{Orders.OrderID}}</h1>
+    <h1 class="mb-5">Order View ID#{{Orders.OrderID}}</h1>
     <div class="wrapper m-5"></div>
     <div class="table1">
       <table class="table table-light caption-top">
@@ -188,9 +188,3 @@
     </div>
 </template>
 
-<style>
-  .productRow{
-    width: 100%;
-    max-width: 100%;
-  }
-</style>

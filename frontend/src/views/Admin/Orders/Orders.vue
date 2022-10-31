@@ -14,7 +14,7 @@
       let apiUrl=`${import.meta.env.VITE_VUE_APP_ROOT_URL}/Orders/fetchAll`
       axios.get(apiUrl).then((res)=>{
         this.Orders=res.data
-        console.log(this.Orders)
+        // console.log(this.Orders)
       })
     },
     methods:{

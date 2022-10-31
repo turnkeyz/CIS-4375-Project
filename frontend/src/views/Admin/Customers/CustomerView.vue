@@ -102,8 +102,8 @@ export default {
 
 <template>
   <div v-if="edit==false">
-    <div class="container">
-    <h1 class="mb-5">{{customers.FirstName}} {{customers.LastName}} ID#{{customers.CustomerID}}</h1>
+    <div class="container mb-5">
+    <h1 class="mb-5">Customer View ID#{{customers.CustomerID}}</h1>
     <div class="wrapper m-5"></div>
     <div class="table1">
       <table class="table table-light caption-top">
@@ -152,8 +152,8 @@ export default {
   </div>
   
   <div v-if="edit==true">
-    <div class="container">
-      <h1 class="mb-5">{{customers.FirstName}} {{customers.LastName}} ID#{{customers.CustomerID}}</h1>
+    <div class="container mb-5">
+      <h1 class="mb-5">Edit Customer ID#{{customers.CustomerID}}</h1>
     <div class="wrapper m-5"></div>
       <div class="table1">
         <form @submit.prevent="handleSubmitForm(customers.CustomerID)" novalidate>
@@ -206,7 +206,7 @@ export default {
           </tr>
         </tbody>
         </table>
-          <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+          <div class="d-grid gap-2 d-md-flex justify-content-md-end mb-5">
             <button type="submit" class="btn btn-success me-md-2">Update</button>
             <button  @click="cancelEdit()" class="btn btn-secondary" type="button">Cancel</button>
           </div>

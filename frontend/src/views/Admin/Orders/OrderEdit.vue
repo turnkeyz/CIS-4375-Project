@@ -108,7 +108,7 @@
 
 <template>
     <div class="container">
-      <h1 class="mb-5">{{Orders.FirstName}} {{Orders.LastName}} (Cart ID#{{Orders.CartID}})</h1>
+      <h1 class="mb-5">Order Edit ID#{{Orders.CartID}}</h1>
     <div class="wrapper m-5"></div>
       <div class="table1">
         <form @submit.prevent="handleSubmitForm(Orders.OrderID)" novalidate>
@@ -170,7 +170,7 @@
           </tr>
           <tr>
             <th>Products</th>
-            <tr v-for="item in items" :key="item">({{item.ProductID}}) {{item.ProductName}} x{{item.Quantity}}</tr>
+            <tr class="d-flex p-2 bd-highlight" v-for="item in items" :key="item">({{item.ProductID}}) {{item.ProductName}} x{{item.Quantity}}</tr>
           </tr>
           <tr>
             <th>Subtotal</th>
@@ -194,7 +194,7 @@
           <div class="d-grid gap-2 d-md-flex justify-content-md-end">
             <button type="submit" class="btn btn-success me-md-2">Update</button>
             <button  @click="cancelEdit(Orders.OrderID)" class="btn btn-secondary" type="button">Cancel</button>
-            <button @click="editProduct(Orders.CartID)" class="btn btn-small" type="button">Edit Product</button>
+            <button @click="editProduct(Orders.CartID)" class="btn btn-small" type="button">Edit Cart</button>
           </div>
 
         </form>
@@ -207,3 +207,4 @@
       </div>
     </div>
 </template>
+

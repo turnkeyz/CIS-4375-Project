@@ -73,7 +73,7 @@
                         <td>{{Product.ProductID}}</td>
                         <td>{{Product.CategoryName}}</td>
                         <td>{{Product.ProductName}}</td>
-                        <td>{{Product.Price}}</td>
+                        <td>${{Product.Price}}</td>
                         
                         <td>
                             <tr>
