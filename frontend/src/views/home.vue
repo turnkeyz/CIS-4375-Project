@@ -9,7 +9,7 @@
 </script>
     
 <template>
-  <!-- <main> -->
+  <main>
     <div class="container-fluid">
     <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
       <div class="carousel-indicators">
@@ -122,7 +122,7 @@
         </div>
         <div class="col mt-3">
           <a href="/cakecups">
-            <img id="img" src="/uploads/cakecup.jpg" class="contain" alt="image">
+            <img id="img" src="/uploads/cakecup.jpg" class="img-fluid" alt="image">
           </a>
             <p>Cake Cups</p>
           <div class="input-group mb-3">
@@ -138,12 +138,14 @@
         </div>
       </div>
     </div>
-  <!-- </main> -->
+  
+  
+  </main>
 </template>
 
 <style scoped>
  
-.w-100 {
+/* .w-100 {
   width: 100% !important;
   height: 75vh;
   object-fit: cover;
@@ -153,7 +155,7 @@ float: left;
 width: 100px;
 height: 100px;
 object-fit: contain;
-}
+} */
 
 
 
