@@ -90,7 +90,6 @@
 
 <script>
     import axios from 'axios';
-    import jsPDF from 'jsPDF';  //unused jspdf
     import html2pdf from 'html2pdf.js';
 
     export default {
@@ -146,18 +145,6 @@
         handleFileUpload(evt){
             this.Products.Img_url = evt.target.files[0].name
             this.file_type = evt.target.files[0].type
-        },
-        Download(){     //old jspdf function --leaving in for testing
-            const doc = new jsPDF()
-
-            const newPDF = this.$refs.documents.innerHTML
-
-            doc
-            doc.text(newPDF, 15, 15, {
-                width: 480
-            })
-
-            doc.save('order.pdf')
         },
         ExportPDF(){        //creates an image rendering that is saved to a pdf
             html2pdf(document.getElementById("element"), {
