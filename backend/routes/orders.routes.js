@@ -17,5 +17,5 @@ module.exports = app => {
     app.put("/Orders/update/:oid", Orders.updateOrders);
   
     // delete order
-    app.delete("/Orders/delete", Orders.deleteOrders);
+    app.delete("/Orders/delete/:oid", Orders.deleteOrders);
   };

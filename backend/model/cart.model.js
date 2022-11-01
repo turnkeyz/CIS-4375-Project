@@ -67,6 +67,36 @@ Cart.insertCart = (obj) => {
   });
 };
 
+// ADD NEW Cart
+Cart.insertCartFromForm = (obj) => {
+  return new Promise((resolve, reject) => {
+    sql.connect(sqlConfig, function (err, result) {
+      // PARAMETERIZING QUERIES
+      var request = new sql.Request()
+      .input("cid", obj.CustomerID)
+      .input("p_json", obj.ProductsJSON)
+      .input("customization", obj.Customization)
+      .input("customer_notes", obj.CustomerNotes)
+      .input('subtotal', obj.Subtotal)
+
+      request.query(
+        `BEGIN 
+	        DECLARE @id INT
+	        SELECT @id = customerID from NewestCustomer
+	        Insert into Cart(CustomerID, ProductsJSON, Customization, CustomerNotes, [Subtotal])
+	        VALUES(@id, @p_json, @customization, @customer_notes, @subtotal)
+        END;`,
+
+        (err, res) => {
+          if (err) reject(err);
+            console.log(res);
+          return resolve(res); // ADDING NEW Cart
+        }
+      );
+    });
+  });
+};
+
 
 // UPDATE Cart
 Cart.updateCart = (param_id, obj) => {

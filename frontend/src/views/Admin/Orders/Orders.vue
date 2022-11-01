@@ -14,7 +14,7 @@
       let apiUrl=`${import.meta.env.VITE_VUE_APP_ROOT_URL}/Orders/fetchAll`
       axios.get(apiUrl).then((res)=>{
         this.Orders=res.data
-        // console.log(this.Orders)
+        console.log(this.Orders)
       })
     },
     methods:{
@@ -35,8 +35,9 @@
             })
         },
         delCart(id){
+            console.log(id)
             let apiUrl = `${import.meta.env.VITE_VUE_APP_ROOT_URL}/Orders/delete/${id}`
-            let resetArray = this.Orders.findIndex((i)=>i.CartID ===id)
+            let resetArray = this.Orders.findIndex((i)=>i.OrderID ===id)
         
             if(window.confirm("Are you sure you want to delete Cart?")){
                 axios.delete(apiUrl).then(()=>{
@@ -84,7 +85,7 @@
                                 <!-- <td><router-link :to="{name:'Order', query:{id:Order.OrderID, e:false}}" class="btn btn-light">...</router-link></td> -->
                                 <td><button @click="seeMore(Order.OrderID)" class="btn btn-light">...</button></td>
                                 <td><button @click="editOrder(Order.OrderID)" class="btn btn-secondary btn-sm">Edit</button></td>
-                                <td><button class="btn btn-danger btn-sm" @click.prevent="delCart(Cart.CartID)">Delete</button></td>
+                                <td><button class="btn btn-danger btn-sm" @click.prevent="delCart(Order.OrderID)">Delete</button></td>
                             </tr>
                         </td>
                     </tr>

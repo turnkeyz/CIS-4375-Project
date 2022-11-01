@@ -68,6 +68,7 @@
             sendPasswordResetEmail(auth, this.email)
             .then(()=>{
                 this.emailSending = false
+                
             })
             .catch(error=>{
                 this.emailSending = false
