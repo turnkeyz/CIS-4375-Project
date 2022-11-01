@@ -155,7 +155,22 @@ float: left;
 width: 100px;
 height: 100px;
 object-fit: contain;
-} */
+} 
+
+
+.carousel-caption p, h5{
+
+  background-color: aqua;
+  backdrop-filter: blur(5px); 
+  opacity: .50; 
+    filter: alpha(opacity=50); 
+    -ms-filter: "alpha(opacity=50)"; 
+    -khtml-opacity: .50; 
+    -moz-opacity: .50; FF lt 1.5, Netscape
+
+}
+
+
 
 
 
