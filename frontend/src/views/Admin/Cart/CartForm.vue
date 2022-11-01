@@ -90,9 +90,10 @@
         addProductLine(){
             this.item.Price = this.item.Products[2]*this.item.Quantity
             this.total = this.total + (this.item.Products[2]*this.item.Quantity)
-            let obj = {"ProductID":this.item.Products[0], "ProductName":this.item.Products[1], "Price":this.item.Products[2], "Quantity":this.item.Quantity}
+            let obj = {"ProductID":this.item.Products[0], "ProductName":this.item.Products[1], "Price":this.item.Products[2], "Quantity":this.item.Quantity} 
             this.items.push(obj)
             this.item = {}
+
         },
         removeFromCart(id){
             let index = this.items.findIndex(i=>i.Products[0]===id)
@@ -104,7 +105,17 @@
             this.currentCategory = this.item.Products[3]
             this.currentPrice = this.item.Products[2]
             this.item.Quantity = 1
+            let findCustom = this.currentCategory.search("Custom")
+            if(findCustom !== -1){
+                this.Cart.Customization = 1
+            }
         },
+        noteChange(){
+            if(this.Cart.CustomerNotes){
+                this.Cart.Customization = 1
+            }
+        
+        }
     } 
 }
 </script>
@@ -128,7 +139,7 @@
                     </div>  
                     <div class="col-sm-6">
                         <label>Notes</label>
-                        <textarea class="form-control" rows="1" v-model="Cart.CustomerNotes"></textarea>
+                        <textarea @change="noteChange" class="form-control" rows="1" v-model="Cart.CustomerNotes"></textarea>
                     </div>
                 </div>            
             </fieldset>
@@ -141,7 +152,7 @@
                             <label for='fName'>Name</label>
                             <select class='form-select' @change="setCatPrice()" v-model="item.Products">
                                 <option disabled value="">Select option</option>
-                                <option v-for="product in Products" :key="product.ProductID" :value="[product.ProductID, product.ProductName, product.Price]">
+                                <option v-for="product in Products" :key="product.ProductID" :value="[product.ProductID, product.ProductName, product.Price, product.CategoryName]">
                                     {{product.ProductName}} / {{product.CategoryName}}/ ${{product.Price}}
                                 </option>
                             </select>
@@ -152,10 +163,10 @@
                         </div>  
                         <div class="col-sm-2">
                             <label for='fName'>Custom</label>
-                            <select class='form-select' v-model="item.Custom">
+                            <select class='form-select' v-model="Cart.Customization">
                                 <option disabled value="">Select option</option>
-                                <option>Yes</option>
-                                <option>No</option>
+                                <option value="1">Yes</option>
+                                <option value="0">No</option>
                             </select>
                         </div> 
                         <div class="col-sm-2">
@@ -176,7 +187,7 @@
                                     <th scope="col">Product Name</th>
                                     <th scope="col">Price</th>
                                     <th scope="col">Quantity</th>
-                                    <th scope="col">Custom</th>
+                                    <!-- <th scope="col">Custom</th> -->
                                     <th scope="col">Total</th>
                                     <th></th>
                                 </tr>
@@ -186,7 +197,7 @@
                                     <td>{{index.ProductName}}</td>
                                     <td>{{index.Price}}</td>
                                     <td>{{index.Quantity}}</td>
-                                    <td>{{index.Custom}}</td>
+                                    <!-- <td>{{index.Custom}}</td> -->
                                     <td>{{index.Price * index.Quantity}}</td>
                                     
                                     <td>
