@@ -168,7 +168,7 @@ object-fit: contain;
     -khtml-opacity: .50; 
     -moz-opacity: .50; FF lt 1.5, Netscape
 
-}
+}*/
 
 
 
