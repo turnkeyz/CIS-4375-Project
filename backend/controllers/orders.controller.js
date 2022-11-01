@@ -32,6 +32,6 @@ exports.updateOrders = async (req, res) => {
 
 // delete order
 exports.deleteOrders = async (req, res) => {
-    const obj = await Orders.deleteOrdersById(req.body);
+    const obj = await Orders.deleteOrdersById(req.params.oid);
     res.send(obj);
 };

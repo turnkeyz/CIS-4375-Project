@@ -39,3 +39,8 @@ exports.getNames = async (req, res) => {
     const obj = await Customers.fetchAllNames();
     res.send(obj);
 };
+
+exports.getAllIDS = async (req, res) => {
+    const obj = await Customers.fetchAllIDS();
+    res.send(obj);
+};

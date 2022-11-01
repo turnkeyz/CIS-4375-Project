@@ -17,5 +17,7 @@ module.exports = app => {
   app.delete("/Cart/delete/:pid", Cart.deleteCart);
 
   app.get("/Cart/getIDs", Cart.getAllIds);
+
+  app.post("/Cart/form-add", Cart.insertNewCartFromForm)
   };
 
