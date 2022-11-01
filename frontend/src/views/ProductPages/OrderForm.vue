@@ -1,6 +1,5 @@
 <script>
     import axios from 'axios';
-    import jsPDF from 'jsPDF';  //unused jspdf
     import html2pdf from 'html2pdf.js';
     import {customOrder} from '../../methods/custom_order'
     // import {pdfOrderDownload} from '../../methods/pdf_order_form'
@@ -82,16 +81,6 @@
                 this.ExportPDF()
             }
             
-        },
-        Download(){     //old jspdf function --leaving in for testing
-            const doc = new jsPDF()
-            const newPDF = this.$refs.documents.innerHTML
-            doc
-            doc.text(newPDF, 15, 15, {
-                width: 480
-            })
-
-            doc.save('order.pdf')
         },
         ExportPDF(){  //creates an image rendering that is saved to a pdf
             if (window.confirm("Download Form?")){
