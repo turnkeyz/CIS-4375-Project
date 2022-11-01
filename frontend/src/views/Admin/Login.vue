@@ -1,13 +1,16 @@
 <script>
-    // import ref from 'vue'
-    import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, GoogleAuthProvider, signInWithPopup } from "firebase/auth"
+    import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, sendPasswordResetEmail, GoogleAuthProvider, signInWithPopup } from "firebase/auth"
+    
+    
     export default {
       data() {
         return {
             email:'',
             password:'',
             errMsg:'',
-            errors:""
+            errors:"",
+            emailSending:false,
+            emailSent:false
         };
       },
       methods:{
@@ -53,6 +56,41 @@
                 .catch((error)=>{
 
                 })
+        },
+        forgotPassword(){
+            const auth = getAuth()
+            if(!this.email){
+                this.errMsg = 'Please type in a valid email address.'
+                return
+            }
+            
+            this.emailSending = true
+            sendPasswordResetEmail(auth, this.email)
+            .then(()=>{
+                this.emailSending = false
+            })
+            .catch(error=>{
+                this.emailSending = false
+                this.errMsg = error.message
+            })
+
+
+//             if (!this.email) {
+//     this.error = "Please type in a valid email address.";
+//     return;
+//   }
+//   this.error = null;
+//   this.emailSending = true;
+//   firebase
+//     .auth()
+//     .sendPasswordResetEmail(this.email)
+//     .then(() => {
+//       this.emailSending = false;
+//     })
+//     .catch(error => {
+//       this.emailSending = false;
+//       this.errMsg = error.message;
+//     });
         }
 
       }
@@ -92,9 +130,12 @@
                         <ul>
                             <!-- <button class="btn btn-primary btn-block fa-lg gradient-custom-2 mb-3" v-on:click="login()">Sign In</button> -->
                             <button type='button' class="btn btn-primary btn-block fa-lg gradient-custom-2 mb-3" @click="signIn()">Sign In</button>
+                            <p><button type="button" class="btn btn-primary btn-block fa-lg gradient-custom-2 mb-3" @click="forgotPassword()">Forgot Password?</button></p>
                             <p><button type="button" class="btn btn-primary btn-block fa-lg gradient-custom-2 mb-3" @click="signInWithGoogle()">Sign In with Google</button></p>
                             
+                            
                     </ul>
+                        <p v-if="emailSent">Passord reset sent to Email</p>
                         <p v-if="errMsg">{{errMsg}}</p>
                     </div>
 
