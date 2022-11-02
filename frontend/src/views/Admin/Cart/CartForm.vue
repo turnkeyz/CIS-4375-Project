@@ -90,13 +90,14 @@
         addProductLine(){
             this.item.Price = this.item.Products[2]*this.item.Quantity
             this.total = this.total + (this.item.Products[2]*this.item.Quantity)
-            let obj = {"ProductID":this.item.Products[0], "ProductName":this.item.Products[1], "Price":this.item.Products[2], "Quantity":this.item.Quantity} 
+            let obj = {"ProductID":this.item.Products[0], "ProductName":this.item.Products[1], "Price":this.item.Products[2], "Quantity":this.item.Quantity, "CategoryName":this.item.Products[3]}
             this.items.push(obj)
             this.item = {}
-
+            this.currentCategory =''
+            this.currentPrice=''
         },
         removeFromCart(id){
-            let index = this.items.findIndex(i=>i.Products[0]===id)
+            let index = this.items.findIndex(i=>i.ProductID===id)
             let price = this.items[index].Price
             this.total = this.total - price
             this.items.splice(index, 1)
@@ -146,23 +147,33 @@
             <fieldset class="form-control mb-5">
                 <legend>Products</legend>
                 <!-- <div v-for="index in counter" :key="index"> -->
-                    <div>
+                    <div> <!--DIV  FOR PRODUCTS-->
                     <div class="row mb-4">
                         <div class="col-sm-4">
                             <label for='fName'>Name</label>
                             <select class='form-select' @change="setCatPrice()" v-model="item.Products">
                                 <option disabled value="">Select option</option>
                                 <option v-for="product in Products" :key="product.ProductID" :value="[product.ProductID, product.ProductName, product.Price, product.CategoryName]">
+                    
                                     {{product.ProductName}} / {{product.CategoryName}}/ ${{product.Price}}
+
                                 </option>
                             </select>
                         </div> 
                         <div class="col-sm-2">
+                            <label >Category</label>
+                            <input disabled type="text" class="form-control" v-model="currentCategory">
+                        </div>
+                        <div class="col-sm-2">
+                            <label >Price</label>
+                            <input disabled type="number" class="form-control" v-model="currentPrice">
+                        </div>
+                        <div class="col-sm-2">
                             <label >Quantity</label>
-                            <input type="number" class="form-control" required min=1 v-model="item.Quantity">
+                            <input type="number" class="form-control" min=1 v-model="item.Quantity" required>
                         </div>  
                         <div class="col-sm-2">
-                            <label for='fName'>Custom</label>
+                    <label for='fName'>Custom</label>
                             <select class='form-select' v-model="Cart.Customization">
                                 <option disabled value="">Select option</option>
                                 <option value="1">Yes</option>
@@ -177,14 +188,15 @@
                             <button @click="addProductLine()" class="btn btn-secondary" type="button">Add</button>
                         </div>
                     </div>
-                </div>
+                </div> 
                 
-                <div cloass="row mb-4">
+                <div cloass="row mb-4"> <!--DIV FOR TABLE-->
                     <div class="table-responsive-sm">
                         <table class="table table-hover table-responsive table-bordered">
                             <thead class="table-light">
                                 <tr>
-                                    <th scope="col">Product Name</th>
+                                    <th scope="col">Name</th>
+                                    <th scope="col">Category</th>
                                     <th scope="col">Price</th>
                                     <th scope="col">Quantity</th>
                                     <!-- <th scope="col">Custom</th> -->
@@ -195,14 +207,17 @@
                             <tbody class="table-group-divider table-divider-color">
                                 <tr v-for="index in items" :key="index">
                                     <td>{{index.ProductName}}</td>
-                                    <td>{{index.Price}}</td>
+                                    <td>{{index.CategoryName}}</td>
+                                    <td>${{index.Price}}</td>
                                     <td>{{index.Quantity}}</td>
+                                    <td>${{index.Price * index.Quantity}}</td>
                                     <!-- <td>{{index.Custom}}</td> -->
                                     <td>{{index.Price * index.Quantity}}</td>
+
                                     
                                     <td>
                                         <tr>
-                                            <td><button class="btn btn-danger btn-sm" type="button" @click.prevent="removeFromCart(index.Products[0])">Remove</button></td>
+                                            <td><button class="btn btn-danger btn-sm" type="button" @click.prevent="removeFromCart(index.ProductID)">Remove</button></td>
                                         </tr>
                                     </td>
                                 </tr>
