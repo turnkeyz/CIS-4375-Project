@@ -1,6 +1,17 @@
 <script>
     import axios from 'axios';
-
+    // const client = filestack.init('AA49LrrQpRmmalcs9wq6lz');
+    // let newfile =[]
+    // let newfile2 = []
+    // const options={
+    //         fromSources:["local_file_system", "imagesearch", "googlephotos"],
+    //         accept:['image/*'],
+    //         onFileUploadFinished : file=>{
+    //             newfile2.push(file)
+    //         },
+    //         onUploadDone:(res)=>console.log(res)
+            
+    //     }
     export default {
     // register child component
     components: {
@@ -20,6 +31,7 @@
         },
         errors:[],
         file_type:'',
+        
       }
     },
     created(){
@@ -66,6 +78,10 @@
         handleFileUpload(evt){
             this.Products.Img_url = evt.target.files[0].name
             this.file_type = evt.target.files[0].type
+        },
+        uploadpicker(){
+            // client.picker(options).open()
+            // console.log('line 86', newfile2)
         }
     } 
 }
@@ -116,6 +132,9 @@
                         <label for="formFileSm" class="form-label">File must be in Uploads</label>
                         <input class="form-control form-control-sm" type="file" @change="handleFileUpload($event)">
                     </div>
+                    
+                    <!-- <img src="https://cdn.filestackcontent.com/AA49LrrQpRmmalcs9wq6lz/irFiFGXTuqiYSS124Th2"> -->
+                   
                 </div>
             <p v-if="errors.length">
                 <b>Please correct the following error(s):</b>

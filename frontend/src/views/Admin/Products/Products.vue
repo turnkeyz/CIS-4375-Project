@@ -8,12 +8,17 @@
     data(){
       return{
         Products: [],
+        posts:[''],
+        page:1,
+        perPage:9,
+        pages:[]
       }
     },
     created(){
       let apiUrl=`${import.meta.env.VITE_VUE_APP_ROOT_URL}/Products/fetchall`
       axios.get(apiUrl).then((res)=>{
         this.Products=res.data
+        this.posts = res.data
       })
     },
     methods:{
@@ -45,16 +50,42 @@
                 name:'Product',
                 query:{id:id, e:true}
             })
+        },
+        setPages(){
+            let numberOfPages = Math.ceil(this.Products.length/this.perPage)
+            console.log('number of pages', numberOfPages)
+            for(let index = 1;index<=numberOfPages;index++){
+                this.pages.push(index)
+            }
+            console.log('pages', this.pages)
+        },
+        paginate(posts){
+            let page = this.page
+            let perPage = this.perPage
+            let from = (page*perPage)-perPage
+            let to = (page*perPage)
+            return posts.slice(from, to)
+            
         }
     },
-    mounted(){
-        
-    }
+    computed:{
+        displayedPosts(){
+            return this.paginate(this.Products)
+        }
+    },
+    watch:{
+        posts(){
+            console.log('watch')
+            this.setPages()
+        }
+    },
+    
   }
+  
 </script>
 
 <template>
-    <div class="container">
+    <!-- <div class="container">
         <h1 class="text-center">All Products</h1>
         <div class="table-responsive-sm">
             <table class="table table-hover table-responsive table-bordered">
@@ -77,6 +108,42 @@
                         
                         <td>
                             <tr>
+                               
+                                <td><button @click="seeMore(Product.ProductID)" class="btn btn-light">...</button></td>
+                                <td><button @click="editProduct(Product.ProductID)" class="btn btn-secondary btn-sm">Edit</button></td>
+                                <td><button class="btn btn-danger btn-sm" @click.prevent="delProduct(Product.ProductID)">Delete</button></td>
+                            </tr>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div> -->
+
+
+    <div class="container">
+        <h1 class="text-center">All Products</h1>
+        <div class="table-responsive-sm">
+            <table class="table table-hover table-responsive table-bordered">
+                <thead class="table-light">
+                    <tr>
+                        <th scope="col">Product #</th>
+                        <th scope="col">Category</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Price</th>
+                
+                        <th><button class="btn btn-success btn-sm" @click="newProduct()">Add New Product</button></th>
+                    </tr>
+                </thead>
+                <tbody class="table-group-divider table-divider-color">
+                    <tr v-for="Product in displayedPosts" :key="Product">
+                        <td>{{Product.ProductID}}</td>
+                        <td>{{Product.CategoryName}}</td>
+                        <td>{{Product.ProductName}}</td>
+                        <td>${{Product.Price}}</td>
+                        
+                        <td>
+                            <tr>
                                 <!-- <td><router-link :to="{name:'Product', query:{id:Product.ProductID, e:false}}" class="btn btn-light">...</router-link></td> -->
                                 <td><button @click="seeMore(Product.ProductID)" class="btn btn-light">...</button></td>
                                 <td><button @click="editProduct(Product.ProductID)" class="btn btn-secondary btn-sm">Edit</button></td>
@@ -87,7 +154,21 @@
                 </tbody>
             </table>
         </div>
+        <ul class="pagination mb-5">
+            <li class="page-item" v-if="page != 1" @click="page--">
+                <button type="button" class="page-link">Previous</button>
+            </li>
+            <li class="page-item">
+                <button type="button" class="page-link" v-for="pageNumber in pages.slice(page-1, page+4)" :key="pageNumber" @click="page = pageNumber"> {{pageNumber}} </button>
+            </li>
+            
+
+            <li class="page-item">
+                <button type="button" @click="page++" v-if="page < pages.length" class="page-link"> Next </button>
+            </li> 
+        </ul>
     </div>
+
 </template>
 
 <style>
@@ -102,5 +183,19 @@
     }
     .pull-right{
         float: right
+    }
+
+    /* pagination */
+    button.page-link {
+	display: inline-block;
+    }
+    button.page-link {
+        font-size: 20px;
+        color: #29b3ed;
+        font-weight: 500;
+    }
+    .offset{
+    width: 500px !important;
+    margin: 20px auto;  
     }
 </style>
