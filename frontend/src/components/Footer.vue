@@ -50,7 +50,7 @@
               <a href="/pastries" class="text-white">Pastries</a>
             </p>
             <p>
-              <a href="/custom" class="text-white">Custom Orders</a>
+              <a href="/order-form" class="text-white">Orders</a>
             </p>
           </div>
           <!-- Grid column -->
@@ -69,71 +69,17 @@
           </div>
           <!-- Grid column -->
 
-          <!-- Grid column -->
-          <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mt-3">
-            <h6 class="text-uppercase mb-4 font-weight-bold">Follow us</h6>
-
-            <!-- Facebook -->
-            <a
-               class="btn btn-primary btn-floating m-1"
-               style="background-color: #3b5998"
-               href="#!"
-               role="button"
-               ><i class="fab fa-facebook-f"></i
-              ></a>
-
-            <!-- Twitter -->
-            <a
-               class="btn btn-primary btn-floating m-1"
-               style="background-color: #55acee"
-               href="#!"
-               role="button"
-               ><i class="fab fa-twitter"></i
-              ></a>
-
-            <!-- Google -->
-            <a
-               class="btn btn-primary btn-floating m-1"
-               style="background-color: #dd4b39"
-               href="#!"
-               role="button"
-               ><i class="fab fa-google"></i
-              ></a>
-
-            <!-- Instagram -->
-            <a
-               class="btn btn-primary btn-floating m-1"
-               style="background-color: #ac2bac"
-               href="#!"
-               role="button"
-               ><i class="fab fa-instagram"></i
-              ></a>
-
-            <!-- Linkedin -->
-            <a
-               class="btn btn-primary btn-floating m-1"
-               style="background-color: #0082ca"
-               href="#!"
-               role="button"
-               ><i class="fab fa-linkedin-in"></i
-              ></a>
-            <!-- Github -->
-            <a
-               class="btn btn-primary btn-floating m-1"
-               style="background-color: #333333"
-               href="#!"
-               role="button"
-               ><i class="fab fa-github"></i
-              ></a>
+         
             <!-- Worker Portal -->
-              <div class="col-md-3 col-lg-2 col-xl-5 mt-5">
-              <h6 class="text-uppercase mb-4 font-weight-bold">Maintenance</h6>
-              <a
-                class="btn button btn-primary btn-floating"
+          <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mt-3">
+            <h6 class="text-uppercase mb-4 font-weight-bold">Maintenance</h6>
+
+            <a
+                class="btn button btn-primary p-2 btn-floating"
                 href="/login"
                 role="button"
-                >Worker Portal</a>       
-            </div>
+                >Worker Portal</a>  
+             
           </div>
           <!-- Grid column -->
           

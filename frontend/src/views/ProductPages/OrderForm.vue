@@ -211,7 +211,7 @@
                 </fieldset>
             <fieldset class="form-control mb-5">
                 <legend><strong>Products</strong></legend>
-                    <div>
+                    <div> <!--DIV  FOR PRODUCTS-->
                     <div class="row mb-4">
                         <div class="col-sm-4">
                             <label for='fName'>Name</label>
@@ -242,7 +242,7 @@
                             <button @click="addProductLine()" class="btn btn-secondary" type="button">Add</button>
                         </div>
                     </div>
-                </div>
+                </div> <!--End DIV FOR PRODUCTS-->
                 
                 <div cloass="row mb-4">
                     <div class="table-responsive-sm">
