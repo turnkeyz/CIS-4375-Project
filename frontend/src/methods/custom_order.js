@@ -24,14 +24,15 @@ function customOrder(Order){
    function productString(products){
       let string = ''
       for (var i=0; i < products.length;i++ ){
-        string += `${products[i].ProductName} x${products[i].Quantity}\n`
+        string += `$${products[i].Price} ${products[i].ProductName} x${products[i].Quantity}\n`
       //   string += '<br />'
         
       }
       return string
     }
-
-   let products = productString(Order.ProductsJSON)
+   console.log('line 33',Order)
+   
+   let products = productString(Order.Products)
    var templateParams = {
    CustomerID:Order.CustomerID,
    CustomerNotes:Order.CustomerNotes,

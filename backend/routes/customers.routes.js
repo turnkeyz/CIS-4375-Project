@@ -18,5 +18,8 @@ module.exports = app => {
 
   
     app.get("/Customers/fetchNames", Customers.getNames);
+
+    app.get("/Customers/fetchIDs", Customers.getAllIDS);
+
   };
   

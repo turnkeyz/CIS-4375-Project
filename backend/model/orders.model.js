@@ -122,13 +122,13 @@ Orders.updateOrders = (param_id, obj) => {
 
 
 // DELETING BY ID FROM Orders TABLE
-Orders.deleteOrdersById = (obj) => {
+Orders.deleteOrdersById = (param_id) => {
   return new Promise((resolve, reject) => {
     sql.connect(sqlConfig, function (err, result) {
       var request = new sql.Request()
-      .input("oid", obj.oid);
+      .input("param_id", param_id);
       
-      request.query(`DELETE FROM Orders WHERE OrderID = @oid`, (err, res) => {
+      request.query(`DELETE FROM Orders WHERE OrderID = @param_id`, (err, res) => {
         if (err) reject(err);
         console.log(res);
         return resolve(res); // DELETING Orders DATA

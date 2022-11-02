@@ -134,7 +134,7 @@ products.findAllCookies = () => {
   return new Promise((resolve, reject) => {
     sql.connect(sqlConfig, function (err, result) {
       var request = new sql.Request();
-      request.query(`SELECT * FROM Products where CategoryID=1;`, (err, res) => {
+      request.query(`SELECT * FROM Products where CategoryID=1 AND Active=1;`, (err, res) => {
         if (err) reject(err);
           console.log(res.recordset)
           return resolve(res.recordset); // FETCHING ALL DATA
@@ -148,7 +148,7 @@ products.findAllPastries = () => {
   return new Promise((resolve, reject) => {
     sql.connect(sqlConfig, function (err, result) {
       var request = new sql.Request();
-      request.query(`SELECT * FROM Products where CategoryID=2;`, (err, res) => {
+      request.query(`SELECT * FROM Products where CategoryID=2 AND Active=1;`, (err, res) => {
         if (err) reject(err);
           console.log(res.recordset)
           return resolve(res.recordset); // FETCHING ALL DATA
@@ -162,7 +162,7 @@ products.findAllCakes = () => {
   return new Promise((resolve, reject) => {
     sql.connect(sqlConfig, function (err, result) {
       var request = new sql.Request();
-      request.query(`SELECT * FROM Products where CategoryID=3;`, (err, res) => {
+      request.query(`SELECT * FROM Products where CategoryID=3 AND Active=1;`, (err, res) => {
         if (err) reject(err);
           console.log(res.recordset)
           return resolve(res.recordset); // FETCHING ALL DATA
@@ -177,7 +177,7 @@ products.findAllBreads = () => {
   return new Promise((resolve, reject) => {
     sql.connect(sqlConfig, function (err, result) {
       var request = new sql.Request();
-      request.query(`SELECT * FROM Products where CategoryID=4;`, (err, res) => {
+      request.query(`SELECT * FROM Products where CategoryID=4 AND Active=1;`, (err, res) => {
         if (err) reject(err);
           console.log(res.recordset)
           return resolve(res.recordset); // FETCHING ALL DATA
@@ -192,7 +192,7 @@ products.findAllCakeCups = () => {
   return new Promise((resolve, reject) => {
     sql.connect(sqlConfig, function (err, result) {
       var request = new sql.Request();
-      request.query(`SELECT * FROM Products where CategoryID=6;`, (err, res) => {
+      request.query(`SELECT * FROM Products where CategoryID=6 AND Active=1;`, (err, res) => {
         if (err) reject(err);
           console.log(res.recordset)
           return resolve(res.recordset); // FETCHING ALL DATA

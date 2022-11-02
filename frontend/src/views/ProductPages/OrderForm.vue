@@ -35,6 +35,7 @@
         currentCategory:'',
         currentPrice:'',
         submitted:false,
+        IDS:[]
       }
     },
     created(){
@@ -43,6 +44,13 @@
         this.Products = res.data
         // console.log(this.Products)
       })
+
+      let idURL2=`${import.meta.env.VITE_VUE_APP_ROOT_URL}/Customers/fetchIDs`
+      axios.get(idURL2).then((res)=>{
+        this.IDS = res.data
+        // console.log(this.Products)
+      })
+
     },
     mounted(){
     },
@@ -51,34 +59,78 @@
         handleSubmitForm(){
             this.errors=[]
             // validations for required or formatted fields
-            if(!this.Order.ProductsJSON){
-                this.errors.push("Category is Required");
+            if(this.items.length === 0){
+                this.errors.push("No Products were entered");
+                return
                 }
-            if(!this.Order.FirstName)
+            if(!this.Order.FirstName){
                 this.errors.push("Name is Required.");
-
-            if(!this.Order.LastName)
-            this.errors.push("Price is Required")
-
+                return
+            }    
+            if(!this.Order.LastName){
+                this.errors.push("Price is Required")
+            }
             if(!this.Order.Email){
-                this.errors.push("Product Description is Required");
+                this.errors.push("Email is Required");
                 }
             if(!this.Order.Phone){
-                this.errors.push("Product Description is Required");
+                this.errors.push("Phone number is Required");
                 }
             if(!this.Order.PaymentType){
-                this.errors.push("Product Description is Required");
-                }
-            if(!this.Order.PaymentType){
-                this.errors.push("Product Description is Required");
+                this.errors.push("Payment Type is Required");
                 }
             
+            if(this.Order.ReturnCustomer == 'Yes'){
+                if(!this.Order.CustomerID){
+                    this.errors.push('Enter Customer ID or Change Returning Customer to No')
+                    return
+                }
+                if(this.checkID(this.Order.CustomerID) === -1){
+                    this.errors.push('invalid Customer ID')
+                }
+            }
+
             this.Order.Subtotal=Number(this.total) 
-            this.Order.ProductsJSON = this.items
+            this.Order.Products = this.items
+            this.Order.ProductsJSON = JSON.stringify(this.items)
+            let newCust = {"FirstName":this.Order.FirstName, "LastName":this.Order.LastName, "Email":this.Order.Email, "Phone":this.Order.Phone, "PaymentType":this.Order.PaymentType}
+            
             if(this.errors.length === 0){
-                this.submitted=true
-                customOrder(this.Order)
-                this.ExportPDF()
+                // this.submitted=true
+                if(this.Order.ReturnCustomer == 'Yes'){
+                    let apiURL = `${import.meta.env.VITE_VUE_APP_ROOT_URL}/Cart/add`;
+                    axios.post(apiURL, this.Order).then(()=>{
+                        this.submitted=true
+                        customOrder(this.Order)
+                        this.ExportPDF()
+                    }).catch(error=>{
+                        console.log(error)
+                    })
+                    
+                }else{
+                    
+                    let custURL = `${import.meta.env.VITE_VUE_APP_ROOT_URL}/Customers/add`
+                    axios.post(custURL, newCust)
+                    .then(()=>{
+                        this.submitted=true
+                        console.log('New customer created')
+
+                    }).catch(error=>{
+                        console.log(error)
+                    })
+
+
+                    let apiURL = `${import.meta.env.VITE_VUE_APP_ROOT_URL}/Cart/form-add`;
+                    axios.post(apiURL, this.Order).then(()=>{
+                        console.log('new cart created')
+                        customOrder(this.Order)
+                        this.ExportPDF()
+                    }).catch(error=>{
+                        console.log(error)
+                    })
+                    
+                }
+                
             }
             
         },
@@ -143,6 +195,10 @@
                 this.total=0
         
             },
+            checkID(id){
+                let index = this.IDS.findIndex(i=>i.CustomerID === id)
+                return index
+            }
         
 
     }, 

@@ -37,4 +37,8 @@ exports.getAllIds = async (req, res) => {
   res.send(obj);
 };
 
+exports.insertNewCartFromForm = async (req, res) => {
+  const obj = await Cart.insertCartFromForm(req.body);
+  res.send(obj);
+};
 
