@@ -113,13 +113,14 @@
             <li><a class="dropdown-item" href="/breads">Breads</a></li>
             <li><a class="dropdown-item" href="/pastries">Pastries</a></li>
             <li><a class="dropdown-item" href="/cakecups">Cake Cups</a></li>
-            <li><a class="dropdown-item" href="/order-form">Order Form</a></li>
-            <li><a class="dropdown-item" href="/Custom"> Custom</a></li>
             
           </ul>
         </div>
         <li v-if="!$route.meta.hideNavbar" class="nav-item">
           <a class="nav-link mx-2" href="/about">About</a>
+        </li>
+        <li v-if="!$route.meta.hideNavbar" class="nav-item">
+          <a class="nav-link mx-2" href="/order-form">Order</a>
         </li>
         <li class="nav-item">
           <button @click="logOut()" v-if="isLoggedIn" class="btn btn-danger navbar-btn">Logout</button>

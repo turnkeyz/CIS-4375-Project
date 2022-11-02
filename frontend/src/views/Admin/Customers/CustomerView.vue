@@ -58,6 +58,9 @@ export default {
     cancelEdit(){
       this.edit=false
     },
+    goBack(){
+      this.$router.go(-1)
+    },
     handleSubmitForm(id){
       this.errors=[]
                 //validations for required or formatted fields
@@ -147,6 +150,7 @@ export default {
         <button @click="addCustomer()" class="btn btn-success me-md-2">New</button>
         <button @click="showEdit()" class="btn btn-secondary me-md-2">Edit</button>
         <button  @click="delCustomer(customers.CustomerID)" class="btn btn-danger" type="button">Delete</button>
+        <button @click="goBack()" class="btn btn-info" type="button">Back</button>
       </div>
     </div>
   </div>
