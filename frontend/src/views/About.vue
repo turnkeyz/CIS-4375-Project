@@ -12,8 +12,6 @@
   <main>
     <div class="container-fluid">
 
-      <img src ="uploads\about\pexels-malcolm-garret-13425266.jpg" class ="img w-100">
-
       <div class="container">
           <h1 class="text-center mb-2"><strong>The Story</strong></h1>
       </div>
@@ -33,14 +31,15 @@
         <div class="row row-cols-1 row-cols-md-2">
           <div class="col mt-2">
 
-            <img src ="uploads\owllogo.png" class ="img w-50">
+            <img src ="https://owlbbakingimages.s3.amazonaws.com/images/Sister+logo.svg" class ="img w-50">
 
           </div>
 
           <div class="col mt-2">
 
-            <img src ="uploads\logo.png" class ="img w-50">
-
+            <img src ="https://owlbbakingimages.s3.amazonaws.com/images/Goat+Solutions+Logo.svg" class ="img w-50">
+          <br>
+          <br>
           </div>
 
 

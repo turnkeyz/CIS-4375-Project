@@ -2,7 +2,7 @@
 //https://www.vuemastery.com/blog/vue-router-a-tutorial-for-vue-3/#starting-from-scratch
 
 import { createWebHistory, createRouter } from "vue-router";
-import Home from "../src/views/Home.vue";
+import Home from "../src/views/home.vue";
 import About from "../src/views/About.vue";
 import {getAuth, onAuthStateChanged} from "firebase/auth"
 

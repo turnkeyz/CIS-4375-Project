@@ -134,7 +134,7 @@
 </nav>
 <div class="text-center p-3 d-none d-md-block">
   <a href="/">
-  <img src="/uploads/owllogo.png" height="50" alt="Company Logo">
+  <img src="https://owlbbakingimages.s3.amazonaws.com/images/Sister+logo.svg" height="50" alt="Company Logo">
 </a>
 </div>
       <RouterView></RouterView>
