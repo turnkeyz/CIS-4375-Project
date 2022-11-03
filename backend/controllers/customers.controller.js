@@ -44,3 +44,8 @@ exports.getAllIDS = async (req, res) => {
     const obj = await Customers.fetchAllIDS();
     res.send(obj);
 };
+
+exports.getexistInCart = async (req, res) => {
+    const obj = await Customers.fetchExistInCart(req.params.uid);
+    res.send(obj);
+};

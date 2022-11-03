@@ -91,6 +91,15 @@ const routes = [
     }
   },
   {
+    path: "/customer-edit",
+    name: "Customer-edit",
+    component:() => import('../src/views/Admin/Customers/CustomerEdit.vue'),
+    meta:{
+      requiresAuth:true,
+      hideNavbar:true
+    }
+  },
+  {
     path: "/customer",
     name: "Customer",
     props:true,
@@ -124,6 +133,15 @@ const routes = [
     path:"/product-form",
     name:"/Product-form",
     component:()=> import('../src/views/Admin/Products/ProductForm.vue'),
+    meta:{
+      requiresAuth:true,
+      hideNavbar:true
+    }
+  },
+  {
+    path:"/product-edit",
+    name:"/Product-edit",
+    component:()=> import('../src/views/Admin/Products/ProductEdit.vue'),
     meta:{
       requiresAuth:true,
       hideNavbar:true

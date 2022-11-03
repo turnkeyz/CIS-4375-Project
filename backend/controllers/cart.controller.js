@@ -42,3 +42,7 @@ exports.insertNewCartFromForm = async (req, res) => {
   res.send(obj);
 };
 
+exports.getExistInOrder = async (req, res) => {
+  const obj = await Cart.fetchExistInOrder(req.params.pid);
+  res.send(obj);
+};

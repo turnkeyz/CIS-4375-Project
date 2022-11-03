@@ -21,5 +21,7 @@ module.exports = app => {
 
     app.get("/Customers/fetchIDs", Customers.getAllIDS);
 
+    app.get('/Customers/existInCart/:uid', Customers.getexistInCart)
+
   };
   
