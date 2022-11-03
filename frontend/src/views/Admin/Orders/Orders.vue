@@ -153,9 +153,16 @@
                 <td>{{order.FirstName}} {{order.LastName}} (#{{order.CustomerID}})</td>
                 <td>{{order.CartID}}</td>
                 <td>{{order.CalledBackValue}}</td>
-                <td>{{order.Status}}</td>
-                <td>{{order.PaymentStatus}}</td>
+                <td v-if="order.Status == 'Order Recieved'" class="table-warning">{{order.Status}}</td>
+                <td v-if="order.Status == 'Completed'" class="table-success">{{order.Status}}</td>
+                <td v-if="order.Status == 'Canceled'" class="table-secondary">{{order.Status}}</td>
+                <td v-if="order.Status == 'In-Progress'" class="table-light">{{order.Status}}</td>
                 
+                
+                <td v-if="order.PaymentStatus == 'Paid in Full'" class="table-success">{{order.PaymentStatus}}</td>
+                <td v-if="order.PaymentStatus == 'Canceled'" class="table-secondary">{{order.PaymentStatus}}</td>
+                <td v-if="order.PaymentStatus == 'Pending Payment'" class="table-light">{{order.PaymentStatus}}</td>
+                <td v-if="order.PaymentStatus == 'Awaiting Payment'" class="table-warning">{{order.PaymentStatus}}</td>
                 <td>
             <tr>
                         <!-- <td><router-link :to="{name:'Order', query:{id:Order.OrderID, e:false}}" class="btn btn-light">...</router-link></td> -->
