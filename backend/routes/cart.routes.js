@@ -19,5 +19,7 @@ module.exports = app => {
   app.get("/Cart/getIDs", Cart.getAllIds);
 
   app.post("/Cart/form-add", Cart.insertNewCartFromForm)
+
+  app.get("/Cart/existInOrder/:pid", Cart.getExistInOrder)
   };
 

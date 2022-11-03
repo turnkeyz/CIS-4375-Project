@@ -130,5 +130,22 @@ Customers.fetchAllIDS = () => {
   });
 };
 
-
+Customers.fetchExistInCart = (param_id) => {
+  return new Promise((resolve, reject) => {
+    sql.connect(sqlConfig, function (err, result) {
+      var request = new sql.Request()
+      .input("param_id", param_id)
+      
+      request.query(
+        `SELECT COUNT(c.CartID) as total
+        FROM Customers as cu
+        LEFT JOIN Cart as c ON c.CustomerID=cu.CustomerID
+        WHERE cu.CustomerID=@param_id;`, (err, res) => {
+        if (err) reject(err);
+          console.log(res.recordset)
+          return resolve(res.recordset); // FETCHING ALL DATA
+      });
+    });
+  });
+};
 module.exports = Customers;

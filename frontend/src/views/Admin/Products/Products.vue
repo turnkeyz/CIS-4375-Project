@@ -28,7 +28,7 @@
         seeMore(id){
             this.$router.push({
                 name:'Product',
-                query:{id:id, e:false}
+                query:{id:id}
             })
         },
         
@@ -47,8 +47,8 @@
         },
         editProduct(id){
             this.$router.push({
-                name:'Product',
-                query:{id:id, e:true}
+                name:'Product-edit',
+                query:{id:id}
             })
         },
         setPages(){

@@ -13,6 +13,7 @@
         errors:[],
         Products:[],
         items:{},
+        count:{}
   
       };
     },
@@ -41,6 +42,17 @@
         axios.get(apiURL2).then((res)=>{
           this.Products = res.data
         })
+
+        let inOrderURL = `${import.meta.env.VITE_VUE_APP_ROOT_URL}/Cart/existInOrder/${this.$route.query.id}`;
+        axios.get(inOrderURL).then((res) => {
+        this.count = res.data[0].total;
+        console.log('count', this.count)
+      })
+      .catch((error) => {
+        console.log(error);
+      })
+
+
     },
     methods: {
       delProduct(id) {
@@ -143,7 +155,7 @@
       <div class="d-grid gap-2 d-md-flex justify-content-md-end">
         <button @click="addProduct()" class="btn btn-success me-md-2">New</button>
         <button @click="showEdit(Cart.CartID)" class="btn btn-secondary me-md-2">Edit</button>
-        <button  @click="delProduct(Cart.CartID)" class="btn btn-danger" type="button">Delete</button>
+        <button v-if="count==0" @click="delProduct(Cart.CartID)" class="btn btn-danger" type="button">Delete</button>
         <button @click="goBack()" class="btn btn-info" type="button">Back</button>
 
       </div>

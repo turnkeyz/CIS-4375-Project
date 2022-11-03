@@ -22,6 +22,7 @@
       },
         //created function
     created() {
+        console.log('got here')
     // Variable that stores the "find specific employee" route
       let apiURL = `${import.meta.env.VITE_VUE_APP_ROOT_URL}/Products/${this.$route.query.id}`;
       axios.get(apiURL).then((res) => {
@@ -55,15 +56,11 @@
       addProduct(){
         this.$router.push('/Product-form')
       },
-      showEdit(id){
-        console.log('line 59')
+      cancelEdit(id){
         this.$router.push({
-          path:'product-edit',
-          query:{id:id}
+            path: 'Product',
+            query:{id:id}
         })
-      },
-      cancelEdit(){
-        this.edit=false
       },
       goBack(){
       this.$router.go(-1)
@@ -90,9 +87,11 @@
         //only run if no errors
         if(this.errors.length === 0){
             let apiURL = `${import.meta.env.VITE_VUE_APP_ROOT_URL}/Products/update/${pid}`;
-            console.log('line 86', apiURL)
             axios.put(apiURL, this.Products).then(() => {
-            this.edit=false
+            this.$router.push({
+                path:'product',
+                query:{id:pid}
+            })
             }).catch(error => {
                 console.log(error)
             });
@@ -126,66 +125,91 @@
 </script>
 
 <template>
-  <!-- <div v-if="edit==false"> -->
+  
     <div class="container">
-    <h1 class="mb-5">Product View ID#{{Products.ProductID}}</h1>
+      <h1 class="mb-5">Product Edit ID#{{Products.ProductID}}</h1>
     <div class="wrapper m-5"></div>
-    <div class="table1">
-      <table class="table table-light caption-top">
-        <caption>
-          <strong>Product Information</strong>
-        </caption>
-        <tbody>
+      <div class="table1">
+        <form @submit.prevent="handleSubmitForm(Products.ProductID)" novalidate>
+        <table class="table table-light caption-top">
+          <caption>
+            <strong>Product Information</strong>
+          </caption>
+          <tbody>
           <tr>
             <th>Product ID</th>
             <td>{{ Products.ProductID }}</td>
           </tr>
           <tr>
-            <th>Category ID</th>
-            <td>{{ Products.CategoryID }}</td>
+            <th>Category</th>
+            <!-- <td><input type="text" id='fName' class="form-control" v-model="Products.CategoryID" required></td> -->
+            <select class='form-select' v-model="Products.CategoryID">
+                <option disabled value="">Select option</option>
+                <option v-for="category in Categories" :key="category.CategoryID" :value="category.CategoryID">
+                    {{category.CategoryName}}
+                </option>
+            </select>
           </tr>
           <tr>
             <th>Name</th>
-            <td>{{ Products.ProductName }}</td>
+            <td><input type="text" class="form-control" v-model="Products.ProductName" required></td>
           </tr>
           <tr>
             <th>Price</th>
-            <td>{{Products.Price}}</td>
+            <td><input type="Price" class="form-control" v-model="Products.Price" required>
+              <small id="phoneHelpBlock" class="form-text text-muted">
+              example@Price.com
+              </small></td>
           </tr>
           <tr>
             <th>Active</th>
               <td>
-              <div class="form-check form-switch">
-                <input class="form-check-input" type="checkbox" id="flexSwitchCheckCheckedDisabled" checked disabled>
-                <label class="form-check-label" for="flexSwitchCheckCheckedDisabled">Display</label>
-              </div>
-            </td>
+                <div class="form-check form-switch">
+                  <input v-model="Products.Active" class="form-check-input" type="checkbox" id="flexSwitchCheckDefault">
+                  <label class="form-check-label" for="flexSwitchCheckDefault">Active</label>
+                </div>
+              </td>
           </tr>
           <tr>
             <th>Description</th>
-            <td><textarea disabled class="form-control" rows="5" v-model="Products.ProductDescription"></textarea></td>
+            <td><textarea class="form-control" rows="5" v-model="Products.ProductDescription"></textarea></td>
           </tr>
           <tr>
             <th>Image URL</th>
             <td>{{Products.Img_url}}</td>
           </tr>
-          <tr>
-            <!-- <td>
-              <img :src="'/uploads'+getCategory(Products.CategoryID, Products.Img_url)" class="w-100"/>
-            </td> -->
-          </tr>
+          <!-- <tr>
+            <td>
+              <img :src="'/uploads/'+getCategory(Products.CategoryID, Products.Img_url)" class="w-100"/>
+            </td>
+          </tr> -->
+          <!-- <tr>
+            <td>
+              <div class="mb-3">
+                <label for="formFileSm" class="form-label">File must be in Public/Uploads</label>
+                <input class="form-control form-control-sm" type="file" @change="handleFileUpload($event)">
+              </div>
+            </td>
+          </tr> -->
         </tbody>
-      </table>
-      <img :src="'/uploads/'+getCategory(Products.CategoryID, Products.Img_url)" class="w-100"/>
-      </div>
-      <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-        <button @click="addProduct()" class="btn btn-success me-md-2">New</button>
-        <button @click="showEdit(Products.ProductID)" class="btn btn-secondary me-md-2">Edit</button>
-        <button  @click="delProduct(Products.ProductID)" class="btn btn-danger" type="button">Delete</button>
-        <button @click="goBack()" class="btn btn-info" type="button">Back</button>
+        </table>
+        <div class="mb-3">
+                <label for="formFileSm" class="form-label">File must be in Public/Uploads</label>
+                <input class="form-control form-control-sm" type="file" @change="handleFileUpload($event)">
+              </div>
+        <img :src="'/uploads/'+getCategory(Products.CategoryID, Products.Img_url)" class="w-100"/>
+          <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+            <button type="submit" class="btn btn-success me-md-2">Update</button>
+            <button  @click="cancelEdit(Products.ProductID)" class="btn btn-secondary" type="button">Cancel</button>
+          </div>
+        </form>
+        <p v-if="errors.length">
+            <b>Please correct the following error(s):</b>
+            <ul>
+                <li v-for="error in errors" :key="error">{{ error }} </li>
+            </ul>
+          </p>
       </div>
     </div>
-  <!-- </div> -->
   
- 
 </template>

@@ -2,7 +2,6 @@
     import axios from 'axios';
     import html2pdf from 'html2pdf.js';
     import {customOrder} from '../../methods/custom_order'
-    // import {pdfOrderDownload} from '../../methods/pdf_order_form'
 
     export default {
     // register child component
@@ -57,6 +56,9 @@
     methods: {
             //create new volunteer and reset values
         handleSubmitForm(){
+            let myAlert = document.getElementById('submitToast')
+            let submitAlert = new bootstrap.Toast(myAlert)
+            
             this.errors=[]
             // validations for required or formatted fields
             if(this.items.length === 0){
@@ -100,9 +102,12 @@
                 if(this.Order.ReturnCustomer == 'Yes'){
                     let apiURL = `${import.meta.env.VITE_VUE_APP_ROOT_URL}/Cart/add`;
                     axios.post(apiURL, this.Order).then(()=>{
-                        this.submitted=true
+                        
+                        // this.submitted=true
                         customOrder(this.Order)
-                        this.ExportPDF()
+                        
+                        // this.ExportPDF()
+                        submitAlert.show()
                     }).catch(error=>{
                         console.log(error)
                     })
@@ -112,9 +117,7 @@
                     let custURL = `${import.meta.env.VITE_VUE_APP_ROOT_URL}/Customers/add`
                     axios.post(custURL, newCust)
                     .then(()=>{
-                        this.submitted=true
                         console.log('New customer created')
-
                     }).catch(error=>{
                         console.log(error)
                     })
@@ -122,9 +125,11 @@
 
                     let apiURL = `${import.meta.env.VITE_VUE_APP_ROOT_URL}/Cart/form-add`;
                     axios.post(apiURL, this.Order).then(()=>{
-                        console.log('new cart created')
                         customOrder(this.Order)
-                        this.ExportPDF()
+                        this.submitted=true
+                        // this.ExportPDF()
+                        submitAlert.show()
+
                     }).catch(error=>{
                         console.log(error)
                     })
@@ -173,32 +178,34 @@
             this.item.Quantity = 1
         },
         resetPage(){
-            
-                this.Order={
-                    FirstName:'',
-                    LastName:'',
-                    Email:'',
-                    Phone:'',
-                    PaymentType:'',
-                    ProductsJSON: [],
-                    CustomerNotes:'',
-                    Subtotal:0,
-                    ReturnCustomer:'No',
-                    CustomerID:'',
-                    Subtotal:0,
-                    
-                    
-                }
-                this.items=[],
-                this.submitted=false
-                this.show=false
-                this.total=0
-        
-            },
-            checkID(id){
-                let index = this.IDS.findIndex(i=>i.CustomerID === id)
-                return index
+            let myAlert = document.getElementById('toast')
+            let bsAlert = new bootstrap.Toast(myAlert)
+            bsAlert.show()
+            this.Order={
+                FirstName:'',
+                LastName:'',
+                Email:'',
+                Phone:'',
+                PaymentType:'',
+                ProductsJSON: [],
+                CustomerNotes:'',
+                Subtotal:0,
+                ReturnCustomer:'No',
+                CustomerID:'',
+                Subtotal:0,
+                
+                
             }
+            this.items=[],
+            this.submitted=false
+            this.show=false
+            this.total=0
+
+        },
+        checkID(id){
+            let index = this.IDS.findIndex(i=>i.CustomerID === id)
+            return index
+        }
         
 
     }, 
@@ -219,28 +226,33 @@
 
                     <div class="row mb-5">
                         <div class='col-sm-3'>
-                            <label>First Name</label>
+                            <label>*First Name</label>
                             <input type="text" class="form-control" v-model="Order.FirstName" required>
                         </div> 
 
                         <div class='col-sm-3'>
-                            <label>Last Name</label>
+                            <label>*Last Name</label>
                             <input type="text" class="form-control" v-model="Order.LastName" required>
                         </div>
                         <div class='col-sm-3'>
-                            <label>Email Address</label>
+                            <label>*Email Address</label>
                             <input type="text" class="form-control" v-model="Order.Email" required>
+                            <small id="phoneHelpBlock" class="form-text text-muted">
+                                example@email.com
+                            </small>
                         </div>
                         <div class='col-sm-3'>
-                            <label>Phone Number</label>
+                            <label>*Phone Number</label>
                             <input type="text" class="form-control" v-model="Order.Phone" required>
-                            <label></label>
+                            <small id="phoneHelpBlock" class="form-text text-muted">
+                                9 digit phone number should be entered with dashes
+                            </small>
                         </div>
                     </div>
 
                     <div class="row mb-5">
                         <div class="col-sm-3">
-                            <label>Payment Type</label>
+                            <label>*Payment Type</label>
                             <select class='form-select' v-model="Order.PaymentType " required>
                                 <option disabled value="">Select option</option>
                                 <option>Cash</option>
@@ -266,7 +278,7 @@
                     </div>
                 </fieldset>
             <fieldset class="form-control mb-5">
-                <legend><strong>Products</strong></legend>
+                <legend><strong>*Products</strong></legend>
                     <div> <!--DIV  FOR PRODUCTS-->
                     <div class="row mb-4">
                         <div class="col-sm-4">
@@ -350,10 +362,27 @@
             </form>
         </div>
     </div>
+    <div class="toast align-items-center text-white bg-primary border-0" id="toast" role="alert" aria-live="assertive" aria-atomic="true">
+                    <div class="d-flex">
+                            <div class="toast-body">
+                                Form Reset
+                            </div>
+                        <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+                    </div>
+                </div>
     <br/>
     <!-- Completed Ordered form -->
     <div ref="content" v-show="submitted" class="container mb-5">
         <p>Thank you for your purchase</p>
+        <div class="toast" role="alert" aria-live="assertive" id="submitToast" aria-atomic="true">
+            <div class="toast-body">
+                Order was Submitted
+                <div class="mt-2 pt-2 border-top">
+                <button type="button" @click="ExportPDF" class="btn btn-primary btn-sm">Download Copy</button>
+                <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="toast">Close</button>
+                </div>
+            </div>
+        </div>
         <form id="element-to-print" >
             <fieldset class="form-control mb-5">
                 <h1 class="text-center"><strong>Order Form</strong></h1>
@@ -417,6 +446,8 @@
     </form>
         <button type="button" @click="resetPage" class="btn btn-secondary" >Reset</button>
     </div>
+
+    
         
     <div class="container mt-5 mb-5">
         <h2 class="text-center"><strong>Custom Orders</strong></h2>

@@ -143,7 +143,7 @@
                                 <!-- <td><router-link :to="{name:'Cart', query:{id:Cart.CartID, e:false}}" class="btn btn-light">...</router-link></td> -->
                                 <td><button @click="seeMore(Cart.CartID)" class="btn btn-light">...</button></td>
                                 <td><button @click="editCart(Cart.CartID)" class="btn btn-secondary btn-sm">Edit</button></td>
-                                <td><button class="btn btn-danger btn-sm" @click.prevent="delCart(Cart.CartID)">Delete</button></td>
+                                <!-- <td><button class="btn btn-danger btn-sm" @click.prevent="delCart(Cart.CartID)">Delete</button></td> -->
                             </tr>
                         </td>
                     </tr>
