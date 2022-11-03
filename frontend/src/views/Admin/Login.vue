@@ -1,8 +1,8 @@
 <script>
     import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, sendPasswordResetEmail, GoogleAuthProvider, signInWithPopup } from "firebase/auth"
     
-    
     export default {
+
       data() {
         return {
             email:'',
@@ -58,17 +58,20 @@
                 })
         },
         forgotPassword(){
-            const auth = getAuth()
-            if(!this.email){
-                this.errMsg = 'Please type in a valid email address.'
-                return
-            }
+            let myAlert = document.getElementById('resetToast')
+            let resetAlert = new bootstrap.Toast(myAlert)
+            resetAlert.hide()
             
+            let Alert = document.getElementById('sent')
+            let rstAlert = new bootstrap.Toast(Alert)
+            
+            const auth = getAuth()
             this.emailSending = true
             sendPasswordResetEmail(auth, this.email)
             .then(()=>{
                 this.emailSending = false
-                
+                this.resetFields()
+                rstAlert.show()
             })
             .catch(error=>{
                 this.emailSending = false
@@ -76,22 +79,21 @@
             })
 
 
-//             if (!this.email) {
-//     this.error = "Please type in a valid email address.";
-//     return;
-//   }
-//   this.error = null;
-//   this.emailSending = true;
-//   firebase
-//     .auth()
-//     .sendPasswordResetEmail(this.email)
-//     .then(() => {
-//       this.emailSending = false;
-//     })
-//     .catch(error => {
-//       this.emailSending = false;
-//       this.errMsg = error.message;
-//     });
+        },
+        passReset(){
+            if(!this.email){
+                this.errMsg = 'Please type in a valid email address to reset Password'
+                return
+            }
+            let myAlert = document.getElementById('resetToast')
+            let resetAlert = new bootstrap.Toast(myAlert)
+            resetAlert.show()
+        },
+        resetFields(){
+            this.email = '',
+            this.password = ''
+            this.errors=''
+            this.errMsg=''
         }
 
       }
@@ -131,7 +133,24 @@
                         <ul>
                             <!-- <button class="btn btn-primary btn-block fa-lg gradient-custom-2 mb-3" v-on:click="login()">Sign In</button> -->
                             <button type='button' class="btn btn-primary btn-block fa-lg gradient-custom-2 mb-3" @click="signIn()">Sign In</button>
-                            <p><button type="button" class="btn btn-primary btn-block fa-lg gradient-custom-2 mb-3" @click="forgotPassword()">Forgot Password?</button></p>
+                            <p><button type="button" class="btn btn-primary btn-block fa-lg gradient-custom-2 mb-3" @click="passReset" >Reset Password?</button></p>
+                            <div class="toast" role="alert" aria-live="assertive" id="resetToast" aria-atomic="true">
+                                <div class="toast-body">
+                                    Send Password Reset to Email?
+                                    <div class="mt-2 pt-2 border-top">
+                                    <button type="button" @click="forgotPassword()" class="btn btn-primary btn-sm">Yes</button>
+                                    <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="toast">No</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="toast align-items-center text-white bg-primary border-0" id="sent" role="alert" aria-live="assertive" aria-atomic="true">
+                                <div class="d-flex">
+                                    <div class="toast-body">
+                                    Reset Password sent to Email!!
+                                    </div>
+                                    <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+                                </div>
+                            </div>
                             <p><button type="button" class="btn btn-primary btn-block fa-lg gradient-custom-2 mb-3" @click="signInWithGoogle()">Sign In with Google</button></p>
                             
                             
