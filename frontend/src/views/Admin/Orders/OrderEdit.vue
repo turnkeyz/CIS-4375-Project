@@ -77,8 +77,7 @@
         if(!this.Orders.ProductsJSON)
             this.errors.push("ProductJSON is Required.");
 
-        if(!this.Orders.CustomerNotes)
-        this.errors.push("Customer Notes is Required")
+        
 
         if(!this.Orders.Status){
             this.errors.push("Status is Required");
@@ -144,9 +143,10 @@
                 <option>Order Recieved</option>
                 <option>In-Progress</option>
                 <option>Completed</option>
-                <option>Awaiting Delivery</option>
+                <option>Canceled</option>
+                <!-- <option>Awaiting Delivery</option>
                 <option>Shipped</option>
-                <option>Delivered</option>
+                <option>Delivered</option> -->
             </select></td>
           </tr>
           <tr>
@@ -156,6 +156,7 @@
                 <option>Awaiting Payment</option>
                 <option>Pending Payment</option>
                 <option>Paid in Full</option>
+                <option>Canceled</option>
             </select></td>
           </tr>
           <tr>
