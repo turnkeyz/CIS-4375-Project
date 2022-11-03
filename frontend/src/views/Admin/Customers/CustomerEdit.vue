@@ -13,8 +13,7 @@ export default {
     return {
       customers: {},
       errors:[],
-      edit:"",
-      count:{}
+      edit:""
     };
   },
   mounted(){
@@ -26,15 +25,11 @@ export default {
     let apiURL = `${import.meta.env.VITE_VUE_APP_ROOT_URL}/Customer/${this.$route.query.id}`;
     axios.get(apiURL).then((res) => {
         this.customers = res.data[0];
-      })
-      .catch((error) => {
-        console.log(error);
-      })
-
-      let inCartURL = `${import.meta.env.VITE_VUE_APP_ROOT_URL}/Customers/existInCart/${this.$route.query.id}`;
-      axios.get(inCartURL).then((res) => {
-        this.count = res.data[0].total;
-        console.log('count', this.count)
+        if(this.$route.query.e === true || this.$route.query.e === 'true'){
+          this.edit=true
+        }else{
+          this.edit=false
+        }
       })
       .catch((error) => {
         console.log(error);
@@ -43,7 +38,7 @@ export default {
   },
   methods: {
     delCustomer(id) {
-    
+      
       let apiURL = `${import.meta.env.VITE_VUE_APP_ROOT_URL}/customers/delete/${id}`;
       if (window.confirm("Are you sure you want to delete?")) {
         axios.delete(apiURL).then(() => {
@@ -58,14 +53,11 @@ export default {
     addCustomer(){
       this.$router.push('/customer-form')
     },
-    showEdit(id){
+    cancelEdit(id){
       this.$router.push({
-        name:'Customer-edit',
+        name:'Customer',
         query:{id:id}
       })
-    },
-    cancelEdit(){
-      this.edit=false
     },
     goBack(){
       this.$router.go(-1)
@@ -101,70 +93,20 @@ export default {
             if(this.errors.length === 0){
                 let apiURL = `${import.meta.env.VITE_VUE_APP_ROOT_URL}/Customers/update/${id}`;
                 axios.put(apiURL, this.customers).then(() => {
-                this.edit=false
+                this.$router.push({
+                  path:'customer',
+                  query:{id:id}
+                })
                 }).catch(error => {
                     console.log(error)
                 });
                 }
     }
-
   },
 };
 </script>
 
 <template>
-  <!-- <div v-if="edit==false"> -->
-    <div class="container mb-5">
-    <h1 class="mb-5">Customer View ID#{{customers.CustomerID}}</h1>
-    <div class="wrapper m-5"></div>
-    <div class="table1">
-      <table class="table table-light caption-top">
-        <caption>
-          <strong>Customer Information</strong>
-        </caption>
-        <tbody>
-          <tr>
-            <th>Customer ID</th>
-            <td>{{ customers.CustomerID }}</td>
-          </tr>
-          <tr>
-            <th>First Name</th>
-            <td>{{ customers.FirstName }}</td>
-          </tr>
-          <tr>
-            <th>Last Name</th>
-            <td>{{ customers.LastName }}</td>
-          </tr>
-          <tr>
-            <th>Email</th>
-            <td>{{customers.Email}}</td>
-          </tr>
-          <tr>
-            <th>Phone</th>
-            <td>{{ customers.Phone }}</td>
-          </tr>
-          <tr>
-            <th>Payment Type</th>
-            <td>{{ customers.PaymentType }}</td>
-          </tr>
-          <tr>
-            <th>Notes</th>
-            <td><textarea disabled class="form-control" rows="5" v-model="customers.Notes"></textarea></td>
-          </tr>
-        </tbody>
-      </table>
-      
-      </div>
-      <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-        <button @click="addCustomer()" class="btn btn-success me-md-2">New</button>
-        <button @click="showEdit(customers.CustomerID)" class="btn btn-secondary me-md-2">Edit</button>
-        <button v-if="count==0" @click="delCustomer(customers.CustomerID)" class="btn btn-danger" type="button">Delete</button>
-        <button @click="goBack()" class="btn btn-info" type="button">Back</button>
-      </div>
-    </div>
-  <!-- </div> -->
-  
-  <!-- <div v-if="edit==true">
     <div class="container mb-5">
       <h1 class="mb-5">Edit Customer ID#{{customers.CustomerID}}</h1>
     <div class="wrapper m-5"></div>
@@ -221,7 +163,7 @@ export default {
         </table>
           <div class="d-grid gap-2 d-md-flex justify-content-md-end mb-5">
             <button type="submit" class="btn btn-success me-md-2">Update</button>
-            <button  @click="cancelEdit()" class="btn btn-secondary" type="button">Cancel</button>
+            <button  @click="cancelEdit(customers.CustomerID)" class="btn btn-secondary" type="button">Cancel</button>
           </div>
         </form>
       <p v-if="errors.length">
@@ -232,5 +174,5 @@ export default {
             </p>
       </div>
     </div>
-  </div> -->
+  
 </template>

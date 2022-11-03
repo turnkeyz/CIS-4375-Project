@@ -72,7 +72,6 @@
     },
     computed:{
         displayedPosts(){
-            console.lgo
             return this.paginate(this.Orders)
         }
     },

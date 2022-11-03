@@ -29,7 +29,7 @@
         seeMore(id){
             this.$router.push({
                 name:'Customer',
-                query:{id:id, e:false}
+                query:{id:id}
             })
         },
         
@@ -48,17 +48,17 @@
         },
         editCustomer(id){
             this.$router.push({
-                name:'Customer',
-                query:{id:id, e:true}
+                name:'Customer-edit',
+                query:{id:id}
             })
         },
         setPages(){
             let numberOfPages = Math.ceil(this.customers.length/this.perPage)
-            console.log('number of pages', numberOfPages)
+            
             for(let index = 1;index<=numberOfPages;index++){
                 this.pages.push(index)
             }
-            console.log('pages', this.pages)
+            
         },
         paginate(posts){
             let page = this.page
@@ -76,7 +76,7 @@
     },
     watch:{
         posts(){
-            console.log('watch')
+            
             this.setPages()
         }
     },
@@ -146,7 +146,7 @@
                                 <!-- <td><router-link :to="{name:'Customer', query:{id:customer.CustomerID, e:false}}" class="btn btn-light">...</router-link></td> -->
                                 <td><button @click="seeMore(customer.CustomerID)" class="btn btn-light">...</button></td>
                                 <td><button @click="editCustomer(customer.CustomerID)" class="btn btn-secondary btn-sm">Edit</button></td>
-                                <td><button class="btn btn-danger btn-sm" @click.prevent="delCustomer(customer.CustomerID)">Delete</button></td>
+                                <!-- <td><button class="btn btn-danger btn-sm" @click.prevent="delCustomer(customer.CustomerID)">Delete</button></td> -->
                             </tr>
                         </td>
                     </tr>
