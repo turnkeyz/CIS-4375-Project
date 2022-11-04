@@ -16,6 +16,7 @@
       let apiURL = `${import.meta.env.VITE_VUE_APP_ROOT_URL}/Products/allCakes`;
       axios.get(apiURL).then((res)=>{
         this.allproducts = res.data;
+        console.log(this.allproducts)
         this.rows = Math.ceil(res.data.length/3)
         this.cakes =cakeList(this.allproducts, this.rows)
         

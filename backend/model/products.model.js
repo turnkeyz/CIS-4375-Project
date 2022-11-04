@@ -46,7 +46,7 @@ products.findProduct = (param_id) => {
       var request = new sql.Request()
       .input("pid", param_id)
       ;
-      request.query(`select p.ProductID, p.CategoryID, p.ProductName, p.Price, p.Active, p.ProductDescription, p.Img_url, i.fileID, i.fileName 
+      request.query(`select p.ProductID, p.CategoryID, p.ProductName, p.Price, p.Active, p.ProductDescription, p.ImageID, p.Img_url, i.fileID, i.fileName 
       FROM products as p
       LEFT JOIN Images as i ON p.ImageID=i.ImageID 
       WHERE ProductID=@pid;`, (err, res) => {
