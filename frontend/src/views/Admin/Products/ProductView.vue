@@ -65,7 +65,7 @@
         this.edit=false
       },
       goBack(){
-      this.$router.go(-1)
+      this.$router.push('/Products')
       },
       handleSubmitForm(pid){
         this.errors=[]

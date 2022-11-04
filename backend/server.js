@@ -7,6 +7,7 @@ const app = express();
 app.use(bodyParser.json());
 
 // parse requests of content-type: application/x-www-form-urlencoded
+
 app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use(cors())
