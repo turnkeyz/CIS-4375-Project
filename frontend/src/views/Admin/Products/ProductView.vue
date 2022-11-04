@@ -1,5 +1,6 @@
 <script>
   import axios from "axios";
+  
 
   export default {
     components: {
@@ -15,6 +16,7 @@
         file:'',
         file_type:'',
         Categories:[],
+        url:import.meta.env.VITE_FILESTACK_URL
       };
     },
     mounted(){
@@ -23,14 +25,11 @@
         //created function
     created() {
     // Variable that stores the "find specific employee" route
-      let apiURL = `${import.meta.env.VITE_VUE_APP_ROOT_URL}/Products/${this.$route.query.id}`;
+      let apiURL = `${import.meta.env.VITE_VUE_APP_ROOT_URL}/Products/get/${this.$route.query.id}`;
       axios.get(apiURL).then((res) => {
           this.Products = res.data[0];
-          if(this.$route.query.e === true || this.$route.query.e === 'true'){
-            this.edit=true
-          }else{
-            this.edit=false
-          }
+          console.log(this.Products)
+          
         })
         .catch((error) => {
           console.log(error);
@@ -114,6 +113,7 @@
         if(id==6){
           return '/cakecups/'+url
         }
+        return url
       },
       handleFileUpload(evt){
         // this.file = event.target.files[0]
@@ -156,7 +156,7 @@
             <th>Active</th>
               <td>
               <div class="form-check form-switch">
-                <input class="form-check-input" type="checkbox" id="flexSwitchCheckCheckedDisabled" checked disabled>
+                <input v-model="Products.Active" class="form-check-input" type="checkbox" id="flexSwitchCheckCheckedDisabled" checked disabled>
                 <label class="form-check-label" for="flexSwitchCheckCheckedDisabled">Display</label>
               </div>
             </td>
@@ -167,7 +167,7 @@
           </tr>
           <tr>
             <th>Image URL</th>
-            <td>{{Products.Img_url}}</td>
+            <td>{{Products.fileName}}</td>
           </tr>
           <tr>
             <!-- <td>
@@ -176,7 +176,10 @@
           </tr>
         </tbody>
       </table>
-      <img :src="'/uploads/'+getCategory(Products.CategoryID, Products.Img_url)" class="w-100"/>
+      <!-- <img v-if="Products.Image_url" :src="'/uploads/'+getCategory(Products.CategoryID, Products.Img_url)" class="w-100"/> -->
+      <img v-if="Products.fileID" :src="url+Products.fileID" class="w-100"/>
+      
+      <p v-if="!Products.Img_url">No Image added</p>
       </div>
       <div class="d-grid gap-2 d-md-flex justify-content-md-end">
         <button @click="addProduct()" class="btn btn-success me-md-2">New</button>
