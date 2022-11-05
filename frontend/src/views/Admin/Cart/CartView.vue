@@ -76,7 +76,7 @@
             })
       },
       goBack(){
-      this.$router.go(-1)
+      this.$router.push('/Carts')
     },
       handleSubmitForm(pid){
         this.errors=[]

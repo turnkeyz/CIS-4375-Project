@@ -68,7 +68,7 @@ export default {
       this.edit=false
     },
     goBack(){
-      this.$router.go(-1)
+      this.$router.push('/Customers')
     },
     handleSubmitForm(id){
       this.errors=[]
