@@ -8,7 +8,7 @@ products.findAllFromProducts = () => {
     sql.connect(sqlConfig, function (err, result) {
       var request = new sql.Request();
       request.query(
-        `SELECT p.ProductID, p.CategoryID, p.ProductName, p.ProductDescription, p.Price, p.Active, p.Img_url, c.CategoryName
+        `SELECT p.ProductID, p.CategoryID, p.ProductName, p.ProductDescription, p.Price, p.Active, c.CategoryName
         FROM Products as p
         LEFT JOIN Categories as c
         ON p.CategoryID = c.CategoryID;`, 
@@ -26,7 +26,7 @@ products.findAllActiveProducts = () => {
     sql.connect(sqlConfig, function (err, result) {
       var request = new sql.Request();
       request.query(
-        `SELECT p.ProductID, p.CategoryID, p.ProductName, p.ProductDescription, p.Price, p.Active, p.Img_url, c.CategoryName
+        `SELECT p.ProductID, p.CategoryID, p.ProductName, p.ProductDescription, p.Price, p.Active, c.CategoryName
         FROM Products as p
         LEFT JOIN Categories as c ON p.CategoryID = c.CategoryID
         WHERE Active=1;`, 
@@ -46,7 +46,7 @@ products.findProduct = (param_id) => {
       var request = new sql.Request()
       .input("pid", param_id)
       ;
-      request.query(`select p.ProductID, p.CategoryID, p.ProductName, p.Price, p.Active, p.ProductDescription, p.ImageID, p.Img_url, i.fileID, i.fileName 
+      request.query(`select p.ProductID, p.CategoryID, p.ProductName, p.Price, p.Active, p.ProductDescription, p.ImageID, i.fileID, i.fileName 
       FROM products as p
       LEFT JOIN Images as i ON p.ImageID=i.ImageID 
       WHERE ProductID=@pid;`, (err, res) => {
@@ -70,12 +70,12 @@ products.insertProducts = (obj) => {
         .input("description", obj.ProductDescription)
         // .input("image", obj.image)
         .input("price", obj.Price)
-        .input("url", obj.Img_url)
+        
         .input("active", obj.Active)
         .input("ImageID", obj.ImageID)
 
       request.query(
-        `INSERT INTO Products (CategoryID, ProductName, ProductDescription, Price, Img_url, Active, ImageID) VALUES (@cid, @product_name, @description, @price, @url, @active, @ImageID);`,
+        `INSERT INTO Products (CategoryID, ProductName, ProductDescription, Price, Active, ImageID) VALUES (@cid, @product_name, @description, @price, @active, @ImageID);`,
         (err, res) => {
           if (err) reject(err);
             console.log('line 77', res);
@@ -99,14 +99,14 @@ products.updateProducts = (param_id, obj) => {
         .input("description", obj.ProductDescription)
         // .input("image", obj.image)
         .input("price", obj.Price)
-        .input("url", obj.Img_url)
+        
         .input("active", obj.Active)
         .input("ImageID", obj.ImageID)
 
 
       request.query(
         `UPDATE Products 
-        SET CategoryID=@cid, ProductName=@product_name, ProductDescription=@description, Price=@price, Img_url=@url, Active=@active, ImageID=@ImageID
+        SET CategoryID=@cid, ProductName=@product_name, ProductDescription=@description, Price=@price, Active=@active, ImageID=@ImageID
         WHERE ProductID = @param_id;`,
         (err, res) => {
           if (err) reject(err);
@@ -140,7 +140,7 @@ products.findAllCookies = () => {
   return new Promise((resolve, reject) => {
     sql.connect(sqlConfig, function (err, result) {
       var request = new sql.Request();
-      request.query(`SELECT p.ProductID, p.CategoryID, p.ProductName, p.Price, p.Active, p.ProductDescription, p.Img_url, i.fileID, i.fileName 
+      request.query(`SELECT p.ProductID, p.CategoryID, p.ProductName, p.Price, p.Active, p.ProductDescription, i.fileID, i.fileName 
       FROM products as p
       LEFT JOIN Images as i ON p.ImageID=i.ImageID
       where p.CategoryID=1 AND p.Active=1;`, (err, res) => {
@@ -157,7 +157,7 @@ products.findAllPastries = () => {
   return new Promise((resolve, reject) => {
     sql.connect(sqlConfig, function (err, result) {
       var request = new sql.Request();
-      request.query(`SELECT p.ProductID, p.CategoryID, p.ProductName, p.Price, p.Active, p.ProductDescription, p.Img_url, i.fileID, i.fileName 
+      request.query(`SELECT p.ProductID, p.CategoryID, p.ProductName, p.Price, p.Active, p.ProductDescription,i.fileID, i.fileName 
       FROM products as p
       LEFT JOIN Images as i ON p.ImageID=i.ImageID
       where p.CategoryID=2 AND p.Active=1;`, (err, res) => {
@@ -174,7 +174,7 @@ products.findAllCakes = () => {
   return new Promise((resolve, reject) => {
     sql.connect(sqlConfig, function (err, result) {
       var request = new sql.Request();
-      request.query(`SELECT p.ProductID, p.CategoryID, p.ProductName, p.Price, p.Active, p.ProductDescription, p.Img_url, i.fileID, i.fileName 
+      request.query(`SELECT p.ProductID, p.CategoryID, p.ProductName, p.Price, p.Active, p.ProductDescription, i.fileID, i.fileName 
       FROM products as p
       LEFT JOIN Images as i ON p.ImageID=i.ImageID
       WHERE p.CategoryID=3 AND p.Active=1;`, (err, res) => {
@@ -192,7 +192,7 @@ products.findAllBreads = () => {
   return new Promise((resolve, reject) => {
     sql.connect(sqlConfig, function (err, result) {
       var request = new sql.Request();
-      request.query(`SELECT p.ProductID, p.CategoryID, p.ProductName, p.Price, p.Active, p.ProductDescription, p.Img_url, i.fileID, i.fileName 
+      request.query(`SELECT p.ProductID, p.CategoryID, p.ProductName, p.Price, p.Active, p.ProductDescription, i.fileID, i.fileName 
       FROM products as p
       LEFT JOIN Images as i ON p.ImageID=i.ImageID
       WHERE p.CategoryID=4 AND p.Active=1;`, (err, res) => {
@@ -210,7 +210,7 @@ products.findAllCakeCups = () => {
   return new Promise((resolve, reject) => {
     sql.connect(sqlConfig, function (err, result) {
       var request = new sql.Request();
-      request.query(`SELECT p.ProductID, p.CategoryID, p.ProductName, p.Price, p.Active, p.ProductDescription, p.Img_url, i.fileID, i.fileName 
+      request.query(`SELECT p.ProductID, p.CategoryID, p.ProductName, p.Price, p.Active, p.ProductDescription,  i.fileID, i.fileName 
       FROM products as p
       LEFT JOIN Images as i ON p.ImageID=i.ImageID
       WHERE p.CategoryID=6 AND p.Active=1;`, (err, res) => {
@@ -227,7 +227,7 @@ products.findAllCakeCups = () => {
   return new Promise((resolve, reject) => {
     sql.connect(sqlConfig, function (err, result) {
       var request = new sql.Request();
-      request.query(`SELECT p.ProductID, p.CategoryID, p.ProductName, p.Price, p.Active, p.ProductDescription, p.Img_url, i.fileID, i.fileName 
+      request.query(`SELECT p.ProductID, p.CategoryID, p.ProductName, p.Price, p.Active, p.ProductDescription, i.fileID, i.fileName 
       FROM products as p
       LEFT JOIN Images as i ON p.ImageID=i.ImageID
       WHERE p.CategoryID=6 AND p.Active=1;`, (err, res) => {
