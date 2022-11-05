@@ -166,7 +166,7 @@
                 this.item = {}
                 this.currentCategory =''
                 this.currentPrice=''
-                this.errors=''
+                this.errors=[]
             }else{
                 this.errors.push('Please Enter Valid Quantity')
             }
