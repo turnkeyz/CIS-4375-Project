@@ -53,11 +53,11 @@
         },
         setPages(){
             let numberOfPages = Math.ceil(this.Products.length/this.perPage)
-            console.log('number of pages', numberOfPages)
+            
             for(let index = 1;index<=numberOfPages;index++){
                 this.pages.push(index)
             }
-            console.log('pages', this.pages)
+            
         },
         paginate(posts){
             let page = this.page
@@ -80,7 +80,7 @@
     },
     watch:{
         posts(){
-            console.log('watch')
+            
             this.setPages()
         }
     },

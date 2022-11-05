@@ -50,7 +50,9 @@
         catSet:false,
         show:false,
         imgIDDisplay:'',
-        url:import.meta.env.VITE_FILESTACK_URL
+        custom:false,
+        url:import.meta.env.VITE_FILESTACK_URL,
+        
         
       }
     },
@@ -64,7 +66,7 @@
         axios.get(imgUrl).then((imgs)=>{
             this.images = imgs.data
             
-            // console.log(this.images[0].CategoryID)
+            
             for(let x =0;x <=this.images.length; x++){
                 if(this.images[x].CategoryID === 1){
                     this.cookieImgs.push(this.images[x])
@@ -102,7 +104,7 @@
                 if(this.images[x].CategoryID === undefined || this.images[x].CategoryID === null){
                     continue
                 }
-                // console.log(this.images[x])
+                
         }
         })
     },
@@ -124,11 +126,17 @@
             if(!this.Products.Price)
             this.errors.push("Price is Required")
 
-            // if(!this.Products.ProductDescription){
-            //     this.errors.push("Product Description is Required");
-            //     }
-            if(!this.Products.Img_url){
-            // this.errors.push("Image url required");
+            if(this.Products.Active==true){
+                if(!this.Products.ProductDescription){
+                    this.errors.push('Product Description is Required if Active is Switched on')
+                    this.Products.Active=false
+                }
+                if(!this.Products.fileID){
+                    this.errors.push('Image is Required if Active is switched on')
+                }
+        }
+
+            if(!this.Products.fileID){
             this.Products.Active=false
             }
             
@@ -137,6 +145,7 @@
                 let apiURL = `${import.meta.env.VITE_VUE_APP_ROOT_URL}/Products/add`;
                 axios.post(apiURL, this.Products).then(() => {
                 this.$router.push('/products')
+                this.reset()
                 }).catch(error => {
                     console.log(error)
                 });
@@ -188,43 +197,54 @@
             
         },
         setCategory(){
+
             this.currentCategory=[]
             this.pages=[]
             this.Products.ImageID=''
-            
             if(this.Products.Category[0] === 1){
                 this.currentCategory = this.cookieImgs
+                this.custom=false
             }
             if(this.Products.Category[0] === 2){
                 this.currentCategory = this.pastryImgs
+                this.custom=false
             }
             if(this.Products.Category[0]=== 3){
                 this.currentCategory = this.cakeImgs
+                this.custom=false
             }
             if(this.Products.Category[0] === 4){
                 this.currentCategory = this.breadImgs
+                this.custom=false
             }
             if(this.Products.Category[0] === 6){
                 this.currentCategory = this.cakeCupImgs
+                this.custom=false
             }
             if(this.Products.Category[0] === 7){
                 this.currentCategory = this.custCookieImgs
+                this.custom=true
             }
             if(this.Products.Category[0] === 8){
                 this.currentCategory = this.custPastryImgs
+                this.custom=true
             }
             if(this.Products.Category[0] === 9){
                 this.currentCategory = this.custCakeImgs
+                this.custom=true
             }
             if(this.Products.Category[0] === 10){
                 this.currentCategory = this.custBreadImgs
+                this.custom=true
             }
             if(this.Products.Category[0] === 12){
                 this.currentCategory = this.custCakeCupImgs
+                this.custom=true
             }
             
             this.setPages()
             this.paginate(this.currentCategory)
+            
         },
         changeValue(src){
             this.Products.ImageID=src.ImageID
@@ -232,18 +252,26 @@
             this.Products.fileID = src.fileID
         },
         showImages(){
-            console.log(this.currentCategory)
             this.show=true
             this.setCategory()
         },
         hideImages(){
             this.show=false
+        },
+        reset(){
+            this.Products={}
+            this.currentCategory=[]
+            this.pages=[]
+        },
+        activeChecks(){
+            
+            
         }
         
     },
     watch:{
         posts(){
-            console.log('watch')
+            
             this.setPages()
         }
     },
@@ -274,7 +302,7 @@
                         </select>
                     </div>
                     <div class='col-sm-4'>
-                        <label>Name</label>
+                        <label>*Name</label>
                         <input type="text" class="form-control" v-model="Products.ProductName" required>
                     </div>    
                     <div class='col-sm-4'>
@@ -321,25 +349,27 @@
 
 
                 <div class="row mb-4">
-                    <div class='col-sm-6 mb-3'>
+                    <div  class='col-sm-6 mb-3'>
+                        <div v-show="!custom && Products.fileID" >
                         <label>*Active</label>
                         <div class="form-check form-switch">
                             <input v-model="Products.Active" class="form-check-input" type="checkbox" id="flexSwitchCheckDefault">
                             <label class="form-check-label" for="flexSwitchCheckDefault">Display in Categories Page</label>
                         </div>
                     </div>
+                    </div>
                     <div class="col-sm-12 mb-3">
                         <label>Description</label>
                         <textarea class="form-control" rows="5" v-model="Products.ProductDescription"></textarea>
                     </div>
                     
-                     <div v-if="catSet" class="mb-3">
+                     <div v-if="catSet" class="d-grid gap-2 d-md-flex justify-content-md mt-2 ">
                         <button type="button" class="btn btn-secondary" @click="showImages">Show Images</button>
-                        <button v-if="show" type="button" @click="hideImages">Close</button>
+                        <button v-if="show" class="btn btn-secondary" type="button" @click="hideImages">Close</button>
                     </div>
                     
                     <!-- added for images -->
-                    <div v-if="Products.ImageID" class="container">
+                    <div v-if="Products.ImageID" class="container mt-3">
                         <img id="currentImg" class="w-100" :src="url+Products.fileID" style="">
                     </div>
 
@@ -360,17 +390,11 @@
                         <li class="page-item">
                             <button type="button" class="page-link" v-for="pageNumber in pages.slice(page-1, page+3)" :key="pageNumber" @click="page = pageNumber"> {{pageNumber}} </button>
                         </li>
-                        
-
                         <li class="page-item">
                             <button type="button" @click="page++" v-if="page < pages.length" class="page-link"> Next </button>
                         </li> 
                 </ul>
             </div>
-
-
-
-
                 </div>
             <p v-if="errors.length">
                 <b>Please correct the following error(s):</b>
@@ -378,8 +402,12 @@
                     <li v-for="error in errors" :key="error">{{ error }} </li>
                 </ul>
             </p>
-            <button type="submit" class="btn btn-success create" >Create</button>
+            
             </fieldset>
+            <div class="d-grid gap-2 d-md-flex justify-content-md-end mb-5">
+                <button type="submit" class="btn btn-success create" >Create</button>
+                <button type="button" @click="reset" class="btn btn-secondary create" >Clear</button>
+            </div>
         </form>
     </div>
 </div>
