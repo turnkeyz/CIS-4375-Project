@@ -122,29 +122,29 @@ export default {
             <td>{{ customers.CustomerID }}</td>
           </tr>
           <tr>
-            <th>First Name</th>
+            <th>*First Name</th>
             <td><input type="text" id='fName' class="form-control" v-model="customers.FirstName" required></td>
           </tr>
           <tr>
-            <th>Last Name</th>
+            <th>*Last Name</th>
             <td><input type="text" class="form-control" v-model="customers.LastName" required></td>
           </tr>
           <tr>
-            <th>Email</th>
+            <th>*Email</th>
             <td><input type="email" class="form-control" v-model="customers.Email" required>
               <small id="phoneHelpBlock" class="form-text text-muted">
               example@email.com
               </small></td>
           </tr>
           <tr>
-            <th>Phone</th>
+            <th>*Phone</th>
             <td><input type="text" class="form-control" placeholder="XXX-XXX-XXXX" v-model="customers.Phone" required>
               <small id="phoneHelpBlock" class="form-text text-muted">
                 xxx-xxx-xxxx **dashes required
               </small></td>
           </tr>
           <tr>
-            <th>Payment Type</th>
+            <th>*Payment Type</th>
             <td><select class='form-select' v-model="customers.PaymentType">
                   <option disabled value="">Select option</option>
                   <option>Cash</option>

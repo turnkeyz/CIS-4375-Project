@@ -28,7 +28,7 @@
       let apiURL = `${import.meta.env.VITE_VUE_APP_ROOT_URL}/Products/get/${this.$route.query.id}`;
       axios.get(apiURL).then((res) => {
           this.Products = res.data[0];
-          console.log(this.Products)
+          
           
         })
         .catch((error) => {
@@ -55,7 +55,7 @@
         this.$router.push('/Product-form')
       },
       showEdit(id){
-        console.log('line 59')
+        
         this.$router.push({
           path:'product-edit',
           query:{id:id}
@@ -89,7 +89,7 @@
         //only run if no errors
         if(this.errors.length === 0){
             let apiURL = `${import.meta.env.VITE_VUE_APP_ROOT_URL}/Products/update/${pid}`;
-            console.log('line 86', apiURL)
+            
             axios.put(apiURL, this.Products).then(() => {
             this.edit=false
             }).catch(error => {
@@ -179,9 +179,9 @@
       <!-- <img v-if="Products.Image_url" :src="'/uploads/'+getCategory(Products.CategoryID, Products.Img_url)" class="w-100"/> -->
       <img v-if="Products.fileID" :src="url+Products.fileID" class="w-100"/>
       
-      <p v-if="!Products.Img_url">No Image added</p>
+      <p v-if="!Products.fileID">No Image added</p>
       </div>
-      <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+      <div class="d-grid gap-2 d-md-flex justify-content-md-end mb-5 mt-5">
         <button @click="addProduct()" class="btn btn-success me-md-2">New</button>
         <button @click="showEdit(Products.ProductID)" class="btn btn-secondary me-md-2">Edit</button>
         <button  @click="delProduct(Products.ProductID)" class="btn btn-danger" type="button">Delete</button>

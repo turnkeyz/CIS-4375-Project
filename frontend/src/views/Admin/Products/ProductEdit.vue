@@ -36,7 +36,8 @@
         currentImg:'',
         catSet:false,
         show:false,
-        imgIDDisplay:''
+        imgIDDisplay:'',
+        custom:false
       };
     },
     mounted(){
@@ -49,7 +50,6 @@
       let apiURL = `${import.meta.env.VITE_VUE_APP_ROOT_URL}/Products/get/${this.$route.query.id}`;
       axios.get(apiURL).then((res) => {
           this.Products = res.data[0];
-          console.log(this.Products)
           
         })
         .catch((error) => {
@@ -67,34 +67,44 @@
             for(let x =0;x <=this.images.length; x++){
                 if(this.images[x].CategoryID === 1){
                     this.cookieImgs.push(this.images[x])
+                    this.custom=false
                 }
                 if(this.images[x].CategoryID === 2){
                     this.pastryImgs.push(this.images[x])
+                    this.custom=false
 
                 }
                 if(this.images[x].CategoryID === 3){
                     this.cakeImgs.push(this.images[x])
+                    this.custom=false
                 }
                 if(this.images[x].CategoryID === 4){
                     this.breadImgs.push(this.images[x])
+                    this.custom=false
                 }
                 if(this.images[x].CategoryID === 6){
                     this.cakeCupImgs.push(this.images[x])
+                    this.custom=false
                 }
                 if(this.images[x].CategoryID === 7){
                     this.custCookieImgs.push(this.images[x])
+                    this.custom=true
                 }
                 if(this.images[x].CategoryID === 8){
                     this.custPastryImgs.push(this.images[x])
+                    this.custom=true
                 }
                 if(this.images[x].CategoryID === 9){
                     this.custCakeImgs.push(this.images[x])
+                    this.custom=true
                 }
                 if(this.images[x].CategoryID === 10){
                     this.custBreadImgs.push(this.images[x])
+                    this.custom=true
                 }
                 if(this.images[x].CategoryID === 12){
                     this.custCakeCupImgs.push(this.images[x])
+                    this.custom=true
                 }
                 if(this.images[x].CategoryID === undefined || this.images[x].CategoryID === null){
                     continue
@@ -141,10 +151,17 @@
 
         // if(!this.Products.ProductDescription){
         //     this.errors.push("Product Description is Required");
-        //     }
-        if(!this.Products.Img_url){
+        //   }
+        if(!this.Products.fileID){
         // this.errors.push("Image url required");
         this.Products.Active=false
+        }
+
+        if(this.Products.Active==true){
+          if(!this.Products.ProductDescription){
+            this.errors.push('Product Description is Required if Active is Switched on')
+            this.Products.Active=false
+          }
         }
 
         //only run if no errors
@@ -258,7 +275,7 @@
     },
     watch:{
         posts(){
-            console.log('watch')
+            
             this.setPages()
         }
     },
@@ -287,7 +304,7 @@
             <td>{{ Products.ProductID }}</td>
           </tr>
           <tr>
-            <th>Category</th>
+            <th>*Category</th>
             <!-- <td><input type="text" id='fName' class="form-control" v-model="Products.CategoryID" required></td> -->
             <select class='form-select' v-model="Products.CategoryID">
                 <option disabled value="">Select option</option>
@@ -297,21 +314,23 @@
             </select>
           </tr>
           <tr>
-            <th>Name</th>
+            <th>*Name</th>
             <td><input type="text" class="form-control" v-model="Products.ProductName" required></td>
           </tr>
           <tr>
-            <th>Price</th>
+            <th>*Price</th>
             <td><input type="Price" class="form-control" v-model="Products.Price" required>
               </td>
           </tr>
           <tr>
             <th>Active</th>
               <td>
+                <div v-show="!custom && Products.fileID" >
                 <div class="form-check form-switch">
                   <input v-model="Products.Active" class="form-check-input" type="checkbox" id="flexSwitchCheckDefault">
                   <label class="form-check-label" for="flexSwitchCheckDefault">Active</label>
                 </div>
+              </div>
               </td>
           </tr>
           <tr>
@@ -333,9 +352,9 @@
         </div> -->
 
 
-        <div  class="mb-3">
-                  <button type="button" class="btn btn-secondary" @click="showImages">Show Images</button>
-                  <button v-if="show" type="button" @click="hideImages">Close</button>
+            <div  class="d-grid gap-2 d-md-flex justify-content-md mt-2 mb-4">
+                  <button type="button" class="btn btn-secondary" @click="showImages">More Images</button>
+                  <button v-if="show" class="btn btn-secondary" type="button" @click="hideImages">Close</button>
               </div>
               
               <!-- added for images -->
@@ -370,7 +389,7 @@
 
 
         <!-- <img v-if="Products.Img_url" :src="'/uploads/'+getCategory(Products.CategoryID, Products.Img_url)" class="w-100"/> -->
-          <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+          <div class="d-grid gap-2 d-md-flex justify-content-md-end mb-5 mt-5">
             <button type="submit" class="btn btn-success me-md-2">Update</button>
             <button  @click="cancelEdit(Products.ProductID)" class="btn btn-secondary" type="button">Cancel</button>
           </div>
