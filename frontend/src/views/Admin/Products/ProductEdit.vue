@@ -320,7 +320,7 @@
           </tr>
           <tr>
             <th>Image URL</th>
-            <td>{{Products.Img_url}}</td>
+            <td>{{Products.fileName}}</td>
           </tr>
           
         </tbody>
