@@ -63,6 +63,7 @@
       let imgUrl=`${import.meta.env.VITE_VUE_APP_ROOT_URL}/Products/images/all`
         axios.get(imgUrl).then((imgs)=>{
             this.images = imgs.data
+            
             // console.log(this.images[0].CategoryID)
             for(let x =0;x <=this.images.length; x++){
                 if(this.images[x].CategoryID === 1){
@@ -231,6 +232,7 @@
             this.Products.fileID = src.fileID
         },
         showImages(){
+            console.log(this.currentCategory)
             this.show=true
             this.setCategory()
         },
