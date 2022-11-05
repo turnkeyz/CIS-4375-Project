@@ -49,9 +49,11 @@
             //validations for required or formatted fields
             if(!this.Cart.CustomerID){
                 this.errors.push("Customer ID is Required");
+                return
                 }
             if(this.items.length == 0){
-                this.errors.push("Cart will not be created without products"); 
+                this.errors.push("Cart cannot not be created without products"); 
+                return
             }
             // for(let i=0; i< this.items.length; i++){
             //     let item = {'ProductID':this.items[i].Products[0], 'ProductName':this.items[i].Products[1], 'Price':this.items[i].Products[2],'Quantity':this.items[i].Quantity}
@@ -64,11 +66,12 @@
                 this.errors.push("No subtotal")
             }
             
-            this.Cart.ProductsJSON = JSON.stringify(this.items)
+            
             if(this.Cart.ProductsJSON.length == 0){
                 this.errors.push("Products table is empty")
+                return
             }
-            
+            this.Cart.ProductsJSON = JSON.stringify(this.items)
             if(this.errors.length === 0){
                 console.log('line 71', this.Cart)
                 let apiURL = `${import.meta.env.VITE_VUE_APP_ROOT_URL}/Cart/add`;
@@ -88,13 +91,19 @@
             }
         },
         addProductLine(){
-            this.item.Price = this.item.Products[2]*this.item.Quantity
-            this.total = this.total + (this.item.Products[2]*this.item.Quantity)
-            let obj = {"ProductID":this.item.Products[0], "ProductName":this.item.Products[1], "Price":this.item.Products[2], "Quantity":this.item.Quantity, "CategoryName":this.item.Products[3]}
-            this.items.push(obj)
-            this.item = {}
-            this.currentCategory =''
-            this.currentPrice=''
+            if(this.item.Quantity >0){
+                this.item.Price = this.item.Products[2]*this.item.Quantity
+                this.total = this.total + (this.item.Products[2]*this.item.Quantity)
+                let obj = {"ProductID":this.item.Products[0], "ProductName":this.item.Products[1], "Price":this.item.Products[2], "Quantity":this.item.Quantity, "CategoryName":this.item.Products[3]}
+                this.items.push(obj)
+                this.item = {}
+                this.currentCategory =''
+                this.currentPrice=''
+                this.errors=[]
+            }else{
+                this.errors.push('Please Enter Valid Quantity')
+            }
+           
         },
         removeFromCart(id){
             let index = this.items.findIndex(i=>i.ProductID===id)
@@ -111,12 +120,7 @@
                 this.Cart.Customization = 1
             }
         },
-        noteChange(){
-            if(this.Cart.CustomerNotes){
-                this.Cart.Customization = 1
-            }
         
-        }
     } 
 }
 </script>
@@ -145,7 +149,7 @@
                 </div>            
             </fieldset>
             <fieldset class="form-control mb-5">
-                <legend>Products</legend>
+                <legend>*Products</legend>
                 <!-- <div v-for="index in counter" :key="index"> -->
                     <div> <!--DIV  FOR PRODUCTS-->
                     <div class="row mb-4">
@@ -172,14 +176,14 @@
                             <label >Quantity</label>
                             <input type="number" class="form-control" min=1 v-model="item.Quantity" required>
                         </div>  
-                        <div class="col-sm-2">
+                        <!-- <div class="col-sm-2">
                     <label for='fName'>Custom</label>
                             <select class='form-select' v-model="Cart.Customization">
                                 <option disabled value="">Select option</option>
                                 <option value="1">Yes</option>
                                 <option value="0">No</option>
                             </select>
-                        </div> 
+                        </div>  -->
                         <div class="col-sm-2">
                             <label>Subtotal</label>
                             <input disabled type="number" class="form-control" v-model="total">
