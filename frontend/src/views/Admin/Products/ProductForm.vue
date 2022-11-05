@@ -63,6 +63,7 @@
       let imgUrl=`${import.meta.env.VITE_VUE_APP_ROOT_URL}/Products/images/all`
         axios.get(imgUrl).then((imgs)=>{
             this.images = imgs.data
+            
             // console.log(this.images[0].CategoryID)
             for(let x =0;x <=this.images.length; x++){
                 if(this.images[x].CategoryID === 1){
@@ -206,6 +207,21 @@
             if(this.Products.Category[0] === 6){
                 this.currentCategory = this.cakeCupImgs
             }
+            if(this.Products.Category[0] === 7){
+                this.currentCategory = this.custCookieImgs
+            }
+            if(this.Products.Category[0] === 8){
+                this.currentCategory = this.custPastryImgs
+            }
+            if(this.Products.Category[0]=== 9){
+                this.currentCategory = this.custCakeImgs
+            }
+            if(this.Products.Category[0] === 10){
+                this.currentCategory = this.custBreadImgs
+            }
+            if(this.Products.Category[0] === 12){
+                this.currentCategory = this.custCakeCupImgs
+            }
 
             
             this.setPages()
@@ -217,6 +233,7 @@
             this.Products.fileID = src.fileID
         },
         showImages(){
+            console.log(this.currentCategory)
             this.show=true
             this.setCategory()
         },
