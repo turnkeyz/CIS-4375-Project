@@ -158,12 +158,15 @@ h4, p, h5, h3, h2, ul, li, h1{
   p,ul,li{
     font-size: 25px;
   }
-  .img-fluid{
-    width: 100% !important;
-    height: 25vh;
-    object-fit: cover;
+  /* .img-fluid{ */
+    /* width: 100% !important;
+    height: 25vh; */
+    /* max-height: 200px; */
+    /* max-width: 100%;
+    height: auto;
+    object-fit: cover; */
     
-  }
+  /* } */
   .nav-link mx-2 btn rounded-0{
     color:#00cdff
   }

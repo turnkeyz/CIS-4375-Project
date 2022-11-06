@@ -39,7 +39,7 @@
           <div v-for="item in row" :key='item' class="col-lg-4 col-md-6 mb-4">
               <div class="bg-image hover-zoom ripple shadow-1-strong rounded">
                 <!-- <img :src="'/uploads/cakes/'+item.Img_url" class="w-100"/> -->
-                <img :src="url+item.fileID" class="w-100"/>
+                <img :src="url+item.fileID" id="imgSize" class="w-100"/>
                 
                   <div class="mask" style="background-color: rgba(0, 0, 0, 0.3);">
                   <div class="d-flex justify-content-start align-items-start h-100">
@@ -63,8 +63,9 @@
 
 <style>
 
-  .w-100{
-      width: 200px;
-      height: 300px;
+#imgSize{
+    width:100vh;
+    height:25vh;
+    object-fit: cover;
   }
 </style>

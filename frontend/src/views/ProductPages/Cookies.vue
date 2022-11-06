@@ -38,8 +38,16 @@
               <div class="bg-image hover-zoom ripple shadow-1-strong rounded">
                 <!-- <img src="../public/uploads/cookies.jpg" class="w-100"/> -->
                 <!-- <img :src="'/uploads/cookies/'+item.Img_url" class="w-100"/> -->
-                <img :src="url+item.fileID" class="w-100"/>
-                  <div class="mask" style="background-color: rgba(0, 0, 0, 0.3);">
+                
+                
+                <div class="">
+                  <img :src="url+item.fileID" id="imgSize" class="w-100"/>
+                </div>
+                
+                  
+                
+                
+                <div class="mask" style="background-color: rgba(0, 0, 0, 0.3);">
                   <div class="d-flex justify-content-start align-items-start h-100">
                   <h5><span class="badge bg-light pt-2 ms-3 mt-3 text-dark">{{item.ProductName}} ${{item.Price}}</span></h5>
                   </div>
@@ -59,9 +67,9 @@
 </template>
 
 <style>
-
-  .w-100{
-      width: 200px;
-      height: 300px;
+  #imgSize{
+    width:100vh;
+    height:25vh;
+    object-fit: cover;
   }
 </style>
