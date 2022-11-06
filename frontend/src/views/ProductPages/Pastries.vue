@@ -31,7 +31,7 @@
   };
 </script>
 <template>  
-  <section style="background-color: #eee;">
+  <section style="background-color: #f8f8ff;">
      <div class="container py-5">
       <h1 class="text-center mb-5"><strong>Pastries</strong></h1>
       <div v-for="row in cakes" :key="row" class="row">
@@ -39,7 +39,7 @@
               <div class="bg-image hover-zoom ripple shadow-1-strong rounded">
                 <!-- <img :src="'/uploads/pastries/'+item.fileID" class="w-100"/> -->
                 <img :src="url+item.fileID" id="imgSize" class="w-100"/>
-                  <div class="mask" style="background-color: rgba(0, 0, 0, 0.3);">
+                  <div class="mask" style="background-color: rgba(242,243,244, 1);">
                   <div class="d-flex justify-content-start align-items-start h-100">
                   <h5><span class="badge bg-light pt-2 ms-3 mt-3 text-dark">{{item.ProductName}} ${{item.Price}}</span></h5>
                   </div>
@@ -63,7 +63,7 @@
 
 #imgSize{
     width:100vh;
-    height:25vh;
+    height:20vh;
     object-fit: cover;
   }
 </style>
