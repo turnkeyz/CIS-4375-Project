@@ -91,42 +91,6 @@
 </script>
 
 <template>
-    <!-- <div class="container">
-        <h1 class="text-center">All Products</h1>
-        <div class="table-responsive-sm">
-            <table class="table table-hover table-responsive table-bordered">
-                <thead class="table-light">
-                    <tr>
-                        <th scope="col">Product #</th>
-                        <th scope="col">Category</th>
-                        <th scope="col">Name</th>
-                        <th scope="col">Price</th>
-                
-                        <th><button class="btn btn-success btn-sm" @click="newProduct()">Add New Product</button></th>
-                    </tr>
-                </thead>
-                <tbody class="table-group-divider table-divider-color">
-                    <tr v-for="Product in Products" :key="Product">
-                        <td>{{Product.ProductID}}</td>
-                        <td>{{Product.CategoryName}}</td>
-                        <td>{{Product.ProductName}}</td>
-                        <td>${{Product.Price}}</td>
-                        
-                        <td>
-                            <tr>
-                               
-                                <td><button @click="seeMore(Product.ProductID)" class="btn btn-light">...</button></td>
-                                <td><button @click="editProduct(Product.ProductID)" class="btn btn-secondary btn-sm">Edit</button></td>
-                                <td><button class="btn btn-danger btn-sm" @click.prevent="delProduct(Product.ProductID)">Delete</button></td>
-                            </tr>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-    </div> -->
-
-
     <div class="container">
         <h1 class="text-center mb-3">All Products</h1>
         <button class="btn btn-success btn-sm mb-3" @click="customOptions()">Custom Options</button>

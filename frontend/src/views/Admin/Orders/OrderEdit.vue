@@ -1,6 +1,7 @@
 <script>
   import axios from "axios";
   import {formatDateTimeFromSQLTOJS} from '../../../methods/format_date' 
+  import {yearMonthDay} from '../../../methods/regex'
 
   export default {
     components: {
@@ -38,14 +39,10 @@
         .catch((error) => {
           console.log(error);
         })
-
-        // let apiURL2=`${import.meta.env.VITE_VUE_APP_ROOT_URL}/Products/fetchAll`
-        // axios.get(apiURL2).then((res)=>{
-        //   this.Products = res.data
-        // })
     },
     methods: {
       cancelEdit(id){
+        
         this.$router.push({
                 name:'Orders-View',
                 query:{id:id}
@@ -60,34 +57,32 @@
       },
 
       handleSubmitForm(oid){
+        console.log(this.Orders.DeliveryDateTime)
         this.errors=[]
         //validations for required or formatted fields
-        if(!this.Orders.OrderID){
-            this.errors.push("OrderID is Required");
-            }
-        if(!this.Orders.CustomerID){
-            this.errors.push("CustomerID  is Required");
-            }
-        if(!this.Orders.CartID){
-            this.errors.push("CartID is Required");
-            }
-        if(!this.Orders.DateTimeOrdered){
-            this.errors.push("Date is Required");
-            }
-        if(!this.Orders.ProductsJSON)
-            this.errors.push("ProductJSON is Required.");
+       
 
+        if(this.Orders.DeliveryDateTime && !yearMonthDay.test(this.Orders.DeliveryDateTime)){
+            this.errors.push("Delivery Date not in correct format")
+        }
         
+        if(!this.Orders.DeliveryDateTime){
+            delete this.Orders.DeliveryDateTime
+        }
+        if(!this.Orders.Status){
+        this.errors.push("Status is Required")
+    }
 
         if(!this.Orders.Status){
             this.errors.push("Status is Required");
             }
 
-        
+            if (!this.Orders.PaymentStatus){
+                this.errors.push("Payment Status is Required");
+            }
        
         this.Orders.ProductsJSON = JSON.stringify(this.items)
-        // this.Orders.Subtotal=this.total
-        //only run if no errors
+        
         if(this.errors.length === 0){
             let apiURL = `${import.meta.env.VITE_VUE_APP_ROOT_URL}/Orders/update/${oid}`;
             axios.put(apiURL, this.Orders).then(() => {
@@ -130,7 +125,11 @@
           </tr>
           <tr>
             <th>Called Back?</th>
-            <td>{{Orders.CalledBackValue}}</td>
+            <!-- <td>{{Orders.CalledBackValue}}</td> -->
+            <td><select class="form-select" v-model="Orders.CalledBackValue" required>
+                <option value=true>Yes</option>
+                <option value=false>No</option>
+            </select></td>
           </tr>
           <tr>
             <th>Date Ordered</th>
@@ -161,8 +160,7 @@
           </tr>
           <tr>
             <th>Delivery Date</th>
-            <td><input type="text" class="form-control" reauired min=1 v-model="Orders.DeliveryDateTime" 
-              pattern="(?:19|20)[0-9]{2}-(?:(?:0[1-9]|1[0-2])-(?:0[1-9]|1[0-9]|2[0-9])|(?:(?!02)(?:0[1-9]|1[0-2])-(?:30))|(?:(?:0[13578]|1[02])-31))">
+            <td><input type="text" class="form-control" reauired min=1 v-model="Orders.DeliveryDateTime">
               <small id="phoneHelpBlock" class="form-text text-muted">
                 YYYY-MM--DD
               </small>
