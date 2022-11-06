@@ -118,13 +118,19 @@
         }
       },
       addProductLine(){
-            // this.item.ProductID=this.item.Products[0]
-            // this.item.ProductName = this.item.Products[1]
-            this.item.Price = this.item.Products[2]*this.item.Quantity
-            this.total = this.total + (this.item.Products[2]*this.item.Quantity)
-            let obj = {"ProductID":this.item.Products[0], "ProductName":this.item.Products[1], "Price":this.item.Products[2], "Quantity":this.item.Quantity}
-            this.items.push(obj)
-            this.item = {}
+            if(this.item.Quantity>0){
+              this.item.Price = this.item.Products[2]*this.item.Quantity
+              this.total = this.total + (this.item.Products[2]*this.item.Quantity)
+              let obj = {"ProductID":this.item.Products[0], "ProductName":this.item.Products[1], "Price":this.item.Products[2], "Quantity":this.item.Quantity, "CategoryName":this.item.Products[3]}
+              this.items.push(obj)
+              this.item = {}
+              this.currentCategory =''
+              this.currentPrice=''
+              this.errors=[]
+            }else{
+                this.errors.push('Please Enter Valid Quantity')
+            }
+            
         },
         removeFromCart(id){
             let index = this.items.findIndex(i=>i.ProductID===id)
@@ -134,7 +140,7 @@
             this.items.splice(index, 1)
          },
          setCatPrice(){
-            this.currentCategory = this.item.Products[3]
+          this.currentCategory = this.item.Products[3]
             this.currentPrice = this.item.Products[2]
             this.item.Quantity = 1
         },
@@ -145,7 +151,7 @@
 <template>
     <div class="container">
       <h1 class="mb-5">Cart Edit ID#{{Cart.CartID}}</h1>
-    <div class="wrapper m-5"></div>
+    
       <div class="table1">
         <form @submit.prevent="handleSubmitForm(Cart.CartID)" novalidate>
         <table class="table table-light caption-top">
@@ -162,54 +168,78 @@
                 <td>{{Cart.CustomerID}}</td>
           </tr>
           <tr>
-            <th>Products</th>
-            <!-- <td><input type="text" class="form-control" v-model="Cart.ProductsJSON" required></td> -->
-            <div class="row mb-4">
-                        <div class="col-sm-4">
-                            <label for='fName'>Name</label>
-                            <select @change="setCatPrice()" class='form-select' v-model="item.Products">
+          </tr>
+          <tr>
+            <th>Custom</th>
+            <td><input type="Price" class="form-control" v-model="Cart.Customization" required></td>
+          </tr>
+          
+          <tr>
+            <th>Description</th>
+            <td><textarea class="form-control" rows="5" v-model="Cart.CustomerNotes"></textarea></td>
+          </tr>
+        </tbody>
+        </table>
+          
+        
+        
+        <table class="table caption-top table-responsive table-bordered">
+          <caption>
+            <strong>Add Products</strong>
+          </caption>
+            <thead class="table-light">
+              <tr>
+              <th>Name</th>
+              <th>Category</th>
+              <th>Price</th>
+              <th>Quantity</th>
+              <th>Subtotal</th>
+            </tr>
+            </thead>
+            
+            <tbody>
+              <tr>
+                <td><select @change="setCatPrice()" class='form-select' v-model="item.Products">
                                 <option disabled value="">Select option</option>
-                                <option v-for="product in Products" :key="product.ProductID" :value="[product.ProductID, product.ProductName, product.Price]">
-                                    {{product.ProductName}} / {{product.CategoryName}}/ ${{product.Price}}
+                                <option v-for="product in Products" :key="product.ProductID" :value="[product.ProductID, product.ProductName, product.Price, product.CategoryName]">
+                                    {{product.ProductName}}
                                 </option>
-                            </select>
-                        </div> 
-                        <div class="col-sm-2">
-                            <label >Quantity</label>
-                            <input type="number" class="form-control" required min=1 v-model="item.Quantity">
-                        </div>  
-                        <div class="col-sm-2">
-                            <label for='fName'>Custom</label>
-                            <select class='form-select' v-model="item.Custom">
-                                <option disabled value="">Select option</option>
-                                <option>Yes</option>
-                                <option>No</option>
-                            </select>
-                        </div> 
-                        <div clas="col-sm-2">
-                            <button @click="addProductLine()" class="btn btn-secondary" type="button">Add</button>
-                        </div>
-                    </div>
-            <div cloass="row mb-4">
-                    <div class="table-responsive-sm">
-                        <table class="table table-hover table-responsive table-bordered">
+                            </select></td>
+                <td><input disabled type="text" class="form-control" v-model="currentCategory"></td>
+                <td><input disabled type="number" class="form-control" v-model="currentPrice"></td>
+                <td><input type="number" class="form-control" required min=1 v-model="item.Quantity"></td>
+                <td><input type="Price" class="form-control" v-model="total" required disabled></td>
+              </tr>
+          </tbody>
+        </table>
+        <button @click="addProductLine()" class="btn btn-secondary mb-5" type="button">Add</button>
+            <!-- <div closs="row mb-4">
+              <div class="col-sm-12"> -->
+                
+                    <div class="table-responsive-sm ">
+                      
+                        <table class="table table-hover caption-top table-responsive table-bordered">
+                          <caption>
+                      <strong>Products in CART</strong>
+                    </caption>
                             <thead class="table-light">
                                 <tr>
-                                    <th scope="col">Product Name</th>
+                                  <th scope="col">Name</th>
+                                    <th scope="col">Category</th>
                                     <th scope="col">Price</th>
                                     <th scope="col">Quantity</th>
-                                    <th scope="col">Custom</th>
                                     <th scope="col">Total</th>
                                     <th></th>
                                 </tr>
                             </thead>
+                            
                             <tbody class="table-group-divider table-divider-color">
                                 <tr v-for="index in items" :key="index">
                                     <td>{{index.ProductName}}</td>
-                                    <!-- <td>{{index.Products[1]}}</td> -->
+                                    <td>{{index.CategoryName}}</td>
                                     <td>${{index.Price}}</td>
                                     <td>{{index.Quantity}}</td>
-                                    <td>{{}}</td>
+                                    
                                     <td>${{index.Price * index.Quantity}}</td>
                                     <td>
                                         <tr>
@@ -220,22 +250,9 @@
                             </tbody>
                         </table>
                     </div>
-                </div>
-          </tr>
-          <tr>
-            <th>Custom</th>
-            <td><input type="Price" class="form-control" v-model="Cart.Customization" required></td>
-          </tr>
-          <tr>
-            <th>Subtotal</th>
-            <td><input type="Price" class="form-control" v-model="total" required disabled></td>
-          </tr>
-          <tr>
-            <th>Description</th>
-            <td><textarea class="form-control" rows="5" v-model="Cart.CustomerNotes"></textarea></td>
-          </tr>
-        </tbody>
-        </table>
+                  <!-- </div>
+                </div>  -->
+          
           <div class="d-grid gap-2 d-md-flex justify-content-md-end">
             <button type="submit" class="btn btn-success me-md-2">Update</button>
             <button  @click="cancelEdit(Cart.CartID)" class="btn btn-secondary" type="button">Cancel</button>
@@ -250,4 +267,6 @@
         </p>
       </div>
     </div>
+
+    
 </template>
