@@ -64,7 +64,7 @@
           <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mt-3">
             <h6 class="text-uppercase mb-4 font-weight-bold">Contact</h6>
             <p><i class="fas fa-home mr-3"></i> Houston, TX 77204, US</p>
-            <p><i class="fas fa-envelope mr-3"></i> owlBbaking@gmail.com</p>
+            <p><i class="fas fa-envelope mr-3"></i> owlBeebaking@gmail.com</p>
             <p><i class="fas fa-phone mr-3"></i>(281) 459-2000</p>
           </div>
           <!-- Grid column -->

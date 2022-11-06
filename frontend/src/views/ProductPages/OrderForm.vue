@@ -66,11 +66,11 @@
                 return
                 }
             if(!this.Order.FirstName){
-                this.errors.push("Name is Required.");
+                this.errors.push("First Name is Required.");
                 return
             }    
             if(!this.Order.LastName){
-                this.errors.push("Price is Required")
+                this.errors.push("Last Name is Required")
             }
             if(!this.Order.Email){
                 this.errors.push("Email is Required");
