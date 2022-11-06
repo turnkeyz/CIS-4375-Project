@@ -73,21 +73,21 @@ export default {
                     this.errors.push("Last Name Required");
                     }
                 
-                if(!emailregex.test(this.customers.Email))
+                if(!emailregex.test(this.customers.Email) || !this.customers.Email)
                     this.errors.push("Please enter a valid email.");
 
                 if(!this.customers.Phone)
-                this.errors.push("phone is Required")
+                this.errors.push("Phone# is Required")
 
                 if (!regex.test(this.customers.Phone))
                 this.errors.push("Please use correct phone number format.");
 
                 if(!this.customers.PaymentType){
                     this.errors.push("Payment type  is Required");
-                    }
-                if(!this.customers.Notes){
-                    this.errors.push("notes is Required");
-                    }
+                }
+                // if(!this.customers.Notes){
+                //     this.errors.push("notes is Required");
+                //     }
 
             //only run if no errors
             if(this.errors.length === 0){
@@ -122,29 +122,29 @@ export default {
             <td>{{ customers.CustomerID }}</td>
           </tr>
           <tr>
-            <th>First Name</th>
+            <th>*First Name</th>
             <td><input type="text" id='fName' class="form-control" v-model="customers.FirstName" required></td>
           </tr>
           <tr>
-            <th>Last Name</th>
+            <th>*Last Name</th>
             <td><input type="text" class="form-control" v-model="customers.LastName" required></td>
           </tr>
           <tr>
-            <th>Email</th>
+            <th>*Email</th>
             <td><input type="email" class="form-control" v-model="customers.Email" required>
               <small id="phoneHelpBlock" class="form-text text-muted">
               example@email.com
               </small></td>
           </tr>
           <tr>
-            <th>Phone</th>
+            <th>*Phone</th>
             <td><input type="text" class="form-control" placeholder="XXX-XXX-XXXX" v-model="customers.Phone" required>
               <small id="phoneHelpBlock" class="form-text text-muted">
-              9 digit phone number should be entered with dashes
+                xxx-xxx-xxxx **dashes required
               </small></td>
           </tr>
           <tr>
-            <th>Payment Type</th>
+            <th>*Payment Type</th>
             <td><select class='form-select' v-model="customers.PaymentType">
                   <option disabled value="">Select option</option>
                   <option>Cash</option>
@@ -164,6 +164,7 @@ export default {
           <div class="d-grid gap-2 d-md-flex justify-content-md-end mb-5">
             <button type="submit" class="btn btn-success me-md-2">Update</button>
             <button  @click="cancelEdit(customers.CustomerID)" class="btn btn-secondary" type="button">Cancel</button>
+            
           </div>
         </form>
       <p v-if="errors.length">

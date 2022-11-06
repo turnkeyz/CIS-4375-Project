@@ -8,7 +8,8 @@
     },
     data() {
       return {
-        cakes:[]
+        cakes:[],
+        url:import.meta.env.VITE_FILESTACK_URL
       };
     },
     created(){
@@ -36,7 +37,8 @@
       <div v-for="row in cakes" :key="row" class="row">
           <div v-for="item in row" :key='item' class="col-lg-4 col-md-6 mb-4">
               <div class="bg-image hover-zoom ripple shadow-1-strong rounded">
-                <img :src="'/uploads/cakecups/'+item.Img_url" class="w-100"/>
+                <!-- <img :src="'/uploads/cakecups/'+item.Img_url" class="w-100"/> -->
+                <img :src="url+item.fileID" class="w-100"/>
                 
                   <div class="mask" style="background-color: rgba(0, 0, 0, 0.3);">
                   <div class="d-flex justify-content-start align-items-start h-100">

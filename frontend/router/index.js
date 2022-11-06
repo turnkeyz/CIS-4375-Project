@@ -147,6 +147,15 @@ const routes = [
       hideNavbar:true
     }
   },
+  {
+    path:"/custom-options",
+    name:"/custom-options",
+    component:()=> import('../src/views/Admin/Products/CustomOptions.vue'),
+    meta:{
+      requiresAuth:true,
+      hideNavbar:true
+    }
+  },
 
   {
     path: "/cart",

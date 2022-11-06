@@ -141,7 +141,7 @@
                 <th scope="col">Call Back</th>
                 <th scope="col">Status</th>
                 <th scope="col">Payment Status</th>
-                <th><button class="btn btn-success btn-sm" @click="newOrder()">Add New Order</button></th>
+                <th colspan="3"><button id="buttonWidth" class="btn btn-success btn-sm" @click="newOrder()">Add New Order</button></th>
         
                 <!-- <th><button class="btn btn-success btn-sm" @click="newOrder()">Add New Order</button></th> -->
             </tr>
@@ -163,14 +163,12 @@
                 <td v-if="order.PaymentStatus == 'Canceled'" class="table-secondary">{{order.PaymentStatus}}</td>
                 <td v-if="order.PaymentStatus == 'Pending Payment'" class="table-light">{{order.PaymentStatus}}</td>
                 <td v-if="order.PaymentStatus == 'Awaiting Payment'" class="table-warning">{{order.PaymentStatus}}</td>
-                <td>
-            <tr>
+              
                         <!-- <td><router-link :to="{name:'Order', query:{id:Order.OrderID, e:false}}" class="btn btn-light">...</router-link></td> -->
-                        <td><button @click="seeMore(order.OrderID)" class="btn btn-light">...</button></td>
-                        <td><button @click="editOrder(order.OrderID)" class="btn btn-secondary btn-sm">Edit</button></td>
-                        <td><button class="btn btn-danger btn-sm" @click.prevent="delCart(order.OrderID)">Delete</button></td>
-                    </tr>
-                </td>
+                        <td><button id="buttonWidth" @click="seeMore(order.OrderID)" class="btn btn-outline-secondary btn-sm">More</button></td>
+                        <td><button id="buttonWidth" @click="editOrder(order.OrderID)" class="btn btn-secondary btn-sm">Edit</button></td>
+                        <td><button id="buttonWidth" class="btn btn-danger btn-sm" @click.prevent="delCart(order.OrderID)">Delete</button></td>
+                    
             </tr>
         </tbody>
     </table>
@@ -193,6 +191,9 @@
 </template>
 
 <style>
+#buttonWidth{
+        width:100%;
+    }
     thead {
     top: 0;
     position: sticky;

@@ -8,13 +8,15 @@
     },
     data() {
       return {
-        cakes:[]
+        cakes:[],
+        url:import.meta.env.VITE_FILESTACK_URL
       };
     },
     created(){
       let apiURL = `${import.meta.env.VITE_VUE_APP_ROOT_URL}/Products/allCakes`;
       axios.get(apiURL).then((res)=>{
         this.allproducts = res.data;
+        
         this.rows = Math.ceil(res.data.length/3)
         this.cakes =cakeList(this.allproducts, this.rows)
         
@@ -36,7 +38,8 @@
       <div v-for="row in cakes" :key="row" class="row">
           <div v-for="item in row" :key='item' class="col-lg-4 col-md-6 mb-4">
               <div class="bg-image hover-zoom ripple shadow-1-strong rounded">
-                <img :src="'/uploads/cakes/'+item.Img_url" class="w-100"/>
+                <!-- <img :src="'/uploads/cakes/'+item.Img_url" class="w-100"/> -->
+                <img :src="url+item.fileID" class="w-100"/>
                 
                   <div class="mask" style="background-color: rgba(0, 0, 0, 0.3);">
                   <div class="d-flex justify-content-start align-items-start h-100">

@@ -26,6 +26,7 @@ export default {
     let apiURL = `${import.meta.env.VITE_VUE_APP_ROOT_URL}/Customer/${this.$route.query.id}`;
     axios.get(apiURL).then((res) => {
         this.customers = res.data[0];
+        
       })
       .catch((error) => {
         console.log(error);
@@ -34,7 +35,7 @@ export default {
       let inCartURL = `${import.meta.env.VITE_VUE_APP_ROOT_URL}/Customers/existInCart/${this.$route.query.id}`;
       axios.get(inCartURL).then((res) => {
         this.count = res.data[0].total;
-        console.log('count', this.count)
+        
       })
       .catch((error) => {
         console.log(error);
@@ -68,7 +69,7 @@ export default {
       this.edit=false
     },
     goBack(){
-      this.$router.go(-1)
+      this.$router.push('/Customers')
     },
     handleSubmitForm(id){
       this.errors=[]

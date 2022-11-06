@@ -49,14 +49,12 @@
             //validations for required or formatted fields
             if(!this.Cart.CustomerID){
                 this.errors.push("Customer ID is Required");
+                return
                 }
             if(this.items.length == 0){
-                this.errors.push("Cart will not be created without products"); 
+                this.errors.push("Cart cannot not be created without products"); 
+                return
             }
-            // for(let i=0; i< this.items.length; i++){
-            //     let item = {'ProductID':this.items[i].Products[0], 'ProductName':this.items[i].Products[1], 'Price':this.items[i].Products[2],'Quantity':this.items[i].Quantity}
-            //     this.Cart.ProductsJSON.push(item)
-            // }
             
             
             this.Cart.Subtotal=Number(this.total)
@@ -64,37 +62,38 @@
                 this.errors.push("No subtotal")
             }
             
-            this.Cart.ProductsJSON = JSON.stringify(this.items)
+            
             if(this.Cart.ProductsJSON.length == 0){
                 this.errors.push("Products table is empty")
+                return
             }
-            
+            this.Cart.ProductsJSON = JSON.stringify(this.items)
             if(this.errors.length === 0){
-                console.log('line 71', this.Cart)
+                
                 let apiURL = `${import.meta.env.VITE_VUE_APP_ROOT_URL}/Cart/add`;
                 axios.post(apiURL, this.Cart).then(() => {
                 
                     this.$router.push('/carts')
-                    this.Cart={
-                        CustomerID: '',
-                        ProductsJSON: [],
-                        Customization: 0,
-                        CustomizationNotes:'',
-                        Subtotal:''
-                    }
+                    this.reset()
                 }).catch(error => {
                     console.log(error)
                 });
             }
         },
         addProductLine(){
-            this.item.Price = this.item.Products[2]*this.item.Quantity
-            this.total = this.total + (this.item.Products[2]*this.item.Quantity)
-            let obj = {"ProductID":this.item.Products[0], "ProductName":this.item.Products[1], "Price":this.item.Products[2], "Quantity":this.item.Quantity, "CategoryName":this.item.Products[3]}
-            this.items.push(obj)
-            this.item = {}
-            this.currentCategory =''
-            this.currentPrice=''
+            if(this.item.Quantity >0){
+                this.item.Price = this.item.Products[2]*this.item.Quantity
+                this.total = this.total + (this.item.Products[2]*this.item.Quantity)
+                let obj = {"ProductID":this.item.Products[0], "ProductName":this.item.Products[1], "Price":this.item.Products[2], "Quantity":this.item.Quantity, "CategoryName":this.item.Products[3]}
+                this.items.push(obj)
+                this.item = {}
+                this.currentCategory =''
+                this.currentPrice=''
+                this.errors=[]
+            }else{
+                this.errors.push('Please Enter Valid Quantity')
+            }
+           
         },
         removeFromCart(id){
             let index = this.items.findIndex(i=>i.ProductID===id)
@@ -111,12 +110,23 @@
                 this.Cart.Customization = 1
             }
         },
-        noteChange(){
-            if(this.Cart.CustomerNotes){
-                this.Cart.Customization = 1
+        reset(){
+            this.item={}
+            this.items=[]
+            this.Cart= {
+                CustomerID: '',
+                ProductsJSON: [],
+                Customization: 0,
+                CustomerNotes:'',
+                Subtotal:''
+            }
+            this.errors=[]
+            this.file_type=''
+            this.total=0
+            this.currentCategory=''
+            this.currentPrice=''
             }
         
-        }
     } 
 }
 </script>
@@ -127,25 +137,37 @@
         <h1 class="text-center">New Cart</h1>
         <form @submit.prevent="handleSubmitForm" novalidate>
             <fieldset class='form-control mb-5'>
-                <legend>Customer Information</legend>
+                <legend>Order Information</legend>
                 <div class='row mb-4'>   
                     <div class='col-sm-4'>
-                        <label for='fName'>*Customer</label>
+                        <label >*Customer</label>
                         <select class='form-select' v-model="Cart.CustomerID">
                             <option disabled value="">Select option</option>
                             <option v-for="customer in Customers" :key="customer.CustomerID" :value="customer.CustomerID">
                                 #{{customer.CustomerID}} {{customer.FirstName}}{{customer.LastName}} 
                             </option>
                         </select>
-                    </div>  
-                    <div class="col-sm-6">
+                    </div>
+                     
+                    <div class="col-sm-6 mb-3">
                         <label>Notes</label>
                         <textarea @change="noteChange" class="form-control" rows="1" v-model="Cart.CustomerNotes"></textarea>
+                    </div>
+
+                    <div class="row">
+                         <div class="col-sm-2">
+                            <label >Custom Order</label>
+                            <select class='form-select' v-model="Cart.Customization">
+                                <option disabled value="">Select option</option>
+                                <option value="1">Yes</option>
+                                <option value="0">No</option>
+                            </select>
+                        </div> 
                     </div>
                 </div>            
             </fieldset>
             <fieldset class="form-control mb-5">
-                <legend>Products</legend>
+                <legend>*Products</legend>
                 <!-- <div v-for="index in counter" :key="index"> -->
                     <div> <!--DIV  FOR PRODUCTS-->
                     <div class="row mb-4">
@@ -154,8 +176,7 @@
                             <select class='form-select' @change="setCatPrice()" v-model="item.Products">
                                 <option disabled value="">Select option</option>
                                 <option v-for="product in Products" :key="product.ProductID" :value="[product.ProductID, product.ProductName, product.Price, product.CategoryName]">
-                    
-                                    {{product.ProductName}} / {{product.CategoryName}}/ ${{product.Price}}
+                                    {{product.ProductName}} 
 
                                 </option>
                             </select>
@@ -172,19 +193,12 @@
                             <label >Quantity</label>
                             <input type="number" class="form-control" min=1 v-model="item.Quantity" required>
                         </div>  
-                        <div class="col-sm-2">
-                    <label for='fName'>Custom</label>
-                            <select class='form-select' v-model="Cart.Customization">
-                                <option disabled value="">Select option</option>
-                                <option value="1">Yes</option>
-                                <option value="0">No</option>
-                            </select>
-                        </div> 
+                       
                         <div class="col-sm-2">
                             <label>Subtotal</label>
                             <input disabled type="number" class="form-control" v-model="total">
                         </div>
-                        <div clas="col-sm-1">
+                        <div class="col-sm-1 mt-3">
                             <button @click="addProductLine()" class="btn btn-secondary" type="button">Add</button>
                         </div>
                     </div>
@@ -199,7 +213,6 @@
                                     <th scope="col">Category</th>
                                     <th scope="col">Price</th>
                                     <th scope="col">Quantity</th>
-                                    <!-- <th scope="col">Custom</th> -->
                                     <th scope="col">Total</th>
                                     <th></th>
                                 </tr>
@@ -211,10 +224,6 @@
                                     <td>${{index.Price}}</td>
                                     <td>{{index.Quantity}}</td>
                                     <td>${{index.Price * index.Quantity}}</td>
-                                    <!-- <td>{{index.Custom}}</td> -->
-                                    <td>{{index.Price * index.Quantity}}</td>
-
-                                    
                                     <td>
                                         <tr>
                                             <td><button class="btn btn-danger btn-sm" type="button" @click.prevent="removeFromCart(index.ProductID)">Remove</button></td>
@@ -227,8 +236,11 @@
                 </div>
             </fieldset>
             
+            <div class="d-grid gap-2 d-md-flex justify-content-md-end mb-5">
+                <button type="submit" class="btn btn-success create">Complete Purchase</button>
+                <button type="button" @click="reset" class="btn btn-secondary create">Clear</button>
+            </div>
             
-            <button type="submit" class="btn btn-success create">Complete Purchase</button>
         </form>
         <p v-if="errors.length">
                 <b>Please correct the following error(s):</b>

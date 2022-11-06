@@ -2,7 +2,7 @@
     import axios from 'axios';
     import html2pdf from 'html2pdf.js';
     import {customOrder} from '../../methods/custom_order'
-
+    import{emailregex, regex} from '../../methods/regex'
     export default {
     // register child component
     components: {
@@ -26,7 +26,8 @@
             CustomerNotes:'',
             Subtotal:0,
             ReturnCustomer:'No',
-            CustomerID:''
+            CustomerID:'',
+            Customization:0
         },
         file_type:'',
         total:0,
@@ -75,9 +76,16 @@
             if(!this.Order.Email){
                 this.errors.push("Email is Required");
                 }
+
+            if(!emailregex.test(this.Order.Email)){
+                this.errors.push("Please enter a valid email.")
+            }
             if(!this.Order.Phone){
                 this.errors.push("Phone number is Required");
                 }
+            if(!regex.test(this.Order.Phone)){
+                this.errors.push('Please Enter Valid Phone Number ')
+            }
             if(!this.Order.PaymentType){
                 this.errors.push("Payment Type is Required");
                 }
@@ -150,17 +158,22 @@
             }
         },
         addProductLine(){
-            this.item.Price = this.item.Products[2]*this.item.Quantity
-            this.total = this.total + (this.item.Products[2]*this.item.Quantity)
-            let obj = {"ProductID":this.item.Products[0], "ProductName":this.item.Products[1], "Price":this.item.Products[2], "Quantity":this.item.Quantity, "CategoryName":this.item.Products[3]}
-            this.items.push(obj)
-            this.item = {}
-            this.currentCategory =''
-            this.currentPrice=''
+            if(this.item.Quantity >0){
+                this.item.Price = this.item.Products[2]*this.item.Quantity
+                this.total = this.total + (this.item.Products[2]*this.item.Quantity)
+                let obj = {"ProductID":this.item.Products[0], "ProductName":this.item.Products[1], "Price":this.item.Products[2], "Quantity":this.item.Quantity, "CategoryName":this.item.Products[3]}
+                this.items.push(obj)
+                this.item = {}
+                this.currentCategory =''
+                this.currentPrice=''
+                this.errors=[]
+            }else{
+                this.errors.push('Please Enter Valid Quantity')
+            }
         },
         removeFromCart(id){
             let index = this.items.findIndex(i=>i.ProductID===id)
-            console.log(index)
+            
             let price = this.items[index].Price
             this.total = this.total - price
             this.items.splice(index, 1)
@@ -236,7 +249,7 @@
                         </div>
                         <div class='col-sm-3'>
                             <label>*Email Address</label>
-                            <input type="text" class="form-control" v-model="Order.Email" required>
+                            <input type="email" class="form-control" v-model="Order.Email" required>
                             <small id="phoneHelpBlock" class="form-text text-muted">
                                 example@email.com
                             </small>
@@ -245,7 +258,7 @@
                             <label>*Phone Number</label>
                             <input type="text" class="form-control" v-model="Order.Phone" required>
                             <small id="phoneHelpBlock" class="form-text text-muted">
-                                9 digit phone number should be entered with dashes
+                                xxx-xxx-xxxx **dashes required
                             </small>
                         </div>
                     </div>
@@ -307,7 +320,7 @@
                             <input disabled type="number" class="form-control" v-model="total">
                         </div>
                         <div clas="col-sm-1">
-                            <button @click="addProductLine()" class="btn btn-secondary" type="button">Add</button>
+                            <button @click="addProductLine()" class="btn btn-secondary mt-3" type="button">Add</button>
                         </div>
                     </div>
                 </div> <!--End DIV FOR PRODUCTS-->
@@ -357,8 +370,12 @@
                         </ul>
                     </p>
                     <!-- <button @click="ExportPDF" class="btn btn-success create" >Create</button> -->
-                    <button v-if="submitted==false" class="btn btn-success create" >Submit</button>
+                    <div class="d-grid gap-2 d-md-flex justify-content-md-end mb-5">
+
+                        <button v-if="submitted==false" class="btn btn-success create" >Submit</button>
                     <button type="button" @click="resetPage" class="btn btn-secondary" >Reset</button>
+                    </div>
+                    
             </form>
         </div>
     </div>
@@ -444,7 +461,11 @@
                 <hr>
         </fieldset>
     </form>
-        <button type="button" @click="resetPage" class="btn btn-secondary" >Reset</button>
+    <div class="d-grid gap-2 d-md-flex justify-content-md-end mb-5">
+        <button type="button" @click="resetPage" class="btn btn-secondary">Reset</button>
+    </div>
+        
+
     </div>
 
     

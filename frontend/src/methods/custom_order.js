@@ -30,7 +30,7 @@ function customOrder(Order){
       }
       return string
     }
-   console.log('line 33',Order)
+   
    
    let products = productString(Order.Products)
    var templateParams = {

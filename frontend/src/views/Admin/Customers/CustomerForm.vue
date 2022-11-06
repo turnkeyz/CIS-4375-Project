@@ -66,6 +66,13 @@
             axios.post(apiURL, this.customers).then(() => {
             submitAlert.show()
             this.$router.push('/customers') //goes to customers view
+            this.reset()
+            }).catch(error => {
+                console.log(error)
+            });
+            }
+        },
+        reset(){
             this.customers = {
                 FirstName: '',
                 LastName: '',
@@ -74,10 +81,6 @@
                 PaymentType:'',
                 Notes:'',
 
-            }
-            }).catch(error => {
-                console.log(error)
-            });
             }
         }
         } 
@@ -123,17 +126,17 @@
                     </div>
                 </div>
                 <div class='row mb-4'>
-                <div class="col-sm-6">
+                <div class="col-sm-4">
                     <label>*Phone</label>
 
                         <input type="text" class="form-control" placeholder="XXX-XXX-XXXX" v-model="customers.Phone" required>
 
                         <small id="phoneHelpBlock" class="form-text text-muted">
-                        9 digit phone number should be entered with dashes
+                            xxx-xxx-xxxx **dashes required
                         </small>
                     </div>
 
-                    <div class="col-sm-3">
+                    <div class="col-sm-4">
                         <label>*Email</label>
                         <input type="email" class="form-control" v-model="customers.Email" required>
                         <small id="phoneHelpBlock" class="form-text text-muted">
@@ -167,7 +170,10 @@
                     </div>
                 </div>
             </fieldset>
-            <button class="btn btn-success create" >Create</button>
+            <div class="d-grid gap-2 d-md-flex justify-content-md-end mb-5">
+                <button  class="btn btn-success create" >Create</button>
+                <button type="button" @click="reset" class="btn btn-secondary create" >Clear</button>
+            </div>
             <p v-if="errors.length">
                 <b>Please correct the following error(s):</b>
                 <ul>
