@@ -19,7 +19,7 @@
       axios.get(apiUrl).then((res)=>{
         this.Cart=res.data
         this.posts=res.data
-        console.log(this.Cart)
+        
       })
     },
     methods:{
