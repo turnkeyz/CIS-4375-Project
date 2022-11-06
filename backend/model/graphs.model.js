@@ -35,7 +35,7 @@ Graphs.AllCartsNotInOrderView = () =>{
     return new Promise((resolve, reject) => {
       sql.connect(sqlConfig, function (err, result) {
         var request = new sql.Request();
-        request.query(`select * from OrdersInLastYear;`, (err, res) => {
+        request.query(`select [Month], NumberofOrders from OrdersInLastYear;`, (err, res) => {
           if (err) reject(err);
             console.log(res.recordset)
             return resolve(res.recordset); // FETCHING ALL DATA
@@ -61,7 +61,7 @@ Graphs.AllCartsNotInOrderView = () =>{
     return new Promise((resolve, reject) => {
       sql.connect(sqlConfig, function (err, result) {
         var request = new sql.Request();
-        request.query(`select * from RevenueByMonth;`, (err, res) => {
+        request.query(`select [Month], Revenue from RevenueByMonth;`, (err, res) => {
           if (err) reject(err);
             console.log(res.recordset)
             return resolve(res.recordset); // FETCHING ALL DATA
