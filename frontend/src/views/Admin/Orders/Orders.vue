@@ -40,7 +40,7 @@
             })
         },
         delCart(id){
-            console.log(id)
+            
             let apiUrl = `${import.meta.env.VITE_VUE_APP_ROOT_URL}/Orders/delete/${id}`
             let resetArray = this.Orders.findIndex((i)=>i.OrderID ===id)
         
@@ -55,11 +55,11 @@
         },
         setPages(){
             let numberOfPages = Math.ceil(this.Orders.length/this.perPage)
-            console.log('number of pages', numberOfPages)
+            
             for(let index = 1;index<=numberOfPages;index++){
                 this.pages.push(index)
             }
-            console.log('pages', this.pages)
+            
         },
         paginate(posts){
             let page = this.page
@@ -77,7 +77,7 @@
     },
     watch:{
         posts(){
-            console.log('watch')
+            
             this.setPages()
         }
     },
