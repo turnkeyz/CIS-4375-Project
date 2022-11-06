@@ -29,11 +29,7 @@
           this.items = JSON.parse(this.Cart.ProductsJSON)
           // console.log(this.items)
           
-          if(this.$route.query.e === true || this.$route.query.e === 'true'){
-            this.edit=true
-          }else{
-            this.edit=false
-          }
+          
         })
         .catch((error) => {
           console.log(error);
@@ -59,7 +55,7 @@
         let apiURL = `${import.meta.env.VITE_VUE_APP_ROOT_URL}/Cart/delete/${id}`;
         if (window.confirm("Are you sure you want to delete?")) {
           axios.delete(apiURL).then(() => {
-              this.$router.push("/Cart");  //changes view to all Cart view
+              this.$router.push("/carts");  //changes view to all Cart view
             })
             .catch((error) => {
               console.log(error);
