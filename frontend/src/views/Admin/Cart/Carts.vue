@@ -137,7 +137,8 @@
                         <td>{{Cart.CartID}} </td>
                         <td>(#{{Cart.CustomerID}}) {{Cart.FirstName}} {{Cart.LastName}}</td>
                         <td>${{Cart.Subtotal}}</td>
-                        <td>{{Cart.Customization}}</td>
+                        <td class="table-info" v-if="Cart.Customization==true">{{Cart.Customization}}</td>
+                        <td v-if="Cart.Customization==false">{{Cart.Customization}}</td>
                         <td>
                             <tr>
                                 <!-- <td><router-link :to="{name:'Cart', query:{id:Cart.CartID, e:false}}" class="btn btn-light">...</router-link></td> -->
