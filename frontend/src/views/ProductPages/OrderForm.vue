@@ -320,7 +320,7 @@
                             <input disabled type="number" class="form-control" v-model="total">
                         </div>
                         <div clas="col-sm-1">
-                            <button @click="addProductLine()" class="btn btn-secondary" type="button">Add</button>
+                            <button @click="addProductLine()" class="btn btn-secondary mt-3" type="button">Add</button>
                         </div>
                     </div>
                 </div> <!--End DIV FOR PRODUCTS-->
@@ -461,7 +461,11 @@
                 <hr>
         </fieldset>
     </form>
-        <button type="button" @click="resetPage" class="btn btn-secondary" >Reset</button>
+    <div class="d-grid gap-2 d-md-flex justify-content-md-end mb-5">
+        <button type="button" @click="resetPage" class="btn btn-secondary">Reset</button>
+    </div>
+        
+
     </div>
 
     
