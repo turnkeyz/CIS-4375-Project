@@ -19,7 +19,7 @@
       axios.get(apiUrl).then((res)=>{
         this.Products=res.data
         this.posts = res.data
-        console.log(this.Products)
+        
       })
     },
     methods:{
@@ -93,7 +93,10 @@
 <template>
     <div class="container">
         <h1 class="text-center mb-3">All Products</h1>
-        <button class="btn btn-success btn-sm mb-3" @click="customOptions()">Custom Options</button>
+        <div  class="d-grid gap-2 d-md-flex justify-content-md mt-2">
+            <button class="btn btn-success btn-sm mb-3" @click="customOptions()">Upload Images</button>
+        </div>
+        
         <div class="table-responsive-sm">
             <table class="table table-hover table-responsive table-bordered">
                 <thead class="table-light">
