@@ -370,8 +370,12 @@
                         </ul>
                     </p>
                     <!-- <button @click="ExportPDF" class="btn btn-success create" >Create</button> -->
-                    <button v-if="submitted==false" class="btn btn-success create" >Submit</button>
+                    <div class="d-grid gap-2 d-md-flex justify-content-md-end mb-5">
+
+                        <button v-if="submitted==false" class="btn btn-success create" >Submit</button>
                     <button type="button" @click="resetPage" class="btn btn-secondary" >Reset</button>
+                    </div>
+                    
             </form>
         </div>
     </div>
