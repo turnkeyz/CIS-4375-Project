@@ -34,6 +34,7 @@
       let apiURL = `${import.meta.env.VITE_VUE_APP_ROOT_URL}/Cart/fetchOne/${this.$route.query.id}`;
       axios.get(apiURL).then((res) => {
           this.Cart = res.data[0];
+          
           this.items = JSON.parse(this.Cart.ProductsJSON)
           this.total = this.Cart.Subtotal
           
@@ -94,9 +95,9 @@
         if(!this.Cart.ProductsJSON)
             this.errors.push("ProductJSON is Required.");
 
-        if(!this.Cart.CustomerNotes)
-        this.errors.push("Customer Notes is Required")
-
+      //   if(!this.Cart.CustomerNotes){
+      //   this.errors.push("Customer Notes is Required")
+      // }
         if(!this.Cart.Subtotal){
             this.errors.push("Subtotal is Required");
             }
@@ -171,7 +172,14 @@
           </tr>
           <tr>
             <th>Custom</th>
-            <td><input type="Price" class="form-control" v-model="Cart.Customization" required></td>
+            <!-- <td><input type="Price" class="form-control" v-model="Cart.Customization" required></td> -->
+            <td>
+              <select class='form-select' v-model="Cart.Customization">
+                <option disabled value="">Select option</option>
+                <option value=true>Yes</option>
+                <option value=false>No</option>
+            </select>
+          </td>
           </tr>
           
           <tr>
@@ -253,7 +261,7 @@
                   <!-- </div>
                 </div>  -->
           
-          <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+          <div class="d-grid gap-2 d-md-flex justify-content-md-end mb-4 mt-4">
             <button type="submit" class="btn btn-success me-md-2">Update</button>
             <button  @click="cancelEdit(Cart.CartID)" class="btn btn-secondary" type="button">Cancel</button>
             <button v-if="edit==true" @click="goBack" class="btn btn-secondary" type="button">Back to Order</button>
