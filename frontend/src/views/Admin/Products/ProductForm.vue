@@ -114,18 +114,22 @@
     methods: {
             //create new volunteer and reset values
         handleSubmitForm(){
-            this.Products.CategoryID = this.Products.Category[0]
             this.errors=[]
+            if(this.Products.Category){
+                this.Products.CategoryID = this.Products.Category[0]
+                
+            }else{
+                this.errors.push("Category Required")
+                return
+            }
             //validations for required or formatted fields
-            if(!this.Products.CategoryID){
-                this.errors.push("Category is Required");
-                }
-            if(!this.Products.ProductName)
+            
+            if(!this.Products.ProductName){
                 this.errors.push("Name is Required.");
-
-            if(!this.Products.Price)
+            }
+            if(!this.Products.Price){
             this.errors.push("Price is Required")
-
+        }
             if(this.Products.Active==true){
                 if(!this.Products.ProductDescription){
                     this.errors.push('Product Description is Required if Active is Switched on')
