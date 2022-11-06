@@ -19,6 +19,7 @@
       axios.get(apiUrl).then((res)=>{
         this.Products=res.data
         this.posts = res.data
+        console.log(this.Products)
       })
     },
     methods:{
@@ -137,14 +138,8 @@
                         <th scope="col">Category</th>
                         <th scope="col">Name</th>
                         <th scope="col">Price</th>
-                
-                        <th>
-                            <tr>
-                                <td><button class="btn btn-success btn-sm" @click="newProduct()">Add New Product</button></td>
-                                <td></td>
-                            </tr>
-                        </th>
-                        
+                        <th scope="col">Active</th>
+                        <th colspan="3"><button id="buttonWidth" class="btn btn-success btn-sm" @click="newProduct()">Add New Product</button></th>
                     </tr>
                 </thead>
                 <tbody class="table-group-divider table-divider-color">
@@ -153,15 +148,10 @@
                         <td>{{Product.CategoryName}}</td>
                         <td>{{Product.ProductName}}</td>
                         <td>${{Product.Price}}</td>
-                        
-                        <td>
-                            <tr>
-                                <!-- <td><router-link :to="{name:'Product', query:{id:Product.ProductID, e:false}}" class="btn btn-light">...</router-link></td> -->
-                                <td><button @click="seeMore(Product.ProductID)" class="btn btn-light">...</button></td>
-                                <td><button @click="editProduct(Product.ProductID)" class="btn btn-secondary btn-sm">Edit</button></td>
-                                <td><button class="btn btn-danger btn-sm" @click.prevent="delProduct(Product.ProductID)">Delete</button></td>
-                            </tr>
-                        </td>
+                        <td>{{Product.Active}}</td>
+                        <td><button id="buttonWidth" @click="seeMore(Product.ProductID)" class="btn btn-outline-secondary btn-sm">More</button></td>
+                        <td><button id="buttonWidth" @click="editProduct(Product.ProductID)" class="btn btn-secondary btn-sm">Edit</button></td>
+                        <td><button id="buttonWidth" class="btn btn-danger btn-sm" @click.prevent="delProduct(Product.ProductID)">Delete</button></td>
                     </tr>
                 </tbody>
             </table>
@@ -184,6 +174,9 @@
 </template>
 
 <style>
+#buttonWidth{
+        width:100%;
+    }
     thead {
     top: 0;
     position: sticky;

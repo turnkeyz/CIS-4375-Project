@@ -19,6 +19,7 @@
       axios.get(apiUrl).then((res)=>{
         this.Cart=res.data
         this.posts=res.data
+        console.log(this.Cart)
       })
     },
     methods:{
@@ -53,11 +54,11 @@
         },
         setPages(){
             let numberOfPages = Math.ceil(this.Cart.length/this.perPage)
-            console.log('number of pages', numberOfPages)
+            
             for(let index = 1;index<=numberOfPages;index++){
                 this.pages.push(index)
             }
-            console.log('pages', this.pages)
+            
         },
         paginate(posts){
             let page = this.page
@@ -75,7 +76,7 @@
     },
     watch:{
         posts(){
-            console.log('watch')
+            
             this.setPages()
         }
     },
@@ -83,41 +84,6 @@
 </script>
 
 <template>
-    <!-- <div class="container">
-        <h1 class="text-center">All Carts</h1>
-        <div class="table-responsive-sm">
-            <table class="table table-hover table-responsive table-bordered">
-                <thead class="table-light">
-                    <tr>
-                        <th scope="col">Cart #</th>
-                        <th scope="col">Customer</th>
-                        <th scope="col">Subtotal</th>
-                        <th scope="col">Custom</th>
-                
-                        <th><button class="btn btn-success btn-sm" @click="newCart()">Add New Cart</button></th>
-                    </tr>
-                </thead>
-                <tbody class="table-group-divider table-divider-color">
-                    <tr v-for="Cart in Cart" :key="Cart.CartID">
-                        <td>{{Cart.CartID}} </td>
-                        <td>(#{{Cart.CustomerID}}) {{Cart.FirstName}} {{Cart.LastName}}</td>
-                        <td>${{Cart.Subtotal}}</td>
-                        <td>{{Cart.Customization}}</td>
-                        <td>
-                            <tr>
-                                
-                                <td><button @click="seeMore(Cart.CartID)" class="btn btn-light">...</button></td>
-                                <td><button @click="editCart(Cart.CartID)" class="btn btn-secondary btn-sm">Edit</button></td>
-                                <td><button class="btn btn-danger btn-sm" @click.prevent="delCart(Cart.CartID)">Delete</button></td>
-                            </tr>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-    </div> -->
-
-
     <div class="container">
         <h1 class="text-center">All Carts</h1>
         <div class="table-responsive-sm">
@@ -129,7 +95,7 @@
                         <th scope="col">Subtotal</th>
                         <th scope="col">Custom</th>
                 
-                        <th><button class="btn btn-success btn-sm" @click="newCart()">Add New Cart</button></th>
+                        <th colspan="2"><button id="buttonWidth" class="btn btn-success btn-sm" @click="newCart()">Add New Cart</button></th>
                     </tr>
                 </thead>
                 <tbody class="table-group-divider table-divider-color">
@@ -139,14 +105,12 @@
                         <td>${{Cart.Subtotal}}</td>
                         <td class="table-info" v-if="Cart.Customization==true">{{Cart.Customization}}</td>
                         <td v-if="Cart.Customization==false">{{Cart.Customization}}</td>
-                        <td>
-                            <tr>
+                        
                                 <!-- <td><router-link :to="{name:'Cart', query:{id:Cart.CartID, e:false}}" class="btn btn-light">...</router-link></td> -->
-                                <td><button @click="seeMore(Cart.CartID)" class="btn btn-light">...</button></td>
-                                <td><button @click="editCart(Cart.CartID)" class="btn btn-secondary btn-sm">Edit</button></td>
+                                <td><button id="buttonWidth" @click="seeMore(Cart.CartID)" class="btn btn-outline-secondary btn-sm">More</button></td>
+                                <td><button id="buttonWidth" @click="editCart(Cart.CartID)" class="btn btn-secondary btn-sm">Edit</button></td>
                                 <!-- <td><button class="btn btn-danger btn-sm" @click.prevent="delCart(Cart.CartID)">Delete</button></td> -->
-                            </tr>
-                        </td>
+                          
                     </tr>
                 </tbody>
             </table>
@@ -168,6 +132,9 @@
 </template>
 
 <style>
+#buttonWidth{
+        width:100%;
+    }
     thead {
     top: 0;
     position: sticky;

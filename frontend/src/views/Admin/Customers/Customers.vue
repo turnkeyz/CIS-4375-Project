@@ -20,6 +20,7 @@
       axios.get(apiUrl).then((res)=>{
         this.customers=res.data
         this.posts = res.data
+        
       })
     },
     methods:{
@@ -84,42 +85,6 @@
 </script>
 
 <template>
-    <!-- <div class="container">
-        <h1 class="text-center">All Customers</h1>
-        <div class="table-responsive-sm">
-            <table class="table table-hover table-responsive table-bordered">
-                <thead class="table-light">
-                    <tr>
-                        <th scope="col">Customer #</th>
-                        <th scope="col">First Name</th>
-                        <th scope="col">Last Name</th>
-                        <th scope="col">Email</th>
-                        <th scope="col">Phone</th>
-                        <th><button class="btn btn-success btn-sm" @click="newCustomer()">Add New Customer</button></th>
-                    </tr>
-                </thead>
-                <tbody class="table-group-divider table-divider-color">
-                    <tr v-for="customer in customers" :key="customer.CustomerID">
-                        <td>{{customer.CustomerID}}</td>
-                        <td>{{customer.FirstName}}</td>
-                        <td>{{customer.LastName}}</td>
-                        <td>{{customer.Email}}</td>
-                        <td>{{customer.Phone}}</td>
-                        <td>
-                            <tr>
-                                
-                                <td><button @click="seeMore(customer.CustomerID)" class="btn btn-light">...</button></td>
-                                <td><button @click="editCustomer(customer.CustomerID)" class="btn btn-secondary btn-sm">Edit</button></td>
-                                <td><button class="btn btn-danger btn-sm" @click.prevent="delCustomer(customer.CustomerID)">Delete</button></td>
-                            </tr>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-    </div> -->
-
-
     <div class="container">
         <h1 class="text-center">All Customers</h1>
         <div class="table-responsive-sm">
@@ -131,7 +96,7 @@
                         <th scope="col">Last Name</th>
                         <th scope="col">Email</th>
                         <th scope="col">Phone</th>
-                        <th><button class="btn btn-success btn-sm" @click="newCustomer()">Add New Customer</button></th>
+                        <th colspan="2"><button id="buttonWidth" class="btn btn-success btn-sm" @click="newCustomer()">Add New Customer</button></th>
                     </tr>
                 </thead>
                 <tbody class="table-group-divider table-divider-color">
@@ -141,14 +106,17 @@
                         <td>{{customer.LastName}}</td>
                         <td>{{customer.Email}}</td>
                         <td>{{customer.Phone}}</td>
-                        <td>
-                            <tr>
-                                <!-- <td><router-link :to="{name:'Customer', query:{id:customer.CustomerID, e:false}}" class="btn btn-light">...</router-link></td> -->
-                                <td><button @click="seeMore(customer.CustomerID)" class="btn btn-light">...</button></td>
-                                <td><button @click="editCustomer(customer.CustomerID)" class="btn btn-secondary btn-sm">Edit</button></td>
-                                <!-- <td><button class="btn btn-danger btn-sm" @click.prevent="delCustomer(customer.CustomerID)">Delete</button></td> -->
-                            </tr>
-                        </td>
+                        <!-- <td> -->
+                            <!-- <tr >
+                                
+                                <td><button @click="seeMore(customer.CustomerID)" class="btn btn-outline-secondary btn-block">More</button></td>
+                                <td><button @click="editCustomer(customer.CustomerID)" class="btn btn-secondary btn-block">Edit</button></td>
+                                
+                            </tr> -->
+
+                        <!-- </td> -->
+                        <td><button id="buttonWidth" @click="seeMore(customer.CustomerID)" class="btn btn-outline-secondary btn-sm">More</button></td>
+                        <td><button id="buttonWidth"  @click="editCustomer(customer.CustomerID)" class="btn btn-secondary btn-sm">Edit</button></td>
                     </tr>
                 </tbody>
             </table>
@@ -170,6 +138,10 @@
 </template>
 
 <style>
+    #buttonWidth{
+        width:100%;
+    }
+
     thead {
     top: 0;
     position: sticky;
