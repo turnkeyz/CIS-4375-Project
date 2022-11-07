@@ -111,7 +111,11 @@
           </div>
         </div>
         <div class="col mt-3">
-          <img src="/uploads/baking.jpg" class="img-fluid" alt="image">
+<a href="/order-form">
+  <img src="/uploads/baking.jpg" class="img-fluid" alt="image">
+</a>
+          
+          
           <p>Custom Orders</p>
         </div>
       </div>
