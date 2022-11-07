@@ -131,8 +131,13 @@
   </div>
 </nav>
 <div class="text-center p-3 d-none d-md-block">
-  <a href="/">
-  <img src="https://owlbbakingimages.s3.amazonaws.com/images/Sister+logo.svg" id="logo"  alt="Company Logo">
+  <div v-if="$route.meta.hideNavbar">
+  <a href="/dashboard">
+    <img  src="https://owlbbakingimages.s3.amazonaws.com/images/Sister+logo.svg" id="logo"  alt="Company Logo">
+  </a>
+</div>
+<a v-if="!$route.meta.hideNavbar" href="/">
+  <img  src="https://owlbbakingimages.s3.amazonaws.com/images/Sister+logo.svg" id="logo"  alt="Company Logo">
 </a>
 </div>
       <RouterView></RouterView>
