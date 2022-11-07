@@ -367,7 +367,7 @@
                         <textarea class="form-control" rows="5" v-model="Products.ProductDescription"></textarea>
                     </div>
                     
-                     <div v-if="catSet" class="d-grid gap-2 d-md-flex justify-content-md mt-2 ">
+                     <div v-if="catSet" class="d-grid gap-2 d-md-flex justify-content-md mt-2 mb-3">
                         <button type="button" class="btn btn-secondary" @click="showImages">Show Images</button>
                         <button v-if="show" class="btn btn-secondary" type="button" @click="hideImages">Close</button>
                     </div>
@@ -386,7 +386,7 @@
                         
                         <div v-for="img in displayedPosts" :key="img" class="col-md-4 mb-3">
                             <img id="productImg" @click="changeValue(img)" class="w-100" :src="url+img.fileID" style="">
-                            
+  
                         </div>
                 </div>
     

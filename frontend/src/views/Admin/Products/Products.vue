@@ -92,7 +92,7 @@
 
 <template>
     <div class="container">
-        <h1 class="text-center mb-3">All Products</h1>
+        <h1 class="text-center">All Products</h1>
         <div  class="d-grid gap-2 d-md-flex justify-content-md mt-2">
             <button class="btn btn-success btn-sm mb-3" @click="customOptions()">Upload Images</button>
         </div>

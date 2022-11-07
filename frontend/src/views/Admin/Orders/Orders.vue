@@ -131,7 +131,8 @@
     </div> -->
 
     <div id="app" class="container">
-  <div class="able-responsive-sm">
+        <h1 class="text-center">All Orders</h1>
+  <div class="table-responsive-sm">
   <table class="table table-hover table-responsive table-bordered">
     <thead class="table-light">
             <tr>
