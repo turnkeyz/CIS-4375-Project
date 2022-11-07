@@ -111,7 +111,7 @@
                 <div class="card-body p-md-5 mx-md-4">
 
                     <div class="text-center">
-                    <img src="/uploads/logo.png"
+                    <img src="https://owlbbakingimages.s3.amazonaws.com/images/Goat+Solutions+Logo.svg"
                         style="width: 185px;" alt="logo">
                     <h4 class="mt-1 mb-5 pb-1">Admin</h4>
                     </div>
@@ -168,10 +168,15 @@
                 </div>
                 </div>
                 <div class="col-lg-6 d-flex align-items-center gradient-custom-2">
+                    
                 <div class="text-white px-3 py-4 p-md-5 mx-md-4">
-                    <h4 class="mb-4">Goat Solutions</h4>
-                    <p class="small mb-0">Worker Portal only to be used by workers and authorized affiliates of 
+                    
+                    <h1 class="mb-3">Goat Solutions</h1>
+                    <p class="small mb-5">Worker Portal only to be used by workers and authorized affiliates of 
                         Owl B Baking or Goat Solutions.</p>
+                        <p class="mb-0">For assistance Please Contact us at:</p>
+                        
+                        <p class="">owlBeeBaking@gmail.com</p>
                 </div>
                 </div>
             </div>
@@ -185,30 +190,12 @@
 <style>
     
     .gradient-custom-2 {
-    /* fallback for old browsers */
-    background: rgba(210, 67, 255, .9);
-    /* background-image: url(../public/uploads/login\ page.jpg);
-    background-size: contain; */
-    /* Chrome 10-25, Safari 5.1-6 */
-    /* background: -webkit-linear-gradient(to right, #ee7724, #d8363a, #dd3675, #b44593); */
     
-    /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-    /* background: linear-gradient(to right, #ee7724, #d8363a, #dd3675, #b44593); */
+    background: rgba(210, 67, 255, .9);
+   
     }
     .gradient-custom-1{
         background: rgba(210, 67, 255, .8);
     }
-    
-    /* @media (min-width: 768px) {
-    .gradient-form {
-    height: 5vh !important;
-    }
-    } */
 
-    /* @media (min-width: 769px) {
-    .gradient-custom-2 {
-    border-top-right-radius: .3rem;
-    border-bottom-right-radius: .3rem;
-        }
-    } */
 </style>
