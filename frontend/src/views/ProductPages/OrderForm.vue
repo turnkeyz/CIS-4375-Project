@@ -409,13 +409,13 @@
                 <hr>
                 <h3>Customer Information</h3>
                 <div class="row mb-4">
-                    <div class="col-sm-2">
+                    <div class="col-sm-4">
                         Name: {{Order.FirstName}} {{Order.LastName}}
                     </div>
-                    <div class="col-sm-2">
+                    <div class="col-sm-4">
                         Email: {{Order.Email}}
                     </div>
-                    <div class="col-sm-2">
+                    <div class="col-sm-4">
                         Phone: {{Order.Phone}}
                     </div>
                 </div>
