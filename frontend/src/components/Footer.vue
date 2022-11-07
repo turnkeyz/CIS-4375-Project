@@ -24,7 +24,7 @@
               Owl B Baking
             </h6>
             <p>
-              OwlBBaking was created in collaboration with Goat Solutions
+              Quality Baking at an affordaable price made from fresh ingredients to order.
             </p>
           </div>
           <!-- Grid column -->
