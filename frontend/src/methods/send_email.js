@@ -62,7 +62,10 @@ function sendInvoice(Order){
       Subtotal:Order.Subtotal,
       FirstName:Order.FirstName,
       LastName:Order.LastName,
-      Date:date
+      Date:date,
+      Status:Order.Status,
+      PayStatus:Order.PaymentStatus
+
       
   };
   emailjs.send(import.meta.env.VITE_SERVICE, import.meta.env.VITE_TEMPLATE_INVOICE, templateParams)
