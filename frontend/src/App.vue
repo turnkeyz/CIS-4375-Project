@@ -42,9 +42,7 @@
 <template>
   	<nav  class="navbar navbar-expand-md navbar-dark bg-dark">
   <div class="container">
-    <a class="navbar-brand d-md-none d-xs-block py-3" href="#">
-      <img src="" height="40" alt="Company Logo">
-    </a>
+    
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -134,7 +132,7 @@
 </nav>
 <div class="text-center p-3 d-none d-md-block">
   <a href="/">
-  <img src="https://owlbbakingimages.s3.amazonaws.com/images/Sister+logo.svg" height="50" alt="Company Logo">
+  <img src="https://owlbbakingimages.s3.amazonaws.com/images/Sister+logo.svg" id="logo"  alt="Company Logo">
 </a>
 </div>
       <RouterView></RouterView>
@@ -175,5 +173,10 @@ h4, p, h5, h3, h2, ul, li, h1{
     width: auto;
     height:75vh;
   }
+  #logo{
+    max-height: 50px;
+    width:auto;
+  }
+
 
 </style>

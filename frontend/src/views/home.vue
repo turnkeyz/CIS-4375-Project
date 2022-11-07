@@ -20,22 +20,24 @@
         <div class="carousel-inner">
           <div class="carousel-item active" data-bs-interval="10000">
             <img src="/uploads/jumbo1.jpg" id="carousel" class="d-block w-100" alt="...">
-              <div class="carousel-caption d-none d-md-block">
-                <h5>Family Owned</h5>
+              <div class="carousel-caption d-none d-md-block" id="carouselColor">
+
+                <h2>Family Owned</h2>
                   <p>Family recipes Straight out of Mom's Kitchen.</p>
+                
                 </div>
             </div>
             <div class="carousel-item" data-bs-interval="10000">
-              <img src="/uploads/jumbo2.jpg" id="carousel"  class="d-block w-100" alt="...">
-                <div class="carousel-caption d-none d-md-block">s
-                  <h5>Custom Orders Available</h5>
+              <img src="/uploads/jumbo2.jpg" id="carousel"  class="d-block w-100"  alt="...">
+                <div class="carousel-caption d-none d-md-block" id="carouselColor">
+                  <h2>Custom Orders Available</h2>
                   <p>Send us a picture or design, dairy-free and gluten-free options available.</p>
                 </div>
             </div>
             <div class="carousel-item" data-bs-interval="10000">
               <img src="/uploads/jumbo3.jpg" id="carousel"  class="d-block w-100" alt="...">
-              <div class="carousel-caption d-none d-md-block">
-                <h5>Fresh Ingredients</h5>
+              <div class="carousel-caption d-none d-md-block" id="carouselColor">
+                <h2>Fresh Ingredients</h2>
                   <p>We support local business so our suppliers operate here, in the heart of Texas</p>
               </div>
             </div>
@@ -50,11 +52,6 @@
           </button>
       </div>
       </div>
-      <!--this div above seems to be causing an issue because it's being closed too soon and there can only be one root element.
-          made it hard to test effectively on 10/30/2022.
-          just making a note here cause it might be on my end but I don't want to forget - Kyler -->
-
-      
       <div class="container mt-5 mb-5">
         <h1 class="text-center mb-3"><strong>Our Products</strong></h1>
         <p class="text-center">Staring two years ago in Mom's kitchen, Owl B Baking Bakery has been making the neighborhoods favorite baked goods from scratch, 
@@ -71,16 +68,9 @@
               <img src="/uploads/cookies.jpg" class="img-fluid" alt="image">
             </a>
               <p>Cookies</p>
-            <!-- <div class="qty mt-5">
-                <span class="minus bg-dark">-</span>
-                <input type="number" class="count" name="qty" value="1">
-                <span class="plus bg-dark">+</span>
-              </div> -->
+            
             <div class="input-group mb-3">
-              <!-- <input type="number" style="width:.5em" id="typeNumber" class="form-control" placeholder="" aria-label="" aria-describedby="" > -->
-              <!-- <div class="input-group-append">
-                <button class="btn btn-info" type="button">Add to cart</button>
-              </div> -->
+             
             </div>
           </div>
 
@@ -90,10 +80,7 @@
             </a>
             <p>Cakes</p>
             <div class="input-group mb-3">
-              <!-- <input type="number" id="typeNumber" class="form-control" placeholder="" aria-label="" aria-describedby=""> -->
-              <!-- <div class="input-group-append">
-                <button class="btn btn-info" type="button">Add to cart</button>
-              </div> -->
+              
             </div>
           </div>
           <div class="col mt-3">
@@ -102,10 +89,7 @@
             </a>
             <p>Breads</p>
             <div class="input-group mb-3">
-              <!-- <input type="number" id="typeNumber" class="form-control" placeholder="" aria-label="" aria-describedby=""> -->
-              <!-- <div class="input-group-append">
-                <button class="btn btn-info" type="button">Add to cart</button>
-              </div> -->
+             
             </div>
           </div>
         <div class="col mt-3">
@@ -114,10 +98,7 @@
           </a>
             <p>Pastries</p>
           <div class="input-group mb-3">
-              <!-- <input type="number" id="typeNumber" class="form-control" placeholder="" aria-label="" aria-describedby=""> -->
-              <!-- <div class="input-group-append">
-                <button class="btn btn-info" type="button">Add to cart</button>
-              </div> -->
+             
           </div>
         </div>
         <div class="col mt-3">
@@ -126,10 +107,7 @@
           </a>
             <p>Cake Cups</p>
           <div class="input-group mb-3">
-              <!-- <input type="number" id="typeNumber" class="form-control" placeholder="" aria-label="" aria-describedby=""> -->
-              <!-- <div class="input-group-append">
-                <button class="btn btn-info" type="button">Add to cart</button>
-              </div> -->
+             
           </div>
         </div>
         <div class="col mt-3">
@@ -171,7 +149,9 @@ object-fit: contain;
 
 }*/
 
-
+#carouselColor{
+  background:rgba(248,244,255,.1)
+}
 
 
 

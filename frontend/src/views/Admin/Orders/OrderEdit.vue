@@ -183,7 +183,7 @@
 
         <tfoot>
           <tr>
-            <td colspan="3">**edit Order allows for modifying of Status, Delivery Date, Called back.</td>
+            <td colspan="3">**edit Cart allows for changes in Notes and Products.</td>
           </tr>
         </tfoot>
 
@@ -192,8 +192,8 @@
 
           <div class="d-grid gap-2 d-md-flex justify-content-md-end">
             <button type="submit" class="btn btn-success me-md-2">Update</button>
+            <button @click="editProduct(Orders.CartID)" class="btn btn-secondary me-md-2" type="button">Edit Cart</button>
             <button  @click="cancelEdit(Orders.OrderID)" class="btn btn-secondary" type="button">Cancel</button>
-            <button @click="editProduct(Orders.CartID)" class="btn btn-small" type="button">Edit Cart</button>
           </div>
 
         </form>
