@@ -170,15 +170,27 @@
             <td>{{Products.fileName}}</td>
           </tr>
           <tr>
-            <!-- <td>
-              <img :src="'/uploads'+getCategory(Products.CategoryID, Products.Img_url)" class="w-100"/>
-            </td> -->
+            
           </tr>
         </tbody>
       </table>
-      <!-- <img v-if="Products.Image_url" :src="'/uploads/'+getCategory(Products.CategoryID, Products.Img_url)" class="w-100"/> -->
-      <img v-if="Products.fileID" :src="url+Products.fileID" class="w-100"/>
       
+      <!-- <img v-if="Products.fileID" :src="url+Products.fileID" class="w-100"/> -->
+      
+
+      <div v-if="Products.fileID" class="container mb-4 mt-3">
+                        <div class="row justify-content-center">
+                            <div class="col-9 ">
+                                <img id="currentImg" class="w-100" :src="url+Products.fileID" style="">
+                            </div>
+                        </div>
+                    </div>
+
+
+
+      
+
+
       <p v-if="!Products.fileID">No Image added</p>
       </div>
       <div class="d-grid gap-2 d-md-flex justify-content-md-end mb-5 mt-5">
