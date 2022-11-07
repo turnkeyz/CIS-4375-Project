@@ -132,14 +132,18 @@
                     <div class="text-center pt-1 mb-5 pb-1">
                         <ul>
                             <!-- <button class="btn btn-primary btn-block fa-lg gradient-custom-2 mb-3" v-on:click="login()">Sign In</button> -->
-                            <button type='button' class="btn btn-primary btn-block fa-lg gradient-custom-2 mb-3" @click="signIn()">Sign In</button>
-                            <p><button type="button" class="btn btn-primary btn-block fa-lg gradient-custom-2 mb-3" @click="passReset" >Reset Password?</button></p>
+                            
+                            <button type='button' class="btn btn-primary btn-block fa-lg gradient-custom-1 me-md-4 mb-3" @click="signIn()">Sign In</button>
+                            <button type="button" class="btn btn-primary btn-block fa-lg gradient-custom-1 mb-3" @click="signInWithGoogle()">Sign In with Google</button>
+                            <p><button type="button" class="btn btn-primary btn-block fa-lg gradient-custom-1  mb-3" @click="passReset" >Reset Password</button></p>
+                            
+                            
                             <div class="toast" role="alert" aria-live="assertive" id="resetToast" aria-atomic="true">
                                 <div class="toast-body">
                                     Send Password Reset to Email?
                                     <div class="mt-2 pt-2 border-top">
-                                    <button type="button" @click="forgotPassword()" class="btn btn-primary btn-sm">Yes</button>
-                                    <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="toast">No</button>
+                                        <button type="button" @click="forgotPassword()" class="btn btn-primary btn-sm">Yes</button>
+                                        <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="toast">No</button>
                                     </div>
                                 </div>
                             </div>
@@ -151,18 +155,13 @@
                                     <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
                                 </div>
                             </div>
-                            <p><button type="button" class="btn btn-primary btn-block fa-lg gradient-custom-2 mb-3" @click="signInWithGoogle()">Sign In with Google</button></p>
+                            
                             
                             
                     </ul>
                         <p v-if="emailSent">Passord reset sent to Email</p>
                         <p v-if="errMsg">{{errMsg}}</p>
                     </div>
-
-                    <!-- <div class="d-flex align-items-center justify-content-center pb-4">
-                        <p class="mb-0 me-2">Don't have an account?</p>
-                        <button type="button" class="btn btn-outline-danger">Create new</button>
-                    </div> -->
 
                     </form>
 
@@ -187,7 +186,7 @@
     
     .gradient-custom-2 {
     /* fallback for old browsers */
-    background: #d243ff;
+    background: rgba(210, 67, 255, .9);
     /* background-image: url(../public/uploads/login\ page.jpg);
     background-size: contain; */
     /* Chrome 10-25, Safari 5.1-6 */
@@ -195,6 +194,9 @@
     
     /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
     /* background: linear-gradient(to right, #ee7724, #d8363a, #dd3675, #b44593); */
+    }
+    .gradient-custom-1{
+        background: rgba(210, 67, 255, .8);
     }
     
     /* @media (min-width: 768px) {

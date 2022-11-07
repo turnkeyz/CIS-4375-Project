@@ -225,7 +225,8 @@
 };
 </script>
 
-<template>    
+<template>   
+
     <div v-if="!submitted" class="container">
         <div ref="content"> 
             <h1 class="text-center"><strong>Order Form</strong></h1>
@@ -276,14 +277,14 @@
                                 <option>Other</option>
                             </select>
                         </div>
-                        <div class="col-sm-2">
+                        <!-- <div class="col-sm-2">
                             <label>Returning Customer</label>
                             <select class='form-select' @change="show_cust_id()" v-model="Order.ReturnCustomer " required>
                                 <option disabled value="">Select option</option>
                                 <option >Yes</option>
                                 <option >No</option>
                             </select>         
-                        </div>     
+                        </div>      -->
                         <div v-show="show" class="col-sm-2">
                             <label>Customer ID</label>
                             <input type="number" class="form-control" v-model="Order.CustomerID" required>      
@@ -390,8 +391,8 @@
     <br/>
     <!-- Completed Ordered form -->
     <div ref="content" v-show="submitted" class="container mb-5">
-        <p>Thank you for your purchase</p>
         <div class="toast" role="alert" aria-live="assertive" id="submitToast" aria-atomic="true">
+            
             <div class="toast-body">
                 Order was Submitted
                 <div class="mt-2 pt-2 border-top">
@@ -401,7 +402,9 @@
             </div>
         </div>
         <form id="element-to-print" >
+            <p>Thank you for your business</p>
             <fieldset class="form-control mb-5">
+                <img src="/uploads/Sister_logo.jpg" id="logo"  alt="Company Logo">
                 <h1 class="text-center"><strong>Order Form</strong></h1>
                 <hr>
                 <h3>Customer Information</h3>
@@ -469,11 +472,12 @@
     </div>
 
     
-        
+    
     <div class="container mt-5 mb-5">
+        <fieldset class="form-control mb-5">
         <h2 class="text-center"><strong>Custom Orders</strong></h2>
         <br/>
-        <fieldset>
+        
             <h3>For Custom Orders Please send them to <strong>OwlBeeBaking@gmail.com</strong> with an image if available.</h3>
             <h3>Below are some considerations to keep in mind:</h3>
             <br/>
@@ -493,6 +497,7 @@
             </ul>
         </fieldset>
     </div>
+
 </template>
 
 

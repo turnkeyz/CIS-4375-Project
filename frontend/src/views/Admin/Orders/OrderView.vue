@@ -185,9 +185,8 @@
       </table>
       </div>
       <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-        <button @click="showEdit(Orders.OrderID)" class="btn btn-secondary me-md-2">Edit</button>
-        <button @click="cancelShow()" class="btn btn-primary me-md-2">Cancel</button>
         <button @click="sendUpdate()" class="btn btn-primary">Send Invoice</button>
+        <button @click="showEdit(Orders.OrderID)" class="btn btn-secondary me-md-2">Edit</button>
         <button @click="goBack()" class="btn btn-info" type="button">Back</button>
       </div>
     </div>

@@ -51,7 +51,7 @@
   </main>
 </template>
 
-<style>
+<style scoped>
  
 /* .w-100 {
   width: 100% !important;
@@ -66,7 +66,9 @@
 .col, col-lg-6 {
    text-align: center;
 }
-
+main{
+  min-height: 100vh;
+}
 
 
 </style>
