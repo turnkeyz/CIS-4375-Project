@@ -112,6 +112,10 @@
         }
       },
       sendUpdate(){
+        let Alert = document.getElementById('sent')
+            let rstAlert = new bootstrap.Toast(Alert)
+            rstAlert.show()
+            
         sendInvoice(this.Orders)
         // console.log('not connected')
       }
@@ -184,11 +188,34 @@
         </tfoot>
       </table>
       </div>
-      <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+      <div class="d-grid gap-2 d-md-flex justify-content-md-end mb-5">
+        <div class="toast align-items-center text-white bg-primary border-0" id="sent" role="alert" aria-live="assertive" aria-atomic="true">
+        <div class="d-flex">
+            <div class="toast-body">
+            Invoice Sent to Customer
+            </div>
+            <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+        </div>
+    </div>
         <button @click="sendUpdate()" class="btn btn-primary">Send Invoice</button>
         <button @click="showEdit(Orders.OrderID)" class="btn btn-secondary me-md-2">Edit</button>
         <button @click="goBack()" class="btn btn-info" type="button">Back</button>
+      
+        
       </div>
+    
     </div>
+
+
+    <div class="toast align-items-center text-white bg-primary border-0" id="sent" role="alert" aria-live="assertive" aria-atomic="true">
+        <div class="d-flex">
+            <div class="toast-body">
+            Invoice Sent to Customer
+            </div>
+            <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+        </div>
+    </div>
+
+
 </template>
 

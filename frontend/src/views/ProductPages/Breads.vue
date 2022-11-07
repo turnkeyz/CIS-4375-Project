@@ -1,15 +1,20 @@
 <script>
   import axios from 'axios'
   import {cakeList} from '../../components/split'
-  let url = 'https://cdn.filestackcontent.com/AA49LrrQpRmmalcs9wq6lz/'
+  import Product from '../../components/product.vue'
 
   export default {
+    components:{
+      Product
+    },
     mounted(){
     //  this.cakeList(this.allproducts, this.rows)
     },
     data() {
       return {
         cakes:[],
+        allproducts:[],
+        category:'Breads',
         url:import.meta.env.VITE_FILESTACK_URL
       };
     },
@@ -17,8 +22,8 @@
       let apiURL = `${import.meta.env.VITE_VUE_APP_ROOT_URL}/Products/allBreads`
       axios.get(apiURL).then((res)=>{
         this.allproducts = res.data;
-        this.rows = Math.ceil(res.data.length/3)
-        this.cakes =cakeList(this.allproducts, this.rows)
+        // this.rows = Math.ceil(res.data.length/3)
+        // this.cakes =cakeList(this.allproducts, this.rows)
         
       }).catch(err=>{
         console.log(err)
@@ -32,13 +37,13 @@
   };
 </script>
 <template>  
-  <section style="background-color: #f8f8ff;">
+  <!-- <section style="background-color: #f8f8ff;">
      <div class="container py-5">
       <h1 class="text-center mb-5"><strong>Breads</strong></h1>
       <div v-for="row in cakes" :key="row" class="row">
           <div v-for="item in row" :key="item" class="col-lg-4 col-md-6 mb-4">
               <div class="bg-image hover-zoom ripple shadow-1-strong rounded">
-                <!-- <img :src="'/uploads/breads/'+item.Img_url" class="w-100"/> -->
+                
                 <img :src="url+item.fileID" id="imgSize" class="w-100"/>
                   <div class="mask" style="background-color: rgba(242,243,244, 1);">
                   <div class="d-flex justify-content-start align-items-start h-100">
@@ -57,15 +62,8 @@
           </div>     
         </div>
       </div>
-  </section>
+  </section> -->
+
+  <Product :allproducts='allproducts' :category="category"/>
 </template>
 
-<style>
-
-  
-  #imgSize{
-    width:100vh;
-    height:20vh;
-    object-fit: cover;
-  }
-</style>

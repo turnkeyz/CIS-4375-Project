@@ -58,7 +58,7 @@
           <a class="nav-link mx-2 active" aria-current="page" href="/dashboard">DashBoard</a>
         </li>
         <div v-if="$route.meta.hideNavbar" class="dropdown">
-          <a class="nav-link dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+          <a class="nav-link dropdown-toggle active" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
             Customers
           </a>
 
@@ -68,7 +68,7 @@
           </ul>
         </div>
         <div v-if="$route.meta.hideNavbar" class="dropdown">
-          <a class="nav-link dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+          <a class="nav-link dropdown-toggle active" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
             Products
           </a>
 
@@ -78,7 +78,7 @@
           </ul>
         </div>
         <div v-if="$route.meta.hideNavbar" class="dropdown">
-          <a class="nav-link dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+          <a class="nav-link dropdown-toggle active" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
             Carts
           </a>
 
@@ -88,7 +88,7 @@
           </ul>
         </div>
         <div v-if="$route.meta.hideNavbar" class="dropdown">
-          <a class="nav-link dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+          <a class="nav-link dropdown-toggle active" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
             Orders
           </a>
 
@@ -101,7 +101,7 @@
 
 
         <div v-if="!$route.meta.hideNavbar" class="dropdown">
-          <a class="nav-link dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+          <a class="nav-link dropdown-toggle active" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
             Products
           </a>
 
@@ -115,10 +115,10 @@
           </ul>
         </div>
         <li v-if="!$route.meta.hideNavbar" class="nav-item">
-          <a class="nav-link mx-2" href="/about">About</a>
+          <a class="nav-link mx-2 active" href="/about">About</a>
         </li>
         <li v-if="!$route.meta.hideNavbar" class="nav-item">
-          <a class="nav-link mx-2" href="/order-form">Order</a>
+          <a class="nav-link mx-2 active" href="/order-form">Order</a>
         </li>
         <li class="nav-item">
           <button @click="logOut()" v-if="isLoggedIn" class="btn btn-danger navbar-btn">Logout</button>
@@ -161,15 +161,12 @@ h4, p, h5, h3, h2, ul, li, h1{
   p,ul,li{
     font-size: 25px;
   }
-  .img-fluid{ 
+  /* .img-fluid{ 
     width: 100% !important;
     height: 25vh;
-    /* max-height: 200px; */
-    /* max-width: 100%;
-    height: auto; */
-    /* object-fit: cover;  */
+  
     
-  } 
+  }  */
   .nav-link mx-2 btn rounded-0{
     color:#00cdff
   }

@@ -190,7 +190,7 @@
         </table>
         <p></p>
 
-          <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+          <div class="d-grid gap-2 d-md-flex justify-content-md-end mb-5">
             <button type="submit" class="btn btn-success me-md-2">Update</button>
             <button @click="editProduct(Orders.CartID)" class="btn btn-secondary me-md-2" type="button">Edit Cart</button>
             <button  @click="cancelEdit(Orders.OrderID)" class="btn btn-secondary" type="button">Cancel</button>

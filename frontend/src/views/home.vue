@@ -11,7 +11,8 @@
 <template>
   <main>
     <div class="container-fluid">
-    <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
+      <div class="row">
+        <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
       <div class="carousel-indicators">
         <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
         <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
@@ -52,6 +53,10 @@
           </button>
       </div>
       </div>
+      </div>
+    
+      
+      
       <div class="container mt-5 mb-5">
         <h1 class="text-center mb-3"><strong>Our Products</strong></h1>
         <p class="text-center">Staring two years ago in Mom's kitchen, Owl B Baking Bakery has been making the neighborhoods favorite baked goods from scratch, 
@@ -59,69 +64,75 @@
           us a description and picture and we'll have it made!
         </p>
       </div>
-      
-
-      <div class="container mb-5">
-      <div class="row row-cols-1 row-cols-md-2 row-cols-md-3">
-          <div class="col mt-3">
+    
+    <div class="container mb-5">
+      <div class="row ">
+          <div class="col-md-4">
             <a href="/cookies">
-              <img src="/uploads/cookies.jpg" class="img-fluid" alt="image">
+              <img src="/uploads/cookies.jpg" class="w-100 img-thumbnail" alt="image">
             </a>
               <p>Cookies</p>
-            
             <div class="input-group mb-3">
-             
             </div>
           </div>
 
-          <div class="col mt-3">
+          <div class="col-md-4">
             <a href="/cakes">
-              <img src="/uploads/cakes.jpg" class="img-fluid" alt="image">
+              <img src="/uploads/cakes.jpg" class="w-100 img-thumbnail" alt="image">
             </a>
             <p>Cakes</p>
             <div class="input-group mb-3">
               
             </div>
           </div>
-          <div class="col mt-3">
+          <div class="col-md-4">
             <a href="/breads">
-              <img src="/uploads/breads.jpg" class="img-fluid" alt="image">
+              <img src="/uploads/breads.jpg" class="w-100 img-thumbnail" alt="image">
             </a>
             <p>Breads</p>
             <div class="input-group mb-3">
              
             </div>
           </div>
-        <div class="col mt-3">
+
+        <div class="row">
+          <div class="col-md-4">
           <a href="/pastries">
-            <img src="/uploads/pastries.jpg" class="img-fluid" alt="image">
+            <img src="/uploads/pastries.jpg" class="w-100 img-thumbnail" alt="image">
           </a>
             <p>Pastries</p>
           <div class="input-group mb-3">
              
           </div>
         </div>
-        <div class="col mt-3">
+        <div class="col-md-4">
           <a href="/cakecups">
-            <img id="img" src="/uploads/cakecup.jpg" class="img-fluid" alt="image">
+            <img id="img" src="/uploads/cakecup.jpg" class="w-100 img-thumbnail" alt="image">
           </a>
             <p>Cake Cups</p>
           <div class="input-group mb-3">
              
           </div>
         </div>
-        <div class="col mt-3">
-          <img src="/uploads/baking.jpg" class="img-fluid" alt="image">
+        <div class="col-md-4">
+          <a href="/order-form">
+            <img src="/uploads/baking.jpg" class="w-100 img-thumbnail" alt="image">
+          </a>
           <p>Custom Orders</p>
         </div>
       </div>
+        </div>
+        
     </div>
-  
   
   </main>
 </template>
 
 <style scoped>
+.w-100 {
+  height: 300px;
+  object-fit: cover;
+}
  
 /* .w-100 {
   width: 100% !important;
