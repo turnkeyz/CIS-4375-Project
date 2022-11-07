@@ -385,8 +385,7 @@
                         <div class="row mt-1">
                         
                         <div v-for="img in displayedPosts" :key="img" class="col-md-4 mb-3">
-                            <img id="productImg" @click="changeValue(img)" class="w-100" :src="url+img.fileID" style="">
-                            
+                            <img id="productImg" @click="changeValue(img)" class="w-100" :src="url+img.fileID" style="">  
                         </div>
                 </div>
     
