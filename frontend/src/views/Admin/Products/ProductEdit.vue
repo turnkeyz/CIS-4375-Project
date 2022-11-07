@@ -37,7 +37,8 @@
         catSet:false,
         show:false,
         imgIDDisplay:'',
-        custom:false
+        custom:false,
+        url:import.meta.env.VITE_FILESTACK_URL,
       };
     },
     mounted(){
@@ -341,17 +342,27 @@
               </div>
               
               <!-- added for images -->
-              <div v-if="Products.fileID" class="container">
+              <!-- <div v-if="Products.fileID" class="container">
                   <img id="currentImg" class="w-100" :src="'https://cdn.filestackcontent.com/AA49LrrQpRmmalcs9wq6lz/'+Products.fileID" style="">
-              </div>
+              </div> -->
 
-              <div v-if="show" class="container mt-5 mb-5">
+              <div v-if="Products.fileID" class="container mb-4">
+                        <div class="row justify-content-center">
+                            <div class="col-6">
+                                <img id="currentImg" class="w-100" :src="url+Products.fileID" style="">
+                            </div>
+                        </div>
+                    </div>
+
+              <div v-if="show" class="container mb-5">
                   <div class="row mt-1">
                   
-                  <div v-for="img in displayedPosts" :key="img" class="col-md-4 mb-3">
-                      <img id="productImg" @click="changeValue(img)" class="w-100" :src="'https://cdn.filestackcontent.com/AA49LrrQpRmmalcs9wq6lz/'+img.fileID" style="">
-                      
+                  <div v-for="img in displayedPosts" :key="img" class="col-md-4 mb-2">
+                      <img id="productImg" @click="changeValue(img)" class="w-100" :src="url+img.fileID" style="">
                   </div>
+
+
+                  
           </div>
 
 
