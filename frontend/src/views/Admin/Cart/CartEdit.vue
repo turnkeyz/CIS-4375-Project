@@ -38,11 +38,6 @@
           this.items = JSON.parse(this.Cart.ProductsJSON)
           this.total = this.Cart.Subtotal
           
-          if(this.$route.query.e === true || this.$route.query.e === 'true'){
-            this.edit=true
-          }else{
-            this.edit=false
-          }
         })
         .catch((error) => {
           console.log(error);
@@ -64,7 +59,7 @@
         let apiURL = `${import.meta.env.VITE_VUE_APP_ROOT_URL}/Cart/delete/${id}`;
         if (window.confirm("Are you sure you want to delete?")) {
           axios.delete(apiURL).then(() => {
-              this.$router.push("/Cart");  //changes view to all Cart view
+              this.$router.push("/carts");  //changes view to all Cart view
             })
             .catch((error) => {
               console.log(error);
@@ -98,12 +93,13 @@
       //   if(!this.Cart.CustomerNotes){
       //   this.errors.push("Customer Notes is Required")
       // }
-        if(!this.Cart.Subtotal){
-            this.errors.push("Subtotal is Required");
-            }
+        
        
         this.Cart.ProductsJSON = JSON.stringify(this.items)
         this.Cart.Subtotal=this.total
+        if(!this.Cart.Subtotal){
+            this.errors.push("Subtotal is Required");
+            }
        
         //only run if no errors
         if(this.errors.length === 0){

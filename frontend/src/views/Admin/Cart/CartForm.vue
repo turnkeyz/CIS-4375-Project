@@ -62,12 +62,12 @@
                 this.errors.push("No subtotal")
             }
             
-            
+            this.Cart.ProductsJSON = JSON.stringify(this.items)
             if(this.Cart.ProductsJSON.length == 0){
                 this.errors.push("Products table is empty")
                 return
             }
-            this.Cart.ProductsJSON = JSON.stringify(this.items)
+            
             if(this.errors.length === 0){
                 
                 let apiURL = `${import.meta.env.VITE_VUE_APP_ROOT_URL}/Cart/add`;

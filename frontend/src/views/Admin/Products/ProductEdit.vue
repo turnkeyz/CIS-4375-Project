@@ -177,24 +177,7 @@
             });
         }
       },
-      getCategory(id, url){
-        if(id == 1){
-          return '/cookies/'+url
-        }
-        if(id==2){
-          return '/pastries/'+url
-        }
-        if(id==3){
-          return '/cakes/'+url
-        }
-        if(id==4){
-          return '/breads/'+url
-        }
-        if(id==6){
-          return '/cakecups/'+url
-        }
-        return url
-      },
+      
       handleFileUpload(evt){
         this.file_type = evt.target.files[0].type
         this.Products.Img_url=evt.target.files[0].name

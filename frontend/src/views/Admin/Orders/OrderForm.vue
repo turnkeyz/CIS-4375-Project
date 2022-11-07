@@ -10,6 +10,7 @@
                     DeliveryDateTime:'',
                     Status: '',
                     PaymentStatus: '',
+                    CalledBackValue:0
                 },
                 errors:[],
                 cartIDs:[]
@@ -40,35 +41,36 @@
                     this.errors.push("Date Ordered not in correct format")
                 }
 
-                if(this.Orders.DeliveryDateTime && !yearMonthDay.test(this.Orders.DateTimeOrdered)){
+                if(this.Orders.DeliveryDateTime && !yearMonthDay.test(this.Orders.DeliveryDateTime)){
                     this.errors.push("Delivery Date not in correct format")
                 }
-                // if(!this.Orders.DeliveryDateTime)
-                //     this.errors.push("Please enter a valid email.");
-                console.log(typeof(this.Orders.DateTimeOrdered))
-                if(!this.Orders.Status)
+                
+                if(!this.Orders.DeliveryDateTime){
+                    delete this.Orders.DeliveryDateTime
+                }
+                if(!this.Orders.Status){
                 this.errors.push("Status is Required")
+            }
+                
 
-                if (!this.Orders.PaymentStatus)
+                if (!this.Orders.PaymentStatus){
                 this.errors.push("Payment Status is Required");
-                // console.log(this.Orders)
-            //only run if no errors
+            }
+            
             if(this.errors.length === 0){
                 let apiURL = `${import.meta.env.VITE_VUE_APP_ROOT_URL}/Orders/add`;
                 axios.post(apiURL, this.Orders).then(() => {
                 this.$router.push('/orders') //goes to customers view
-                this.Orders = {
-                    CartID: '',
-                    DateTimeOrdered: '',
-                    DeliveryDateTime:'',
-                    Status: '',
-                    PaymentStatus: '',
-                }
+                
                 }).catch(error => {
                     console.log(error)
                 });
                 }
             },
+            reset(){
+                this.Orders={}
+                this.errors=[]
+            }
 
         }
     }
@@ -152,7 +154,11 @@
                 </ul>
             </p>
 
-            <button class="btn btn-success create" >Create</button>
+            <div class="d-grid gap-2 d-md-flex justify-content-md-end mb-5">
+                <button class="btn btn-success create" >Create</button>
+                <button type="button" @click="reset" class="btn btn-secondary create" >Clear</button>
+            </div>
+            
 
         </form>
         

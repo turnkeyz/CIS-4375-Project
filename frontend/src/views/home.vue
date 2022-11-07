@@ -19,21 +19,21 @@
       </div>
         <div class="carousel-inner">
           <div class="carousel-item active" data-bs-interval="10000">
-            <img src="/uploads/jumbo1.jpg" class="d-block w-100" alt="...">
+            <img src="/uploads/jumbo1.jpg" id="carousel" class="d-block w-100" alt="...">
               <div class="carousel-caption d-none d-md-block">
                 <h5>Family Owned</h5>
                   <p>Family recipes Straight out of Mom's Kitchen.</p>
                 </div>
             </div>
             <div class="carousel-item" data-bs-interval="10000">
-              <img src="/uploads/jumbo2.jpg" class="d-block w-100" alt="...">
+              <img src="/uploads/jumbo2.jpg" id="carousel"  class="d-block w-100" alt="...">
                 <div class="carousel-caption d-none d-md-block">s
                   <h5>Custom Orders Available</h5>
                   <p>Send us a picture or design, dairy-free and gluten-free options available.</p>
                 </div>
             </div>
             <div class="carousel-item" data-bs-interval="10000">
-              <img src="/uploads/jumbo3.jpg" class="d-block w-100" alt="...">
+              <img src="/uploads/jumbo3.jpg" id="carousel"  class="d-block w-100" alt="...">
               <div class="carousel-caption d-none d-md-block">
                 <h5>Fresh Ingredients</h5>
                   <p>We support local business so our suppliers operate here, in the heart of Texas</p>
@@ -150,6 +150,7 @@
   height: 75vh;
   object-fit: cover;
 }
+
 img {
 float: left;
 width: 100px;
