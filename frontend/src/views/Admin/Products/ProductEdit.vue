@@ -410,7 +410,7 @@
     }
     #productImg{
         /* width: 50%; */
-        height: 15vh;
+        height: 200px;
         object-fit: cover;
     }
     #currentImg{
