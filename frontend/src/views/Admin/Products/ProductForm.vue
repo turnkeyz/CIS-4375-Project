@@ -372,12 +372,16 @@
                         <button v-if="show" class="btn btn-secondary" type="button" @click="hideImages">Close</button>
                     </div>
                     
-                    <!-- added for images -->
-                    <div v-if="Products.ImageID" class="container mt-3">
-                        <img id="currentImg" class="w-100" :src="url+Products.fileID" style="">
+                   
+                    <div v-if="Products.ImageID" class="container mb-4 mt-3">
+                        <div class="row justify-content-center">
+                            <div class="col-6 ">
+                                <img id="currentImg" class="w-100" :src="url+Products.fileID" style="">
+                            </div>
+                        </div>
                     </div>
 
-                    <div v-if="show" class="container mt-5 mb-5">
+                    <div v-if="show" class="container mb-5">
                         <div class="row mt-1">
                         
                         <div v-for="img in displayedPosts" :key="img" class="col-md-4 mb-3">
