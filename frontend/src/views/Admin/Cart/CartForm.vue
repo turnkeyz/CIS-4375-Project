@@ -98,7 +98,8 @@
         removeFromCart(id){
             let index = this.items.findIndex(i=>i.ProductID===id)
             let price = this.items[index].Price
-            this.total = this.total - price
+            let Quantity = this.items[index].Quantity
+            this.total = this.total - (price*Quantity)
             this.items.splice(index, 1)
         },
         setCatPrice(){
