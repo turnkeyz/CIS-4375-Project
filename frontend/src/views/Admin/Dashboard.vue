@@ -174,14 +174,14 @@
     </fieldset>
   
     
-  <fieldset class='form-control mb-5'>
+  <!-- <fieldset class='form-control mb-5'>
     <legend>Monthly Top Seller</legend>
     <line-chart v-if="loaded4" :data="topSellingProduct"></line-chart>
     <p></p>
-  </fieldset>
+  </fieldset> -->
 
   <fieldset class='form-control mb-5'>
-    <legend>Top 5 Sellers</legend>
+    <legend>Top 5 Most Purchased</legend>
     <bar-chart v-if="loaded3" :data="topFiveSellers"></bar-chart>
   </fieldset>
   

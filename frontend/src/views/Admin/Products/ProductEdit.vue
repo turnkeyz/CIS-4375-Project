@@ -340,11 +340,6 @@
                   <button type="button" class="btn btn-secondary" @click="showImages">More Images</button>
                   <button v-if="show" class="btn btn-secondary" type="button" @click="hideImages">Close</button>
               </div>
-              
-              <!-- added for images -->
-              <!-- <div v-if="Products.fileID" class="container">
-                  <img id="currentImg" class="w-100" :src="'https://cdn.filestackcontent.com/AA49LrrQpRmmalcs9wq6lz/'+Products.fileID" style="">
-              </div> -->
 
               <div v-if="Products.fileID" class="container mb-4">
                         <div class="row justify-content-center">
