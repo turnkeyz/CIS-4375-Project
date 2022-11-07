@@ -43,7 +43,7 @@
                 
                   <div class="mask" style="background-color: rgba(242,243,244, 1);">
                   <div class="d-flex justify-content-start align-items-start h-100">
-                  <h5><span class="badge bg-light pt-2 ms-3 mt-3 text-dark">{{item.ProductName}} ${{item.Price}}</span></h5>
+                  <h2><span class="badge bg-light pt-2 ms-3 mt-3 text-dark">{{item.ProductName}} ${{item.Price}}</span></h2>
                   </div>
                   </div>
                 <div class="hover-overlay">
